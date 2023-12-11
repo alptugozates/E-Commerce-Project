@@ -18,7 +18,9 @@ import {
   faTwitter,
 } from "@fortawesome/free-brands-svg-icons";
 import headerFoto from "../foto/technology1.png";
-
+import largeEllipse from "../foto/largeEllipse.png";
+import smallEllipse from "../foto/smallEllipse.png";
+import XsEllipse from "../foto/XsEllipse.png";
 const Header = () => {
   return (
     <div className="shop-header-1 w-full h-[53.25rem] ">
@@ -48,7 +50,7 @@ const Header = () => {
                   </div>
                 </div>
                 <div className="flex items-center gap-2.5 p-2.5">
-                  <h6 className="text-custom-white font-montserrat font-bold text-sm tracking-[0.0125rem] ">
+                  <h6 className="text-custom-white font-montserrat font-bold pt-1 text-sm tracking-[0.0125rem] ">
                     Follow Us and get a chance to win 80% off
                   </h6>
                 </div>
@@ -56,22 +58,30 @@ const Header = () => {
                   <h6 className="text-custom-white font-montserrat font-bold text-sm tracking-[0.0125rem] ">
                     Follow Us :
                   </h6>
-                  <FontAwesomeIcon
-                    icon={faInstagram}
-                    style={{ color: "#ffffff" }}
-                  />
-                  <FontAwesomeIcon
-                    icon={faYoutube}
-                    style={{ color: "#ffffff" }}
-                  />
-                  <FontAwesomeIcon
-                    icon={faFacebook}
-                    style={{ color: "#ffffff" }}
-                  />
-                  <FontAwesomeIcon
-                    icon={faTwitter}
-                    style={{ color: "#ffffff" }}
-                  />
+                  <a href="">
+                    <FontAwesomeIcon
+                      icon={faInstagram}
+                      style={{ color: "#ffffff" }}
+                    />
+                  </a>
+                  <a href="">
+                    <FontAwesomeIcon
+                      icon={faYoutube}
+                      style={{ color: "#ffffff" }}
+                    />
+                  </a>
+                  <a href="">
+                    <FontAwesomeIcon
+                      icon={faFacebook}
+                      style={{ color: "#ffffff" }}
+                    />
+                  </a>
+                  <a href="">
+                    <FontAwesomeIcon
+                      icon={faTwitter}
+                      style={{ color: "#ffffff" }}
+                    />
+                  </a>
                 </div>
               </div>
             </div>
@@ -184,7 +194,7 @@ const Header = () => {
             </div>
           </div>
         </div>
-        <div className="container-fluid flex justify-center w-11/12 ml-10 items-center pb-1 rounded-[1.25rem] bg-gradient-to-r from-[#96E9FB] to-[#ABECD6]  ">
+        <div className="container-fluid flex justify-center w-11/12 ml-10 items-center mt-10 pb-1 rounded-[1.25rem] bg-gradient-to-r from-[#96E9FB] to-[#ABECD6]  ">
           <div className="row flex justify-center items-center  shrink-0 pl-52 h-auto ">
             <div className="col-md-6 flex flex-col w-6/12 justify-center items-start h-auto shrink-0 gap-8">
               <h5 className="font-montserrat font-bold text-base tracking-[0.00625rem] text-[#2A7CC7] ">
@@ -206,8 +216,20 @@ const Header = () => {
             </div>
             <div className="col-md-6 flex justify-center items-center shrink-0 py-0 px-1.5">
               <div className="hero-cover-1 flex justify-center items-center shrink-0 pr-1 pl-1.5">
-                <div className=" ">
-                  <img className="w-[50rem]" src={headerFoto} />
+                <div className=" relative flex">
+                  <img className="w-[50rem] z-[2] relative " src={headerFoto} />
+                  <img
+                    className="z-[1] w-9/12 ml-32  absolute top-0"
+                    src={largeEllipse}
+                  />
+                  <img
+                    className="z-[0] w-[15%] h-auto absolute top-0"
+                    src={smallEllipse}
+                  />
+                  <img
+                    className="z-[0] w-[15%] h-auto absolute top-0"
+                    src={XsEllipse}
+                  />
                 </div>
               </div>
             </div>
