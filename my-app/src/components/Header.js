@@ -217,17 +217,17 @@ const Header = () => {
             <div className="col-md-6 flex justify-center items-center shrink-0 py-0 px-1.5">
               <div className="hero-cover-1 flex justify-center items-center shrink-0 pr-1 pl-1.5">
                 <div className=" relative flex">
-                  <img className="w-[50rem] z-[2] relative " src={headerFoto} />
+                  <img className="w-[50rem] z-[3] relative " src={headerFoto} />
                   <img
-                    className="z-[1] w-9/12 ml-32  absolute top-0"
+                    className="z-[2] w-9/12 ml-32  absolute top-0"
                     src={largeEllipse}
                   />
                   <img
-                    className="z-[0] w-[15%] h-auto absolute top-0"
+                    className="z-[1] w-[15%] h-auto absolute top-0"
                     src={smallEllipse}
                   />
                   <img
-                    className="z-[0] w-[15%] h-auto absolute top-0"
+                    className="z-[0] w-4 mr-8 mt-32 absolute right-0 "
                     src={XsEllipse}
                   />
                 </div>
