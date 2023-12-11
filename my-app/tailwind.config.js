@@ -9,6 +9,7 @@ module.exports = {
       colors: {
         "custom-white": "#FFFFFF",
         "custom-gray": "#737373",
+        "custom-bg-color": "rgba(45, 139, 192, 0.75)",
       },
     },
   },
