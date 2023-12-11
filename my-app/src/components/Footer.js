@@ -1,3 +1,10 @@
+import {
+  faFacebook,
+  faInstagram,
+  faTwitter,
+} from "@fortawesome/free-brands-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 const Footer = () => {
   return (
     <div className="h-auto self-stretch">
@@ -10,6 +17,28 @@ const Footer = () => {
                   Bandage
                 </a>
               </nav>
+            </div>
+            <div className="col-md-3 flex items-center">
+              <div className="social-media flex justify-center items-center gap-6">
+                <a href="">
+                  <FontAwesomeIcon
+                    icon={faFacebook}
+                    style={{ color: "#ffffff" }}
+                  />
+                </a>
+                <a href="">
+                  <FontAwesomeIcon
+                    icon={faInstagram}
+                    style={{ color: "#ffffff" }}
+                  />
+                </a>
+                <a href="">
+                  <FontAwesomeIcon
+                    icon={faTwitter}
+                    style={{ color: "#ffffff" }}
+                  />
+                </a>
+              </div>
             </div>
           </div>
         </div>
