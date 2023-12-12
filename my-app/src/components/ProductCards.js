@@ -24,7 +24,7 @@ const ProductCards = () => {
             </p>
           </div>
         </div>
-        <div className="row flex justify-center items-start gap-10">
+        <div className="row flex justify-center items-start gap-10 pb-10">
           <div className="product-tab-group flex flex-col items-start shrink-0">
             <div className="tab-content flex flex-col items-start gap-10">
               <div className="tab-one flex flex-col items-start gap-7 py-6">
@@ -266,10 +266,8 @@ const ProductCards = () => {
             </div>
           </div>
         </div>
-        <button className="py-4 px-20 border-2 border-[#23A6F0] rounded-md">
-          <p className="font-montserrat font-bold tracking-[0.0125rem] text-[#23A6F0] text-sm  ">
-            LOAD MORE PRODUCTS
-          </p>
+        <button className="py-4 px-20 border-2 border-[#23A6F0] rounded-md hover:bg-[#23A6F0] font-montserrat font-bold tracking-[0.0125rem] text-[#23A6F0] text-sm transition-colors duration-300 hover:text-white ">
+          LOAD MORE PRODUCTS
         </button>
       </div>
     </div>
