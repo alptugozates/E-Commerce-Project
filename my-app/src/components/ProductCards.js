@@ -266,6 +266,11 @@ const ProductCards = () => {
             </div>
           </div>
         </div>
+        <button className="py-4 px-20 border-2 border-[#23A6F0] rounded-md">
+          <p className="font-montserrat font-bold tracking-[0.0125rem] text-[#23A6F0] text-sm  ">
+            LOAD MORE PRODUCTS
+          </p>
+        </button>
       </div>
     </div>
   );
