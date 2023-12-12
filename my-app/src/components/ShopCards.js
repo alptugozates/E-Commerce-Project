@@ -4,10 +4,10 @@ import productCartImg3 from "../foto/productCartImg3.jpg";
 
 const ShopCards = () => {
   return (
-    <div className="flex items-center self-stretch pr-44 pl-24">
-      <div className="container flex flex-col items-start px-0 py-24">
+    <div className="flex items-center w-full pr-44 pl-44">
+      <div className="container flex flex-col items-center px-0">
         <div className="row flex items-start gap-4">
-          <div className="col-md-4 flex justify-center items-center w-[40rem] h-auto ">
+          <div className="col-md-4 flex justify-center items-center h-auto ">
             <div className="card-item shrink-0 shadow-md relative">
               <div className="media-bg flex justify-center items-center shrink-0">
                 <img className="z-[0]" src={productCartImg} />
@@ -23,7 +23,7 @@ const ShopCards = () => {
             </div>
           </div>
           <div className="col-md-4  flex flex-col justify-center items-start gap-6">
-            <div className="card-item w-auto h-6/12 relative">
+            <div className="card-item w-auto h-6/12 relative shadow-md">
               <div className=" media-bg flex justify-center items-center shrink-0">
                 <img src={productCartImg2} />
                 <div className="card-content absolute left-0 bottom-0 flex flex-col justify-end items-start gap-6 bg-custom-bg-color pt-12 pr-14 pb-6 pl-8">
@@ -36,7 +36,7 @@ const ShopCards = () => {
                 </div>
               </div>
             </div>
-            <div className="card-item w-auto h-6/12 relative">
+            <div className="card-item w-auto h-6/12 relative shadow-md">
               <div className=" media-bg flex justify-center items-center shrink-0">
                 <img src={productCartImg3} />
                 <div className="card-content absolute left-0 bottom-0 flex flex-col justify-end items-start gap-6 bg-custom-bg-color pt-12 pr-14 pb-6 pl-8">
