@@ -1,3 +1,4 @@
+import Blog from "./Blog";
 import ClientsContent from "./ClientsContent";
 import Content from "./Content";
 import Features from "./Features";
@@ -15,6 +16,7 @@ const HomePage = () => {
       <ProductCards />
       <Content />
       <Features />
+      <Blog />
       <Footer />
     </div>
   );
