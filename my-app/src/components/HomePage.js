@@ -2,6 +2,7 @@ import Blog from "./Blog";
 import ClientsContent from "./ClientsContent";
 import Content from "./Content";
 import Features from "./Features";
+import FluidContent from "./FluidContent";
 import Footer from "./Footer";
 import Header from "./Header";
 import ProductCards from "./ProductCards";
@@ -11,6 +12,7 @@ const HomePage = () => {
   return (
     <div>
       <Header />
+      <FluidContent />
       <ClientsContent />
       <ShopCards />
       <ProductCards />
