@@ -1,7 +1,7 @@
 import "./App.css";
 import HomePage from "./components/HomePage";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import ProductList from "./components/ProductList";
+import ProductListPage from "./components/ProductListPage";
 function App() {
   return (
     <Router>
@@ -10,7 +10,7 @@ function App() {
           <HomePage />
         </Route>
         <Route exact path="/products">
-          <ProductList />
+          <ProductListPage />
         </Route>
       </div>
     </Router>
