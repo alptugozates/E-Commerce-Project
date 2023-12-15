@@ -5,6 +5,7 @@ import Features from "./Features";
 import FluidContent from "./FluidContent";
 import Footer from "./Footer";
 import Header from "./Header";
+import MySlider from "./MySlider";
 import ProductCards from "./ProductCards";
 import ShopCards from "./ShopCards";
 
@@ -12,7 +13,7 @@ const HomePage = () => {
   return (
     <div>
       <Header />
-      <FluidContent />
+      <MySlider />
       <ClientsContent />
       <ShopCards />
       <ProductCards />
