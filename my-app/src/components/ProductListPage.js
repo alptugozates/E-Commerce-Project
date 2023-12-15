@@ -15,7 +15,7 @@ import elipsGreen from "../foto/elipsGreen.png";
 import elipsOrange from "../foto/elipsOrange.png";
 import ClientsContent from "./ClientsContent";
 
-const ProductList = () => {
+const ProductListPage = () => {
   return (
     <div>
       <Header />
@@ -230,4 +230,4 @@ const ProductList = () => {
     </div>
   );
 };
-export default ProductList;
+export default ProductListPage;
