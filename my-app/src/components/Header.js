@@ -94,7 +94,7 @@ const Header = () => {
             <nav className="flex items-start gap-6">
               <li className="flex w-11 h-6 justify-center items-center">
                 <a
-                  href=""
+                  href="/"
                   className="shrink-0 text-custom-gray font-bold font-montserrat tracking-[0.0125rem] text-base "
                 >
                   Home
