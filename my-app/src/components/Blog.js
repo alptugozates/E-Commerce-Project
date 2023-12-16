@@ -215,14 +215,12 @@ const Blog = () => {
                   <img src={elipsNavy} />
                 </div>
                 <div className="frame-1 flex items-center justify-start gap-4 px-0 py-4 self-stretch ">
-                  <div className="frame flex items-center gap-1.5">
-                    <div className="icon flex justify-center items-center">
-                      <img src={clockIcon} />
-                    </div>
-                    <p className="font-montserrat font-normal text-custom-gray tracking-[0.0125rem] text-xs ">
-                      22h...
-                    </p>
+                  <div className="icon flex justify-center items-center">
+                    <img src={clockIcon} />
                   </div>
+                  <p className="font-montserrat font-normal text-custom-gray tracking-[0.0125rem] text-xs ">
+                    22h...
+                  </p>
                   <div className="frame flex items-center gap-1.5">
                     <div className="icon flex justify-center items-center">
                       <img src={chartIcon} />
