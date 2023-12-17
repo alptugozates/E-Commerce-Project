@@ -2,7 +2,10 @@ import "./App.css";
 import HomePage from "./components/HomePage";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import ProductListPage from "./components/ProductListPage";
-import BlogePage from "./components/BlogPage";
+import BlogPage from "./components/BlogPage";
+
+import ProductPage from "./components/ProductPage";
+import AboutPage from "./components/AboutPage";
 function App() {
   return (
     <Router>
@@ -10,11 +13,17 @@ function App() {
         <Route exact path="/">
           <HomePage />
         </Route>
-        <Route exact path="/products">
+        <Route path="/products">
           <ProductListPage />
         </Route>
-        <Route exact path="/blog">
-          <BlogePage />
+        <Route path="/blog">
+          <BlogPage />
+        </Route>
+        <Route path="/product-page">
+          <ProductPage />
+        </Route>
+        <Route path="/about">
+          <AboutPage />
         </Route>
       </div>
     </Router>
