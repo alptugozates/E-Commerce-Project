@@ -20,7 +20,7 @@ import {
 
 const Header = () => {
   return (
-    <div className="shop-header-1 w-full h-auto ">
+    <div className="shop-header-1 px-0 w-full h-auto ">
       <div className="navbar-style flex w-full pb-2 flex-col items-start gap-3 ">
         <div className="navbar-dark w-full h-[3.625rem] py-2.5 px-1 flex justify-center items-center bg-[#252B42] text-custom-white ">
           <div className="navbar-collapse flex w-full h-12 justify-center items-center ">
@@ -110,7 +110,7 @@ const Header = () => {
               </li>
               <li className="flex w-11 h-6 justify-center items-center">
                 <a
-                  href=""
+                  href="/about"
                   className="shrink-0 text-custom-gray font-bold font-montserrat tracking-[0.0125rem] text-base "
                 >
                   About
@@ -134,7 +134,7 @@ const Header = () => {
               </li>
               <li className="flex w-11 h-6 justify-center items-center">
                 <a
-                  href=""
+                  href="/product-page"
                   className="shrink-0 text-custom-gray font-bold font-montserrat tracking-[0.0125rem] text-base "
                 >
                   Pages
