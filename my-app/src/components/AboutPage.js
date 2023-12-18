@@ -14,6 +14,7 @@ import {
   faTwitter,
 } from "@fortawesome/free-brands-svg-icons";
 import OtherHeader from "./OtherHeader";
+import TeamPage from "./TeamPage";
 const AboutPage = () => {
   return (
     <div className="flex flex-col ">
@@ -94,7 +95,7 @@ const AboutPage = () => {
           <img src={videoCard} />
         </div>
       </div>
-      <div className="flex flex-col items-center justify-center gap-8 py-24 ">
+      <div className="flex flex-col items-center justify-center gap-8 pb-24 pt-[15rem] ">
         <div className="flex flex-col justify-center items-center pb-24 gap-4 w-[25rem]">
           <h2 className="font-montserrat text-5xl font-bold tracking-[0.0125rem] text-[#252B42] ">
             Meet Our Team
@@ -104,7 +105,6 @@ const AboutPage = () => {
             of Classical physics: Newtonian mechanics
           </p>
         </div>
-
         <div className="flex items-center justify-center gap-8">
           <div className="flex flex-col items-center gap-4">
             <img src={user1} alt="Resim 1" />
@@ -167,8 +167,11 @@ const AboutPage = () => {
           Problems trying to resolve the conflict between the two major realms
           of Classical physics: Newtonian mechanics
         </p>
-        <ClientsContent />
       </div>
+
+      <TeamPage />
+      <ClientsContent />
+
       <div className="bg-[#2A7CC7] w-full px-52">
         <div className="container flex justify-between items-center ">
           <div className="flex flex-col items-start gap-8 w-[32rem] ">
