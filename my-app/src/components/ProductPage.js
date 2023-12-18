@@ -45,7 +45,7 @@ const ProductPage = () => {
         <div className="container flex flex-col items-start pb-12">
           <div className="row flex flex-start gap-8">
             <div className="col-md-6 flex flex-col items-center ">
-              <div className="carousel-2 row flex flex-col flex-start gap-8">
+              <div className="carousel-2 row flex flex-col items-start gap-8">
                 <div className="carousel-inner col-md-6 flex flex-col items-center pt-1 pr-1">
                   <div className="carousel-item flex justify-center items-center w-[32rem] rounded-md shrink-0 ">
                     <img src={productFoto2} />
