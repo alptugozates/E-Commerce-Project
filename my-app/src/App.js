@@ -27,9 +27,6 @@ function App() {
         <Route path="/about">
           <AboutPage />
         </Route>
-        <Route path="/team">
-          <TeamPage />
-        </Route>
         <Route path="/contact">
           <ContactPage />
         </Route>
