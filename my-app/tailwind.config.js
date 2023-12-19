@@ -2,9 +2,6 @@
 module.exports = {
   content: ["./src/**/*.{html,js}"],
   theme: {
-    screens: {
-      xs: "400px",
-    },
     extend: {
       fontFamily: {
         montserrat: ["Montserrat", "sans-serif"],
