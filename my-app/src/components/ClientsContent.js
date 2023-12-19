@@ -7,11 +7,11 @@ import faBrands6 from "../foto/fa-brands-6.png";
 
 const ClientsContent = () => {
   return (
-    <div className="clients-1 flex px-52 w-full justify-center items-center bg-[#FFF] pt-10">
+    <div className="clients-1 flex sm:px-52 w-full flex-col justify-center items-center bg-[#FFF] pt-10">
       <div className="container flex flex-col items-center shrink-0 ">
-        <div className="row flex justify-center items-center gap-32 px-0 py-28">
+        <div className="row flex sm:flex-row flex-col justify-center items-center gap-16 sm:gap-32 px-0 py-28">
           <div className="col-md-2 flex flex-col items-center">
-            <img src={faBrands1} />
+            <img className="w-full h-auto" src={faBrands1} />
           </div>
           <div className="col-md-2 flex flex-col items-center">
             <img src={faBrands2} />
