@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const OtherHeader = () => {
   return (
-    <div className="navbar-light flex w-full justify-start items-start gap-20 pr-5 pl-10 pt-6 ">
+    <div className="navbar-light flex w-full justify-start items-start gap-20 pr-5 px-28 pt-6 ">
       <div className="navbar-brand h-16 items-center py-4 pr-20 ">
         <h3 className="font-montserrat font-bold text-2xl tracking-[0.00625rem] text-[#252B42] ">
           Bandage
@@ -37,7 +37,7 @@ const OtherHeader = () => {
           </li>
           <li className="flex w-11 h-6 justify-center items-center">
             <a
-              href=""
+              href="/contact"
               className="shrink-0 text-custom-gray font-bold font-montserrat tracking-[0.0125rem] text-base "
             >
               Contact

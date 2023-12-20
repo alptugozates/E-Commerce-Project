@@ -26,7 +26,7 @@ const ProductPage = () => {
     <div>
       <Header />
       <div className="bg-[#FAFAFA] w-full h-auto">
-        <div className="container flex justify-center items-start w-screen px-52 py-6 ">
+        <div className="container flex justify-center items-start w-screen sm:px-52 py-6 ">
           <div className="flex py-3 justify-center items-start gap-4">
             <a
               href="/"
@@ -41,14 +41,14 @@ const ProductPage = () => {
           </div>
         </div>
       </div>
-      <div className="flex px-52 justify-center items-center self-stretch bg-[#FAFAFA] ">
+      <div className="flex sm:px-52 px-8 justify-center items-center self-stretch bg-[#FAFAFA] ">
         <div className="container flex flex-col items-start pb-12">
-          <div className="row flex flex-start gap-8">
+          <div className="row flex sm:flex-row flex-col flex-start gap-8">
             <div className="col-md-6 flex flex-col items-center ">
-              <div className="carousel-2 row flex flex-col items-start gap-8">
-                <div className="carousel-inner col-md-6 flex flex-col items-center pt-1 pr-1">
-                  <div className="carousel-item flex justify-center items-center w-[32rem] rounded-md shrink-0 ">
-                    <img src={productFoto2} />
+              <div className="carousel-2 row flex flex-col items-start gap-8 ">
+                <div className="carousel-inner col-md-6 flex flex-col items-center pt-1 pr-0 sm:pr-1">
+                  <div className="carousel-item flex justify-start items-center sm:justify-center sm:items-center sm:w-[32rem] rounded-md shrink-0 ">
+                    <img className="w-full" src={productFoto2} />
                   </div>
                 </div>
                 <div className="carousel-indicators flex justify-start items-center gap-5 shrink-0">
@@ -61,7 +61,7 @@ const ProductPage = () => {
                 </div>
               </div>
             </div>
-            <div className="col-md-6 flex flex-col justify-start items-start gap-4 w-[33%] ">
+            <div className="col-md-6 flex flex-col justify-start items-start gap-4 sm:w-[33%] w-9/12 ">
               <h4 className="font-montserrat text-lg font-normal tracking-[0.0125rem] text-[#252B42] ">
                 Floating Phone
               </h4>
@@ -96,7 +96,7 @@ const ProductPage = () => {
                 sent. RELIT official consequent door ENIM RELIT Mollie.
                 Excitation venial consequent sent nostrum met.
               </p>
-              <hr className="h-0.5 bg-[#BDBDBD] my-4 w-[25rem]"></hr>
+              <hr className="h-0.5 bg-[#BDBDBD] my-4 sm:w-[25rem] w-[20rem]"></hr>
               <div className="ellipse inline-flex items-center gap-3">
                 <img className="w-7 h-7" src={elipsBlue} />
                 <img className="w-7 h-7" src={elipsGreen} />
@@ -131,7 +131,7 @@ const ProductPage = () => {
       </div>
       <div className="product-description w-full flex-col justify-center items-center gap-5 self-stretch  bg-custom-white ">
         <div className="navbar-light w-full flex flex-col items-center py-3">
-          <nav className="h-16 w-full flex justify-center gap-10">
+          <nav className="h-16 w-full flex justify-center gap-4 sm:gap-10">
             <a className="font-montserrat font-semibold text-sm tracking-[0.0125rem] text-custom-gray">
               Description
             </a>
@@ -144,14 +144,14 @@ const ProductPage = () => {
           </nav>
           <hr className="w-11/12 h-2 text-[#ECECEC]"></hr>
         </div>
-        <div className="flex flex-col w-full items-center px-52">
+        <div className="flex flex-col w-full items-center px-10 sm:px-52">
           <div className="container flex flex-col py-12">
-            <div className="row flex items-start w-full">
+            <div className="row flex sm:flex-row flex-col sm:gap-0 gap-8 items-start w-full">
               <div className="col-md-4 flex flex-col items-start w-full h-auto">
                 <img src={descImg} className="rounded-md" />
               </div>
               <div className="col-md-4 flex flex-col items-start w-full">
-                <div className="card-item flex w-11/12 flex-col items-start gap-3 pb-7">
+                <div className="card-item flex sm:w-11/12 flex-col items-start gap-6 sm:gap-3 pb-7">
                   <h3 className="font-montserrat font-bold text-2xl text-[#252B42] tracking-[0.00625rem] ">
                     the quick fox jumps over
                   </h3>
@@ -242,7 +242,7 @@ const ProductPage = () => {
         <h2 class="font-montserrat font-bold text-2xl tracking-[0.00625rem] text-[#252B42] ">
           BESTSELLER PRODUCTS
         </h2>
-        <div class="flex flex-wrap gap-8 justify-center w-full px-52 py-20 ">
+        <div class="flex flex-wrap gap-8 justify-center w-full sm:px-52 py-20 ">
           {ProductPageData.map((product) => (
             <div
               key={product.id}

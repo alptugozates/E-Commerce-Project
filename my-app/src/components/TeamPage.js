@@ -5,8 +5,6 @@ import teamcontent2 from "../foto/TeamFoto/teamcontent-2.png";
 import teamcontent3 from "../foto/TeamFoto/teamcontent-3.png";
 import teamcontent4 from "../foto/TeamFoto/teamcontent-4.png";
 import teamcontent5 from "../foto/TeamFoto/teamcontent-5.png";
-import Footer from "./Footer";
-import Header2 from "./OtherHeader";
 import {
   faFacebook,
   faInstagram,
@@ -14,12 +12,11 @@ import {
   faTwitter,
 } from "@fortawesome/free-brands-svg-icons";
 import { teamMembers } from "../data/TeamPageData";
-import OtherHeader from "./OtherHeader";
 
 const TeamPage = () => {
   return (
     <div className="flex flex-col w-screen ">
-      <div className="flex flex-col items-center py-16 gap-10">
+      <div className="flex flex-col sm:text-start text-center items-center py-16 gap-10">
         <h5 className="font-montserrat font-bold text-base tracking-[0.00625rem] text-custom-gray ">
           WHAT WE DO
         </h5>
@@ -39,18 +36,30 @@ const TeamPage = () => {
           </p>
         </div>
       </div>
-      <div className="container flex w-full justify-center items-center gap-4 grow ">
-        <div className="flex w-1/2 px-0">
+      <div className="container flex sm:flex-row flex-col w-full justify-center items-center gap-4 grow ">
+        <div className="flex sm:w-1/2 w-full px-0">
           <img className="h-auto w-full " src={teamcontent1} />
         </div>
-        <div className="flex w-1/2 flex-wrap gap-4 px-0">
-          <img className=" h-auto w-[23rem] shrink-0 " src={teamcontent2} />
-          <img className=" h-auto w-[23rem] shrink-0 " src={teamcontent3} />
-          <img className="h-auto w-[23rem] shrink-0 " src={teamcontent4} />
-          <img className=" h-auto w-[23rem] shrink-0 " src={teamcontent5} />
+        <div className="flex sm:w-1/2 flex-wrap gap-4 px-0">
+          <img
+            className=" h-auto pl-8 w-11/12 sm:w-[23rem] shrink-0 "
+            src={teamcontent2}
+          />
+          <img
+            className=" h-auto pl-8 w-11/12 sm:w-[23rem] shrink-0 "
+            src={teamcontent3}
+          />
+          <img
+            className="h-auto pl-8 w-11/12 sm:w-[23rem] shrink-0 "
+            src={teamcontent4}
+          />
+          <img
+            className=" h-auto pl-8 w-11/12 sm:w-[23rem] shrink-0 "
+            src={teamcontent5}
+          />
         </div>
       </div>
-      <div className="flex flex-col items-center justify-center py-40 px-52 gap-28">
+      <div className="flex flex-col items-center justify-center py-40 sm:px-52 gap-28">
         <div className="flex flex-col justify-center items-center w-[25rem]">
           <h2 className="font-montserrat text-5xl font-bold tracking-[0.0125rem] text-[#252B42]">
             Meet Our Team
@@ -88,11 +97,11 @@ const TeamPage = () => {
           ))}
         </div>
       </div>
-      <div className="flex flex-col w-full px-52 items-center gap-12 py-20">
+      <div className="flex flex-col w-full sm:px-52 px-10 text-center sm:text-start items-center gap-12 py-20">
         <h2 className="font-montserrat font-bold text-4xl tracking-[0.0125rem] text-[#252B42] ">
           Start your 14 days free trial
         </h2>
-        <p className="font-montserrat font-normal text-sm text-custom-gray tracking-[0.0125rem] w-[26rem] text-center ">
+        <p className="font-montserrat font-normal text-sm text-custom-gray tracking-[0.0125rem] sm:w-[26rem] text-center ">
           Met minim Mollie non desert Alamo est sit cliquey dolor do met sent.
           RELIT official consequent.
         </p>
