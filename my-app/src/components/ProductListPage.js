@@ -17,7 +17,7 @@ import ClientsContent from "./ClientsContent";
 
 const ProductListPage = () => {
   return (
-    <div>
+    <div className="flex flex-col px-0">
       <Header />
       <div className="background bg-[#FAFAFA] w-full py-6 ">
         <div className="container flex items-center justify-evenly">
@@ -41,13 +41,17 @@ const ProductListPage = () => {
           </div>
         </div>
       </div>
-      <div className="category flex py-0 px-44 items-center justify-center self-stretch bg-[#FAFAFA] ">
+      <div className="category flex sm:flex-row flex-col py-0 sm:px-44 items-center justify-center self-stretch bg-[#FAFAFA] ">
         <div className="container flex flex-col items-center pb-12">
-          <div className="row flex items-start gap-4">
+          <div className="row flex sm:flex-row flex-col items-start gap-4">
             <div className="col-md-4 flex flex-col justify-center items-center">
               <div className="card-item shrink-0 relative">
                 <div className="absolute inset-0 bg-[#212121] bg-opacity-25"></div>
-                <img src={category1} className="w-full h-auto" alt="Category" />
+                <img
+                  src={category1}
+                  className="sm:w-full w-[20rem] h-auto"
+                  alt="Category"
+                />
                 <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
                   <h5 className="font-montserrat font-bold tracking-[0.00625rem] text-base text-custom-white">
                     CLOTHS
@@ -61,7 +65,11 @@ const ProductListPage = () => {
             <div className="col-md-4 flex flex-col justify-center items-center">
               <div className="card-item shrink-0 relative">
                 <div className="absolute inset-0 bg-[#212121] bg-opacity-25"></div>
-                <img src={category2} className="w-full h-auto" alt="Category" />
+                <img
+                  src={category2}
+                  className="w-[20rem] sm:w-full h-auto"
+                  alt="Category"
+                />
                 <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
                   <h5 className="font-montserrat font-bold tracking-[0.00625rem] text-base text-custom-white">
                     CLOTHS
@@ -75,7 +83,11 @@ const ProductListPage = () => {
             <div className="col-md-4 flex flex-col justify-center items-center">
               <div className="card-item shrink-0 relative">
                 <div className="absolute inset-0 bg-[#212121] bg-opacity-25"></div>
-                <img src={category3} className="w-full h-auto" alt="Category" />
+                <img
+                  src={category3}
+                  className="w-[20rem] sm:w-full h-auto"
+                  alt="Category"
+                />
                 <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
                   <h5 className="font-montserrat font-bold tracking-[0.00625rem] text-base text-custom-white">
                     CLOTHS
@@ -89,7 +101,11 @@ const ProductListPage = () => {
             <div className="col-md-4 flex flex-col justify-center items-center">
               <div className="card-item shrink-0 relative">
                 <div className="absolute inset-0 bg-[#212121] bg-opacity-25"></div>
-                <img src={category4} className="w-full h-auto" alt="Category" />
+                <img
+                  src={category4}
+                  className="w-[20rem] sm:w-full h-auto"
+                  alt="Category"
+                />
                 <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
                   <h5 className="font-montserrat font-bold tracking-[0.00625rem] text-base text-custom-white">
                     CLOTHS
@@ -103,7 +119,11 @@ const ProductListPage = () => {
             <div className="col-md-4 flex flex-col justify-center items-center">
               <div className="card-item shrink-0 relative">
                 <div className="absolute inset-0 bg-[#212121] bg-opacity-25"></div>
-                <img src={category5} className="w-full h-auto" alt="Category" />
+                <img
+                  src={category5}
+                  className="w-[20rem] sm:w-full h-auto"
+                  alt="Category"
+                />
                 <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
                   <h5 className="font-montserrat font-bold tracking-[0.00625rem] text-base text-custom-white">
                     CLOTHS
@@ -117,8 +137,8 @@ const ProductListPage = () => {
           </div>
         </div>
       </div>
-      <div className="filter flex py-0 px-52 justify-between items-center self-stretch bg-custom-white">
-        <div className="container flex justify-between items-center gap-20 px-0 py-6">
+      <div className="filter flex py-0 sm:px-52 justify-between items-center self-stretch bg-custom-white">
+        <div className="container flex sm:flex-row flex-col justify-between items-center gap-20 px-0 py-6">
           <div className="sort flex items-center gap-4 text-custom-gray">
             <p className="font-montserrat text-sm font-bold tracking-[0.0125rem]">
               Showing 12 results
@@ -160,14 +180,18 @@ const ProductListPage = () => {
       </div>
       <div>
         <div class="flex flex-col items-center justify-center">
-          <div class="flex flex-wrap gap-8 justify-center w-full px-52 py-20">
+          <div class="flex flex-wrap gap-8 justify-center w-full px-12 sm:px-52 py-20">
             {productsData.map((product) => (
               <div
                 key={product.id}
                 className="product-card flex flex-col items-start"
               >
                 <div className="flex flex-col justify-center items-center">
-                  <img src={product.image} alt="Product Image" />
+                  <img
+                    className="sm:w-full w-[20rem] "
+                    src={product.image}
+                    alt="Product Image"
+                  />
                 </div>
                 <div className="flex flex-col items-center self-stretch gap-5 px-6 pt-6 pb-9">
                   <h5 className="font-montserrat font-bold text-base tracking-[0.00625rem] text-[#252B42] ">
