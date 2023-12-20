@@ -7,12 +7,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Footer = () => {
   return (
-    <div className="h-auto self-stretch mt-16">
-      <div className="flex jutify-center items-center px-52 bg-[#FAFAFA] ">
-        <div className="container flex w-9/12 items-start flex-col shrink-0 py-10 px-0">
-          <div className="row flex items-center gap-[50rem] ">
-            <div className="col-md-3 flex flex-col items-start gap-3.5 ">
-              <nav className="flex items-center py-4 px-20">
+    <div className="h-auto sm:flex-row flex-col self-stretch mt-16">
+      <div className="flex sm:flex-row flex-col jutify-center items-center sm:px-52 bg-[#FAFAFA] ">
+        <div className="container flex sm:w-9/12 items-start flex-col shrink-0 py-10 px-0">
+          <div className="row flex flex-col sm:flex-row items-center gap-4 sm:gap-[50rem] ">
+            <div className="col-md-3 flex flex-col items-start gap-3.5 px-12 sm:px-0 ">
+              <nav className="flex sm:flex-row flex-col items-center py-4 sm:px-20">
                 <a className="font-montserrat font-bold text-2xl tracking-[0.00625rem] text-[#252B42] ">
                   Bandage
                 </a>
@@ -47,10 +47,10 @@ const Footer = () => {
         </div>
       </div>
       <hr className="w-full bg-[#E6E6E6] h-[0.07rem] "></hr>
-      <div className="flex justify-center items-center px-52 bg-[#FFF]  ">
+      <div className="flex sm:flex-row flex-col justify-start sm:justify-center items-center px-12 sm:px-52 bg-[#FFF]  ">
         <div className="container flex flex-col items-start shrink-0 py-14 px-0">
-          <div className="row flex items-start gap-20">
-            <div className="col-md-2 flex flex-col items-start gap-5 w-44 ">
+          <div className="row flex sm:flex-row flex-col items-start gap-20">
+            <div className="col-md-2 flex flex-col items-start gap-5 sm:w-44 ">
               <h5 className="font-montserrat font-bold text-lg">
                 Company Info
               </h5>
@@ -168,7 +168,7 @@ const Footer = () => {
                 </a>
               </div>
             </div>
-            <div className="col-md-4 flex flex-col items-start gap-6">
+            <div className="col-md-4 flex flex-col items-start gap-6 ">
               <h5 className="font-montserrat font-bold text-base tracking-[0.00625] text-[#252B42] ">
                 Get In Touch
               </h5>
@@ -177,7 +177,7 @@ const Footer = () => {
                   <input
                     type="email"
                     placeholder="Your Email"
-                    className="h-14 font-montserrat font-normal text-sm tracking-[0.0125rem] bg-[#F9F9F9] border-2  border-[#E6E6E6] rounded-md flex items-center py-4 pr-20 pl-5"
+                    className="h-14 font-montserrat font-normal text-sm tracking-[0.0125rem] bg-[#F9F9F9] border-2  border-[#E6E6E6] rounded-md flex items-center py-4 sm:pr-20 pl-5"
                   />
                   <button
                     type="submit"
@@ -196,8 +196,8 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <div className="flex items-center justify-center bg-[#FAFAFA] py-0 px-52">
-        <div className="container flex flex-col items-start shrink-0 px-0 py-8">
+      <div className="flex items-center justify-center bg-[#FAFAFA] py-0 sm:px-52">
+        <div className="container flex flex-col text-center sm:text-start sm:w-full w-7/12  items-start shrink-0 px-0 py-8">
           <p className="font-montserrat font-bold tracking-[0.0125rem] text-base text-custom-gray ">
             Made With Love By Finland All Right Reserved
           </p>
