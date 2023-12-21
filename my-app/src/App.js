@@ -5,7 +5,6 @@ import ProductListPage from "./components/ProductListPage";
 import BlogPage from "./components/BlogPage";
 import ProductPage from "./components/ProductPage";
 import AboutPage from "./components/AboutPage";
-import TeamPage from "./components/TeamPage";
 import ContactPage from "./components/ContactPage";
 
 function App() {
