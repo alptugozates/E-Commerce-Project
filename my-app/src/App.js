@@ -1,11 +1,12 @@
 import "./App.css";
-import HomePage from "./components/HomePage";
+import HomePage from "./pages/HomePage";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import ProductListPage from "./components/ProductListPage";
-import BlogPage from "./components/BlogPage";
-import ProductPage from "./components/ProductPage";
-import AboutPage from "./components/AboutPage";
-import ContactPage from "./components/ContactPage";
+import ProductListPage from "./pages/ProductListPage";
+import BlogPage from "./pages/BlogPage";
+import ProductPage from "./pages/ProductPage";
+import AboutPage from "./pages/AboutPage";
+import ContactPage from "./pages/ContactPage";
+import SignUpPage from "./pages/SignUpPage";
 
 function App() {
   return (
@@ -28,6 +29,9 @@ function App() {
         </Route>
         <Route path="/contact">
           <ContactPage />
+        </Route>
+        <Route path="/signup">
+          <SignUpPage />
         </Route>
       </div>
     </Router>
