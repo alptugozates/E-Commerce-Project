@@ -152,7 +152,7 @@ const Header = () => {
                 </a>
                 <a
                   className=" text-[#23A6F0] p-4 items-center font-montserrat font-bold text-base tracking-[0.0125rem] "
-                  href=""
+                  href="/signup"
                 >
                   Login / Register
                 </a>
