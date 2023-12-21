@@ -18,7 +18,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 const Blog = () => {
   return (
-    <div className="flex  justify-center items-center px-52 w-full">
+    <div className="sm:flex hidden sm:flex-row flex-col justify-center items-center sm:px-52 w-full">
       <div className="container flex flex-col items-center gap-24 shrink-0 px-0 py-20">
         <div className="row flex flex-col items-center">
           <div className="main-content flex flex-col items-center gap-3">
@@ -30,18 +30,18 @@ const Blog = () => {
             </h3>
           </div>
         </div>
-        <div className="row flex items-center">
+        <div className="row flex sm:flex-row flex-col items-center sm:px-0 px-10 ">
           <div className="col-md-6 flex flex-col items-center">
-            <div className="horizontal-product flex flex-start bg-custom-white relative">
+            <div className="horizontal-product flex sm:flex-row flex-col items-center sm:items-start bg-custom-white relative">
               <div className="self-stretch relative">
-                <img src={blogImg} />
+                <img className="w-full" src={blogImg} />
                 <div className="tag absolute top-5 left-5 inline-flex items-center py-1 px-3 bg-[#E74040] rounded">
                   <h6 className="font-montserrat font-bold tracking-[0.0125rem] text-sm text-custom-white">
                     Sale
                   </h6>
                 </div>
               </div>
-              <div className="product-actions absolute z-10 inline-flex flex-start gap-4 bottom-5 left-5">
+              <div className="product-actions absolute z-10 hidden sm:inline-flex flex-start gap-4 bottom-5 left-5">
                 <FontAwesomeIcon
                   style={{ color: "#252b42" }}
                   className="flex justify-center items-center p-3 border-2 rounded-[50%] bg-custom-white"
@@ -105,7 +105,7 @@ const Blog = () => {
                   <img src={elipsOrange} />
                   <img src={elipsNavy} />
                 </div>
-                <div className="frame-1 flex items-center justify-start gap-4 px-0 py-4 self-stretch ">
+                <div className="frame-1 flex sm:flex-row flex-col items-center justify-start gap-4 px-0 py-4 self-stretch ">
                   <div className="frame flex items-center gap-1.5">
                     <div className="icon flex justify-center items-center">
                       <img src={clockIcon} />

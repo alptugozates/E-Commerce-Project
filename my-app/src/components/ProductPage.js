@@ -20,11 +20,17 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import { ProductPageData } from "../data/ProductPageData";
+import OtherHeader from "./OtherHeader";
 
 const ProductPage = () => {
   return (
     <div>
-      <Header />
+      <div className="sm:flex hidden">
+        <Header />
+      </div>
+      <div className="sm:hidden flex">
+        <OtherHeader />
+      </div>
       <div className="bg-[#FAFAFA] w-full h-auto">
         <div className="container flex justify-center items-start w-screen sm:px-52 py-6 ">
           <div className="flex py-3 justify-center items-start gap-4">

@@ -20,9 +20,9 @@ import {
 
 const Header = () => {
   return (
-    <div className="shop-header-1 w-full h-auto ">
+    <div className="shop-header-1 w-full hidden sm:flex flex-col h-auto ">
       <div className="navbar-style flex w-full pb-2 flex-col items-start gap-3 ">
-        <div className="navbar-dark w-full h-[3.625rem] py-2.5 px-1 flex justify-center items-center bg-[#252B42] text-custom-white ">
+        <div className="navbar-dark w-full h-[3.625rem] py-2.5 px-1  flex justify-center items-center bg-[#252B42] text-custom-white ">
           <div className="navbar-collapse flex w-full h-12 justify-center items-center ">
             <div className="container flex w-full justify-between items-start shrink-0 ">
               <div className="row flex w-full justify-between items-start shrink-0 py-0 px-6 ">
@@ -90,8 +90,8 @@ const Header = () => {
               Bandage
             </h3>
           </div>
-          <div className="navbar-collapse flex justify-center items-center gap-[29.4rem] py-0.5 px-0 h-[3.625rem] ">
-            <nav className="flex items-start gap-6">
+          <div className="navbar-collapse flex py-30 justify-center items-center gap-[29.4rem] py-0.5 px-0 h-[3.625rem] ">
+            <nav className="flex items-start  gap-6">
               <li className="flex w-11 h-6 justify-center items-center">
                 <a
                   href="/"
@@ -100,7 +100,7 @@ const Header = () => {
                   Home
                 </a>
               </li>
-              <li className="flex w-11 h-6 justify-center items-center">
+              <li className="flex w-11h-6 justify-center items-center">
                 <a
                   href="/products"
                   className="shrink-0 text-custom-gray font-bold font-montserrat tracking-[0.0125rem] text-base "
@@ -141,8 +141,8 @@ const Header = () => {
                 </a>
               </li>
             </nav>
-            <div className="flex items-center">
-              <nav className="flex">
+            <div className="flex  items-center">
+              <nav className="flex ">
                 <a href="" className="p-4 pr-0">
                   <FontAwesomeIcon
                     icon={faUser}

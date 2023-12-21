@@ -14,14 +14,18 @@ import elipsBlue from "../foto/elipsBlue.png";
 import elipsGreen from "../foto/elipsGreen.png";
 import elipsOrange from "../foto/elipsOrange.png";
 import ClientsContent from "./ClientsContent";
+import OtherHeader from "./OtherHeader";
 
 const ProductListPage = () => {
   return (
     <div className="flex flex-col px-0">
       <Header />
+      <div className="sm:hidden flex">
+        <OtherHeader />
+      </div>
       <div className="background bg-[#FAFAFA] w-full py-6 ">
-        <div className="container flex items-center justify-evenly">
-          <div className="row flex justify-center items-center">
+        <div className="container flex  sm:flex-row flex-col sm:gap-0 gap-10  items-center justify-evenly">
+          <div className="row flex sm:flex-row flex-col justify-center items-center">
             <h2 className="font-montserrat font-bold text-2xl tracking-[0.00625rem] text-[#252B42]">
               Shop
             </h2>

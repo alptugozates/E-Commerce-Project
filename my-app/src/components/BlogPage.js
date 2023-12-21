@@ -4,25 +4,21 @@ import clockIcon from "../foto/clockicon.png";
 import antDesignIcon from "../foto/ant-design.png";
 import arrowImg from "../foto/arrow-right.png";
 import { BlogePageData } from "../data/BlogPageData";
-import Header from "./Header";
-import Footer from "./Footer";
-import ClientsContent from "./ClientsContent";
 
 const BlogPage = () => {
   return (
     <div>
-      <Header />
       <div className="blog flex px-52 py-0 flex-wrap justify-center items-center">
         <div className="container flex flex-wrap items-center justify-center gap-20 py-40 px-0">
           {BlogePageData.map((item) => (
             <div
               key={item.id}
-              className="row flex justify-center items-center gap-8"
+              className="row flex justify-center items-center gap-8 "
             >
-              <div className="col-md-6 flex flex-col items-center">
-                <div className="content-card flex flex-col items-center bg-custom-white shadow-[0_2px_4px_0px_rgba(0,0,0,0.10)] w-[30rem] ">
-                  <div className="self-stretch relative">
-                    <img className="w-[30rem]" src={item.img} />
+              <div className="col-md-6 flex flex-col items-center ">
+                <div className="content-card flex flex-col items-center bg-custom-white shadow-[0_2px_4px_0px_rgba(0,0,0,0.10)] sm:w-[30rem] ">
+                  <div className="self-stretch flex relative items-center justify-center sm:w-full">
+                    <img className="w-[30rem] " src={item.img} />
                     <div className="tag absolute top-5 left-5 inline-flex items-center py-1 px-3 bg-[#E74040] rounded">
                       <h6 className="font-montserrat font-bold tracking-[0.0125rem] text-sm text-custom-white">
                         NEW
@@ -74,8 +70,6 @@ const BlogPage = () => {
           ))}
         </div>
       </div>
-      <ClientsContent />
-      <Footer />
     </div>
   );
 };

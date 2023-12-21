@@ -3,7 +3,7 @@ import carbonBook from "../foto/carbon-book.png";
 import arrowImg from "../foto/arrow-growth.png";
 const Features = () => {
   return (
-    <div className="flex px-52 justify-center items-center">
+    <div className="flex sm:px-52 sm:flex-row flex-col justify-center items-center">
       <div className="container flex flex-col shrink-0 items-center py-20 gap-20">
         <div className="row flex flex-col items-center">
           <div className="main-content flex flex-col items-center gap-4">
@@ -18,8 +18,8 @@ const Features = () => {
             </p>
           </div>
         </div>
-        <div className="row flex justify-center items-center ">
-          <div className="col-md-4 flex flex-col items-center w-4/12">
+        <div className="row flex sm:flex-row flex-col justify-center items-center ">
+          <div className="col-md-4 flex flex-col items-center sm:w-4/12">
             <div className="card flex flex-col items-center py-8 gap-6">
               <div className="icon flex items-center justify-center">
                 <img src={readerBook} />
@@ -32,7 +32,7 @@ const Features = () => {
               </p>
             </div>
           </div>
-          <div className="col-md-4 flex flex-col items-center w-4/12">
+          <div className="col-md-4 flex flex-col items-center sm:w-4/12">
             <div className="card flex flex-col items-center py-8  gap-6">
               <div className="icon flex items-center justify-center">
                 <img src={carbonBook} />
@@ -46,7 +46,7 @@ const Features = () => {
               </p>
             </div>
           </div>
-          <div className="col-md-4 flex flex-col items-center w-4/12">
+          <div className="col-md-4 flex flex-col items-center sm:w-4/12">
             <div className="card flex flex-col items-center py-8 gap-6">
               <div className="icon flex items-center justify-center">
                 <img src={arrowImg} />

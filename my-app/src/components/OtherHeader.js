@@ -8,8 +8,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const OtherHeader = () => {
   return (
-    <div className="navbar-light flex w-full sm:flex-row flex-col sm:justify-start sm:items-start items-center justify-center gap-20 sm:pr-5 sm:px-28 px-16 pt-6 ">
-      <div className="navbar-brand flex h-16 items-center py-4 sm:pr-20 sm:gap-0 gap-16 ">
+    <div className="navbar-light sm:bg-white bg-[#F6F6F6] flex w-full sm:flex-row  flex-col sm:justify-start sm:items-start items-center justify-center gap-20 sm:pr-5 sm:px-28 px-16 pt-6 pb-20 sm:pb-0">
+      <div className="navbar-brand flex sm:h-16 h-auto items-center py-4 sm:pr-0 sm:gap-0 gap-16 ">
         <h3 className="font-montserrat font-bold text-2xl tracking-[0.00625rem] text-[#252B42] ">
           Bandage
         </h3>
@@ -31,14 +31,30 @@ const OtherHeader = () => {
           />
         </div>
       </div>
-      <div className="navbar-collapse flex sm:flex-row flex-col justify-center items-center sm:gap-[29.4rem] py-0.5 px-0 sm:h-[3.625rem] ">
-        <nav className="flex sm:flex-row flex-col items-center justify-center sm:items-start gap-12">
+      <div className="navbar-collapse flex sm:flex-row flex-col justify-center items-center sm:gap-[25rem] py-0.5 px-0 sm:h-[3.625rem] ">
+        <nav className="flex sm:flex-row flex-col items-center justify-center sm:items-start gap-10">
           <li className="flex w-11 h-6 justify-center items-center">
             <a
               href="/"
               className="shrink-0 text-custom-gray font-bold font-montserrat tracking-[0.0125rem] text-3xl sm:text-base "
             >
               Home
+            </a>
+          </li>
+          <li className="flex w-11 h-6 justify-center items-center">
+            <a
+              href="/products"
+              className="shrink-0 text-custom-gray font-bold font-montserrat tracking-[0.0125rem] text-3xl sm:text-base "
+            >
+              Shop
+            </a>
+          </li>
+          <li className="flex w-11 h-6 justify-center items-center">
+            <a
+              href="/about"
+              className="shrink-0 text-custom-gray font-bold font-montserrat tracking-[0.0125rem] text-3xl sm:text-base "
+            >
+              About
             </a>
           </li>
           <li className="flex w-11 h-6 justify-center items-center">
@@ -63,14 +79,6 @@ const OtherHeader = () => {
               className="shrink-0 text-custom-gray font-bold font-montserrat tracking-[0.0125rem] text-3xl sm:text-base "
             >
               Contact
-            </a>
-          </li>
-          <li className="flex w-11 h-6 justify-center items-center">
-            <a
-              href="/product-page"
-              className="shrink-0 text-custom-gray font-bold font-montserrat tracking-[0.0125rem] text-3xl sm:text-base "
-            >
-              Pages
             </a>
           </li>
         </nav>
