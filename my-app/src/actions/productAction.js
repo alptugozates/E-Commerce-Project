@@ -7,11 +7,11 @@ export const fetchProducts = (
   pageCount,
   fetchState
 ) => ({
-  type: "FETCH_PRODUCTS",
+  type: FETCH_PRODUCTS,
   payload: { productList, totalProductCount, pageCount, fetchState },
 });
 
 export const updateActivePage = (activePage) => ({
-  type: "UPDATE_ACTIVE_PAGE",
+  type: UPDATE_ACTIVE_PAGE,
   payload: { activePage },
 });

@@ -1,7 +1,7 @@
 import {
   ADD_TO_CART,
   REMOVE_FROM_CART,
-  UPDATE_ADRESS,
+  UPDATE_ADDRESS,
   UPDATE_PAYMENT,
 } from "../actions/shoppingCartAction";
 
@@ -27,7 +27,7 @@ export const shoppingCartReducer = (state = initialState, action) => {
         ...state,
         payment: action.payload,
       };
-    case UPDATE_ADRESS:
+    case UPDATE_ADDRESS:
       return {
         ...state,
         address: action.payload,

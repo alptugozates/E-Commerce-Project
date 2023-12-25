@@ -16,7 +16,7 @@ const productReducer = (state = initialState, action) => {
         productList: action.payload.productList,
         totalProductCount: action.payload.totalProductCount,
         pageCount: action.payload.pageCount,
-        fetchState: "FETCHED" | "FAILED" | "FETCHING" | "NOT_FETCHED",
+        fetchState: action.payload.fetchState,
       };
     case UPDATE_ACTIVE_PAGE:
       return {

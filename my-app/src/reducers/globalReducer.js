@@ -17,25 +17,26 @@ const globalReducer = (state = initialState, action) => {
     case SET_ROLES:
       return {
         ...state,
-        roles: action.payload.roles,
+        roles: action.payload,
       };
     case SET_CATEGORIES:
       return {
         ...state,
-        categories: action.payload.categories,
+        categories: action.payload,
       };
     case SET_THEME:
       return {
         ...state,
-        theme: action.payload.theme,
+        theme: action.payload,
       };
     case SET_LANGUAGE:
       return {
         ...state,
-        language: action.payload.language,
+        language: action.payload,
       };
+    default:
+      return state;
   }
-  return state;
 };
 
 export default globalReducer;
