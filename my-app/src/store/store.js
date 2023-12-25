@@ -13,11 +13,11 @@ import { shoppingCartReducer } from "../reducers/shoppingCartReducer";
 import { thunk } from "redux-thunk";
 
 const rootReducer = combineReducers({
-  global: globalReducer,
-  user: userReducer,
-  product: productReducer,
-  shoppingCart: shoppingCartReducer,
-  store: storeReducer,
+  globalReducer: globalReducer,
+  userReducer: userReducer,
+  productReducer: productReducer,
+  shoppingCartReducer: shoppingCartReducer,
+  storeReducer: storeReducer,
 });
 
 const middleware = [thunk, logger];
