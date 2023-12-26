@@ -118,9 +118,7 @@ const SignUpPage = () => {
             />
           </div>
           {errors.name && errors.name.type === "required" && (
-            <span className="text-red-500 font-montserrat ">
-              Name is required
-            </span>
+            <span className="text-red-500 ">Name is required</span>
           )}
           {errors.name && errors.name.type === "min" && (
             <span className="text-red-500">
@@ -300,7 +298,7 @@ const SignUpPage = () => {
                   {...register("bank_account", {
                     required: true,
                     validate: {
-                      isValidIBAN: (value) =>
+                      validIBAN: (value) =>
                         isValidIBAN(value) || "Invalid IBAN address",
                     },
                   })}
@@ -311,6 +309,12 @@ const SignUpPage = () => {
                 errors.bank_account.type === "required" && (
                   <span className="text-red-500">
                     Store Bank Account is required
+                  </span>
+                )}
+              {errors.bank_account &&
+                errors.bank_account.type === "validIBAN" && (
+                  <span className="text-red-500">
+                    {errors.bank_account.message}
                   </span>
                 )}
             </div>
