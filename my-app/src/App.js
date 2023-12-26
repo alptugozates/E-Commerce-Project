@@ -1,4 +1,6 @@
 import "./App.css";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import HomePage from "./pages/HomePage";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import ProductListPage from "./pages/ProductListPage";
@@ -11,6 +13,7 @@ import SignUpPage from "./pages/SignUpPage";
 function App() {
   return (
     <Router>
+      <ToastContainer />
       <div>
         <Route exact path="/">
           <HomePage />
