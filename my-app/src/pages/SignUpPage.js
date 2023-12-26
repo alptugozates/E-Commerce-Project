@@ -16,7 +16,7 @@ import {
   useHistory,
   useLocation,
 } from "react-router-dom/cjs/react-router-dom.min";
-import { Spinner } from "react-bootstrap";
+
 import { toast } from "react-toastify";
 const SignUpPage = () => {
   const {
@@ -31,8 +31,6 @@ const SignUpPage = () => {
   const [loading, setLoading] = useState(false);
   const [selectedRoleID, setSelectedRoleID] = useState("3");
   const history = useHistory();
-  const location = useLocation();
-  const password = watch("password", "");
 
   useEffect(() => {
     axiosInstance
