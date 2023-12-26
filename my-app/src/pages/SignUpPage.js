@@ -26,12 +26,15 @@ const SignUpPage = () => {
     handleSubmit,
     getValues,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    mode: "onChange",
+  });
 
   const [roles, setRoles] = useState([]);
   const [loading, setLoading] = useState(false);
   const [selectedRoleID, setSelectedRoleID] = useState("3");
   const history = useHistory();
+  const location = useLocation();
 
   useEffect(() => {
     axiosInstance
