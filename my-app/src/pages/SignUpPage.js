@@ -17,47 +17,78 @@ import {
   useLocation,
 } from "react-router-dom/cjs/react-router-dom.min";
 import { Spinner } from "react-bootstrap";
+import { toast } from "react-toastify";
 const SignUpPage = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
-    setValue,
     getValues,
+    formState: { errors },
     watch,
   } = useForm();
 
-  const [role, setRole] = useState("Customer");
-  const [isLoading, setIsLoading] = useState(false);
+  const [roles, setRoles] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [selectedRoleID, setSelectedRoleID] = useState("3");
   const history = useHistory();
   const location = useLocation();
+  const password = watch("password", "");
+
   useEffect(() => {
-    setRole("Customer");
     axiosInstance
       .get("/roles")
       .then((response) => {
+        setRoles(response.data);
         console.log(response.data, "get isteği başarılı");
       })
       .catch((error) => {
-        console.log("err", error);
+        console.log("get isteği başarısız", error);
       });
   }, []);
 
-  const onSubmit = (data) => {
-    setIsLoading(true);
-    axiosInstance
-      .post("/signup", data)
-      .then((response) => {
-        setIsLoading(false);
-        history.push(location.state.from, {
-          message: "You need to click link in email to activate your account!",
+  const formSubmit = (data) => {
+    console.log("Seçilen Rol ID:", selectedRoleID);
+    let formData;
+    if (selectedRoleID === "2") {
+      formData = {
+        name: data.name,
+        email: data.email,
+        password: data.password,
+        role_id: data.role_id,
+        store: {
+          name: data.storeName,
+          phone: data.storePhone,
+          tax_no: data.tax_no,
+          bank_account: data.bank_account,
+        },
+      };
+    } else {
+      formData = {
+        name: data.name,
+        email: data.email,
+        password: data.password,
+        role_id: data.role_id,
+      };
+    }
+
+    setLoading(true);
+    console.log("Form data", formData);
+
+    setTimeout(() => {
+      axiosInstance
+        .post("/signup", formData)
+        .then((response) => {
+          console.log("submit succeeded:", response);
+          toast.success(`${response.data.message}`);
+          history.goBack();
+        })
+        .catch((error) => {
+          console.log("Error:", error);
+        })
+        .finally(() => {
+          setLoading(false);
         });
-        console.log(response.data, "Kayıt başarılı");
-      })
-      .catch((error) => {
-        setIsLoading(false);
-        console.log(error, "Kayıt başarısız");
-      });
+    }, 2000);
   };
 
   return (
@@ -69,7 +100,7 @@ const SignUpPage = () => {
         </h1>
 
         <form
-          onSubmit={handleSubmit(onSubmit)}
+          onSubmit={handleSubmit(formSubmit)}
           className="flex flex-col max-w-3/12 gap-4"
         >
           <div className="flex gap-4">
@@ -169,15 +200,16 @@ const SignUpPage = () => {
               className="w-full p-2 border rounded-md focus:outline-none focus:border-[#23A6F0]"
               type="password"
               placeholder="Confirm Password"
-              {...register("password", {
-                validate: (value) => value === watch("password"),
+              {...register("confirmPassword", {
+                validate: (value) => value === getValues("password"),
               })}
             />
-            {errors.password && errors.password.type === "validate" && (
+          </div>
+          {errors.confirmPassword &&
+            errors.confirmPassword.type === "validate" && (
               <span className="rext-red-500">Passwords do not match</span>
             )}
-          </div>
-          {role === "Store" && (
+          {selectedRoleID === "2" && (
             <div className="flex flex-col gap-4">
               <div className="flex items-center gap-4">
                 <a href="#" className="p-4 pr-0">
@@ -191,13 +223,13 @@ const SignUpPage = () => {
                   className="w-full py-4 px-2 border rounded-md focus:outline-none focus:border-[#23A6F0]"
                   type="text"
                   placeholder="Store Name"
-                  {...register("name", { required: true, minLength: 3 })}
+                  {...register("storeName", { required: true, minLength: 3 })}
                 />
               </div>
-              {errors.name && errors.name.type === "required" && (
+              {errors.storeName && errors.storeName.type === "required" && (
                 <span className="text-red-500">Store Name is required</span>
               )}
-              {errors.name && errors.name.type === "minLength" && (
+              {errors.storeName && errors.storeName.type === "minLength" && (
                 <span className="text-red-500">
                   Store Name should be at least 3 characters
                 </span>
@@ -214,17 +246,17 @@ const SignUpPage = () => {
                 <input
                   type="tel"
                   placeholder="Store Phone"
-                  {...register("phone", {
+                  {...register("storePhone", {
                     required: true,
                     pattern: /^[0-9]{10}$/, // Türk telefon numarası formatı
                   })}
                   className="w-full px-2 py-4 border rounded-md focus:outline-none focus:border-[#23A6F0]"
                 />
               </div>
-              {errors.phone && errors.phone.type === "required" && (
+              {errors.storePhone && errors.storePhone.type === "required" && (
                 <span className="text-red-500">Store Phone is required</span>
               )}
-              {errors.phone && errors.phone.type === "pattern" && (
+              {errors.storePhone && errors.storePhone.type === "pattern" && (
                 <span className="text-red-500">
                   Enter a valid Turkish phone number
                 </span>
@@ -285,9 +317,9 @@ const SignUpPage = () => {
             <input
               {...register("role_id", { required: true })}
               type="radio"
-              value="Customer"
-              checked={role === "Customer"}
-              onChange={() => setRole("Customer")}
+              value="3"
+              id="3"
+              onChange={() => setSelectedRoleID("3")}
             />
             <p className="font-montserrat font-bold text-sm text-[#252B42] tracking-[0.0125rem] ">
               Customer
@@ -295,8 +327,9 @@ const SignUpPage = () => {
             <input
               {...register("role_id", { required: true })}
               type="radio"
-              value=" Store"
-              onChange={() => setRole("Store")}
+              value="2"
+              id="2"
+              onChange={() => setSelectedRoleID("2")}
             />
             <p className="font-montserrat font-bold text-sm text-[#252B42] tracking-[0.0125rem] ">
               Store
@@ -306,15 +339,11 @@ const SignUpPage = () => {
           <button
             type="submit"
             className="flex items-center justify-center border-2 rounded-md px-8 py-4 bg-[#23A6F0] "
-            disabled={isLoading}
+            disabled={loading}
           >
-            {isLoading ? (
-              <Spinner />
-            ) : (
-              <p className="font-montserrat font-bold text-base tracking-[0.0125rem] text-custom-white">
-                Register
-              </p>
-            )}
+            <p className="font-montserrat font-bold text-base tracking-[0.0125rem] text-custom-white">
+              Register
+            </p>
           </button>
         </form>
       </div>
