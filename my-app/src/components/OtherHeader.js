@@ -5,8 +5,14 @@ import {
   faMagnifyingGlass,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 const OtherHeader = () => {
+  const history = useHistory();
+
+  const handleClick = () => {
+    history.push("/signup");
+  };
   return (
     <div className="navbar-light sm:bg-white bg-[#F6F6F6] flex w-full sm:flex-row  flex-col sm:justify-start sm:items-start items-center justify-center gap-20 sm:pr-5 sm:px-28 px-16 pt-6 pb-20 sm:pb-0">
       <div className="navbar-brand flex sm:h-16 h-auto items-center py-4 sm:pr-0 sm:gap-0 gap-16 ">
@@ -89,7 +95,10 @@ const OtherHeader = () => {
           >
             Login
           </a>
-          <button className="border-2 bg-[#23A6F0] rounded-md flex items-center py-3 px-6 ">
+          <button
+            onClick={handleClick}
+            className="border-2 bg-[#23A6F0] rounded-md flex items-center py-3 px-6 "
+          >
             <div className="flex items-center justify-center gap-2">
               <FontAwesomeIcon
                 icon={faArrowRight}
