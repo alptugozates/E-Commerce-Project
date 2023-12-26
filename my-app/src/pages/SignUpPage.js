@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { isValidIBAN } from "ibantools";
 import {
   faEnvelope,
   faIdCard,
@@ -205,7 +206,7 @@ const SignUpPage = () => {
           </div>
           {errors.confirmPassword &&
             errors.confirmPassword.type === "validate" && (
-              <span className="rext-red-500">Passwords do not match</span>
+              <span className="text-red-500">Passwords do not match</span>
             )}
           {selectedRoleID === "2" && (
             <div className="flex flex-col gap-4">
@@ -298,7 +299,10 @@ const SignUpPage = () => {
                   placeholder="Store Bank Account (IBAN Address)"
                   {...register("bank_account", {
                     required: true,
-                    // Add validation for IBAN address
+                    validate: {
+                      isValidIBAN: (value) =>
+                        isValidIBAN(value) || "Invalid IBAN address",
+                    },
                   })}
                   className="px-2 py-4 border rounded-md w-full focus:outline-none focus:border-[#23A6F0]"
                 />
@@ -315,7 +319,7 @@ const SignUpPage = () => {
             <input
               {...register("role_id", { required: true })}
               type="radio"
-              value="3"
+              value="customer"
               id="3"
               onChange={() => setSelectedRoleID("3")}
             />
