@@ -5,7 +5,6 @@ import Header from "../components/Header";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { isValidIBAN } from "ibantools";
 import { ToastContainer, toast } from "react-toastify";
-import { Spinner } from "react-bootstrap";
 import "react-toastify/dist/ReactToastify.css";
 import {
   faEnvelope,
