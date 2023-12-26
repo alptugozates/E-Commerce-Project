@@ -4,6 +4,8 @@ import Footer from "../components/Footer";
 import Header from "../components/Header";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { isValidIBAN } from "ibantools";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import {
   faEnvelope,
   faIdCard,
@@ -18,7 +20,6 @@ import {
   useLocation,
 } from "react-router-dom/cjs/react-router-dom.min";
 
-import { toast } from "react-toastify";
 const SignUpPage = () => {
   const {
     register,
@@ -73,21 +74,30 @@ const SignUpPage = () => {
     setLoading(true);
     console.log("Form data", formData);
 
-    setTimeout(() => {
-      axiosInstance
-        .post("/signup", formData)
-        .then((response) => {
-          console.log("submit succeeded:", response);
-          toast.success(`${response.data.message}`);
-          history.goBack();
-        })
-        .catch((error) => {
-          console.log("Error:", error);
-        })
-        .finally(() => {
-          setLoading(false);
+    axiosInstance
+      .post("/signup", formData)
+      .then((response) => {
+        console.log("submit succeeded:", response);
+        toast.success(`${response.data.message}`, {
+          position: "top-right",
+          autoClose: 3500,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
         });
-    }, 2000);
+        setTimeout(() => {
+          history.push("/");
+        }, 2000);
+      })
+      .catch((error) => {
+        console.log("Error:", error);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   };
 
   return (
