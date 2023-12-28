@@ -1,3 +1,4 @@
+import React from "react";
 import "../App.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -17,8 +18,12 @@ import {
   faFacebook,
   faTwitter,
 } from "@fortawesome/free-brands-svg-icons";
+import { useSelector } from "react-redux";
+import Gravatar from "react-gravatar";
 
 const Header = () => {
+  const { name, photo, loggedIn } = useSelector((state) => state.userReducer);
+
   return (
     <div className="shop-header-1 w-full hidden sm:flex flex-col h-auto ">
       <div className="navbar-style flex w-full pb-2 flex-col items-start gap-3 ">
@@ -141,24 +146,41 @@ const Header = () => {
                 </a>
               </li>
             </nav>
-            <div className="flex  items-center">
+            <div className="flex items-center">
               <nav className="flex ">
-                <a href="" className="p-4 pr-0">
-                  <FontAwesomeIcon
-                    icon={faUser}
-                    size="lg"
-                    style={{ color: "#23A6F0" }}
-                  />
-                </a>
-                <a
-                  className=" text-[#23A6F0] p-4 items-center font-montserrat font-bold text-base tracking-[0.0125rem] "
-                  href="/signup"
-                >
-                  Login / Register
-                </a>
+                {loggedIn ? (
+                  <div className="flex">
+                    <Gravatar
+                      email={photo}
+                      size={40}
+                      default="mp"
+                      className="rounded-full h-8 w-8 mt-2"
+                    />
+                    <p className="text-[#23A6F0] p-4 items-center font-montserrat font-bold text-base tracking-[0.0125rem]">
+                      {name}
+                    </p>
+                  </div>
+                ) : (
+                  <div className="flex">
+                    <a href="" className="p-4 pr-0">
+                      <FontAwesomeIcon
+                        icon={faUser}
+                        size="lg"
+                        style={{ color: "#23A6F0" }}
+                      />
+                    </a>
+                    <a
+                      className=" text-[#23A6F0] p-4 items-center font-montserrat font-bold text-base tracking-[0.0125rem] "
+                      href="/signup"
+                    >
+                      Login / Register
+                    </a>
+                  </div>
+                )}
+
                 <a href="" className="p-4 flex items-center">
                   <FontAwesomeIcon
-                    clas
+                    className="pr-3"
                     icon={faMagnifyingGlass}
                     size="lg"
                     style={{ color: "#23A6F0" }}
@@ -172,7 +194,6 @@ const Header = () => {
                     style={{ color: "#23A6F0" }}
                   />
                   <p className="text-base font-normal font-montserrat text-[#23A6F0]">
-                    {" "}
                     1
                   </p>
                 </a>
@@ -184,7 +205,7 @@ const Header = () => {
                     style={{ color: "#23A6F0" }}
                   />
                   <p className="text-base font-normal font-montserrat text-[#23A6F0] ">
-                    1{" "}
+                    1
                   </p>
                 </a>
               </nav>
