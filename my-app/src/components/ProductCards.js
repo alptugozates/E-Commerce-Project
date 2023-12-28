@@ -2,7 +2,7 @@ import { ProductCardsData } from "../data/ProductCardsData";
 
 const ProductCards = () => {
   return (
-    <div class="flex flex-col items-center  justify-center">
+    <div className="flex flex-col items-center  justify-center">
       <h1 className="sm:flex hidden font-montserrat font-normal text-xl text-custom-gray tracking-[0.0125rem] pb-6 text-center ">
         Featured Products
       </h1>
@@ -14,7 +14,7 @@ const ProductCards = () => {
           Problems trying to resolve the conflict between
         </p>
       </div>
-      <div class="flex flex-wrap gap-8 justify-center w-full px-10 sm:px-52 py-20">
+      <div className="flex flex-wrap gap-8 justify-center w-full px-10 sm:px-52 py-20">
         {ProductCardsData.map((product) => (
           <div
             key={product.id}
