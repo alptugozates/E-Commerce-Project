@@ -183,8 +183,8 @@ const ProductListPage = () => {
         </div>
       </div>
       <div>
-        <div class="flex flex-col items-center justify-center">
-          <div class="flex flex-wrap gap-8 justify-center w-full px-12 sm:px-52 py-20">
+        <div className="flex flex-col items-center justify-center">
+          <div className="flex flex-wrap gap-8 justify-center w-full px-12 sm:px-52 py-20">
             {productsData.map((product) => (
               <div
                 key={product.id}

@@ -244,11 +244,11 @@ const ProductPage = () => {
         </div>
       </div>
 
-      <div class="flex flex-col items-center justify-center pt-28 bg-[#FAFAFA] ">
-        <h2 class="font-montserrat font-bold text-2xl tracking-[0.00625rem] text-[#252B42] ">
+      <div className="flex flex-col items-center justify-center pt-28 bg-[#FAFAFA] ">
+        <h2 className="font-montserrat font-bold text-2xl tracking-[0.00625rem] text-[#252B42] ">
           BESTSELLER PRODUCTS
         </h2>
-        <div class="flex flex-wrap gap-8 justify-center w-full sm:px-52 py-20 ">
+        <div className="flex flex-wrap gap-8 justify-center w-full sm:px-52 py-20 ">
           {ProductPageData.map((product) => (
             <div
               key={product.id}
