@@ -53,7 +53,7 @@ const LoginPage = () => {
       .catch((error) => {
         setLogin(false);
         console.log("Logged in failure", error);
-        toast.error("Logged in failure");
+        toast.error("Login failed, check your login information.");
       });
   };
 
