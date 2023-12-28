@@ -147,7 +147,7 @@ const SignUpPage = () => {
             </a>
 
             <input
-              type="text"
+              type="email"
               placeholder="Email"
               {...register("email", {
                 required: true,
@@ -376,7 +376,7 @@ const SignUpPage = () => {
                     fill="currentFill"
                   />
                 </svg>
-                <span class="sr-only">Loading...</span>
+                <span className="sr-only">Loading...</span>
               </div>
             ) : (
               <p className="font-montserrat font-bold text-base tracking-[0.0125rem] text-custom-white">
