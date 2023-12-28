@@ -1,28 +1,32 @@
-import {
-  UPDATE_EMAIL,
-  UPDATE_NAME,
-  UPDATE_PASSWORD,
-} from "../actions/userAction";
+import { LOGGED_IN } from "../actions/userAction";
 
-const initialState = {
-  name: {},
-  email: {},
-  password: {},
+const loginData = {
+  name: "",
+  email: "",
+  password: "",
+  role: "",
+  photo: "",
+  loggedIn: false,
 };
 
-const userReducer = (state = initialState, action) => {
+export function writeToLocalStorage(key, data) {
+  localStorage.setItem(key, JSON.stringify(data));
+}
+export function readToLocalStorage(key) {
+  return JSON.parse(localStorage.getItem(key));
+}
+
+const userReducer = (state = loginData, action) => {
   switch (action.type) {
-    case UPDATE_NAME:
-      return { ...state, name: action.payload.name };
-    case UPDATE_EMAIL:
+    case LOGGED_IN:
       return {
         ...state,
+        name: action.payload.name,
         email: action.payload.email,
-      };
-    case UPDATE_PASSWORD:
-      return {
-        ...state,
         password: action.payload.password,
+        role: action.payload.role,
+        photo: action.payload.photo,
+        loggedIn: true,
       };
   }
   return state;
