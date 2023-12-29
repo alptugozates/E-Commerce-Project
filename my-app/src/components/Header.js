@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+
 import "../App.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -11,19 +12,59 @@ import {
   faHeart,
   faUser,
 } from "@fortawesome/free-regular-svg-icons";
-// import { faUser } from "@fortawesome/free-light-svg-icons";
 import {
   faInstagram,
   faYoutube,
   faFacebook,
   faTwitter,
 } from "@fortawesome/free-brands-svg-icons";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Gravatar from "react-gravatar";
+import {
+  readToLocalStorage,
+  writeToLocalStorage,
+} from "../reducers/userReducer";
+import axiosInstance from "../axios/axiosInstance";
+import { loggedOut, loginData } from "../actions/userAction";
 
 const Header = () => {
   const { name, email, loggedIn } = useSelector((state) => state.userReducer);
-  console.log("email", email);
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    const token = readToLocalStorage("token");
+    if (token) {
+      axiosInstance.defaults.headers.common["Authorization"] = token;
+
+      axiosInstance
+        .get("/verify")
+        .then((response) => {
+          dispatch(loginData(response.data));
+          console.log("data güncellendi", response);
+          const newToken = response.headers["new-token"];
+          if (newToken) {
+            writeToLocalStorage("token", newToken);
+            axiosInstance.defaults.headers.common["Authorization"] = newToken;
+            console.log("newToken", newToken);
+          }
+        })
+        .catch((error) => {
+          console.log("Authorization failed", error);
+          localStorage.removeItem("token");
+          delete axiosInstance.defaults.headers.common["Authorization"];
+        });
+    }
+  }, []);
+
+  const handleLogout = () => {
+    dispatch(
+      loggedOut({
+        loggedIn: false,
+        name: "",
+        email: "",
+      })
+    );
+  };
 
   return (
     <div className="shop-header-1 w-full hidden sm:flex flex-col h-auto ">
@@ -158,6 +199,12 @@ const Header = () => {
                     <p className="text-[#23A6F0] p-4 items-center font-montserrat font-bold text-base tracking-[0.0125rem]">
                       {name}
                     </p>
+                    <button
+                      onClick={handleLogout}
+                      className="text-[#23A6F0] p-2 items-center font-montserrat font-bold text-base tracking-[0.0125rem]"
+                    >
+                      Log Out
+                    </button>
                   </div>
                 ) : (
                   <div className="flex">
@@ -169,10 +216,22 @@ const Header = () => {
                       />
                     </a>
                     <a
-                      className=" text-[#23A6F0] p-4 items-center font-montserrat font-bold text-base tracking-[0.0125rem] "
+                      className=" text-[#23A6F0] px-3 py-4 items-center font-montserrat font-bold text-base tracking-[0.0125rem] "
+                      href="/login"
+                    >
+                      Login
+                    </a>
+                    <a
+                      className=" text-[#23A6F0] px-2 py-4 items-center font-montserrat font-bold text-base tracking-[0.0125rem] "
+                      href="/login"
+                    >
+                      /
+                    </a>
+                    <a
+                      className=" text-[#23A6F0] px-3 py-4 items-center font-montserrat font-bold text-base tracking-[0.0125rem] "
                       href="/signup"
                     >
-                      Login / Register
+                      Register
                     </a>
                   </div>
                 )}
