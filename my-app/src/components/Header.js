@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-
+import { toast } from "react-toastify";
 import "../App.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -57,6 +57,16 @@ const Header = () => {
   }, []);
 
   const handleLogout = () => {
+    toast.success("Successfully logged out of Bandage", {
+      position: "top-right",
+      autoClose: 2500,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
     dispatch(
       loggedOut({
         loggedIn: false,
