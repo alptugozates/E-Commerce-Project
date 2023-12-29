@@ -1,4 +1,5 @@
-import { LOGGED_IN } from "../actions/userAction";
+import { LOGGED_IN, LOGGED_OUT } from "../actions/userAction";
+import axiosInstance from "../axios/axiosInstance";
 
 const loginData = {
   name: "",
@@ -27,6 +28,15 @@ const userReducer = (state = loginData, action) => {
         role: action.payload.role,
         photo: action.payload.photo,
         loggedIn: true,
+      };
+
+    case LOGGED_OUT:
+      localStorage.removeItem("token");
+      return {
+        ...state,
+        loggedIn: false,
+        name: "",
+        email: "",
       };
   }
   return state;
