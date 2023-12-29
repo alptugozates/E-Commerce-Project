@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import Footer from "../components/Footer";
@@ -14,7 +14,6 @@ import { writeToLocalStorage } from "../reducers/userReducer";
 const LoginPage = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-
   const [login, setLogin] = useState(false);
 
   const {
