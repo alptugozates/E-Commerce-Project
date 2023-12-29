@@ -22,7 +22,8 @@ import { useSelector } from "react-redux";
 import Gravatar from "react-gravatar";
 
 const Header = () => {
-  const { name, photo, loggedIn } = useSelector((state) => state.userReducer);
+  const { name, email, loggedIn } = useSelector((state) => state.userReducer);
+  console.log("email", email);
 
   return (
     <div className="shop-header-1 w-full hidden sm:flex flex-col h-auto ">
@@ -151,9 +152,7 @@ const Header = () => {
                 {loggedIn ? (
                   <div className="flex">
                     <Gravatar
-                      email={photo}
-                      size={40}
-                      default="mp"
+                      email={email}
                       className="rounded-full h-8 w-8 mt-2"
                     />
                     <p className="text-[#23A6F0] p-4 items-center font-montserrat font-bold text-base tracking-[0.0125rem]">
