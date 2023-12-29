@@ -10,7 +10,7 @@ import { toast } from "react-toastify";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { loginData } from "../actions/userAction";
 import { writeToLocalStorage } from "../reducers/userReducer";
-import gravatar from "react-gravatar";
+
 const LoginPage = () => {
   const dispatch = useDispatch();
   const history = useHistory();
@@ -33,10 +33,6 @@ const LoginPage = () => {
         writeToLocalStorage("token", res.data.token);
         setLogin(true);
         console.log("Giriş başarılı", res.data);
-        const { name, photo, loggedIn } = res.data;
-        writeToLocalStorage("name", name);
-        writeToLocalStorage("photo", photo);
-        writeToLocalStorage("loggedIn", loggedIn);
         dispatch(
           loginData({
             name: res.data.name,
@@ -44,7 +40,6 @@ const LoginPage = () => {
             role: res.data.role_id,
             loggedIn: true,
             password: res.data.password,
-            photo: "",
           })
         );
         setLogin(true);
