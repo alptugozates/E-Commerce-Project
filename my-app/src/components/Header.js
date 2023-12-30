@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import "../App.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -26,11 +26,17 @@ import {
 } from "../reducers/userReducer";
 import axiosInstance from "../axios/axiosInstance";
 import { loggedOut, loginData } from "../actions/userAction";
+import { fetchCategories } from "../actions/globalAction";
 
 const Header = () => {
   const { name, email, loggedIn } = useSelector((state) => state.userReducer);
-
+  const { categories } = useSelector((state) => state.globalReducer);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchCategories());
+  }, [dispatch]);
+
   useEffect(() => {
     const token = readToLocalStorage("token");
     if (token) {
