@@ -1,3 +1,4 @@
+import React, { useEffect } from "react";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import { productsData } from "../data/ProductsData";
@@ -15,8 +16,22 @@ import elipsGreen from "../foto/elipsGreen.png";
 import elipsOrange from "../foto/elipsOrange.png";
 import ClientsContent from "../components/ClientsContent";
 import OtherHeader from "../components/OtherHeader";
+import { useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 const ProductListPage = () => {
+  const categories = useSelector((state) => state.globalReducer.categories);
+  const history = useHistory();
+  console.log("categories", categories);
+
+  const navigateToCategory = (gender, category) => {
+    history.push(`/shopping/${gender}/${category}`);
+  };
+
+  const topCategories = categories
+    .sort((a, b) => b.rating - a.rating)
+    .slice(0, 5);
+
   return (
     <div className="flex flex-col px-0">
       <Header />
@@ -48,96 +63,38 @@ const ProductListPage = () => {
       <div className="category flex sm:flex-row flex-col py-0 sm:px-44 items-center justify-center self-stretch bg-[#FAFAFA] ">
         <div className="container flex flex-col items-center pb-12">
           <div className="row flex sm:flex-row flex-col items-start gap-4">
-            <div className="col-md-4 flex flex-col justify-center items-center">
-              <div className="card-item shrink-0 relative">
-                <div className="absolute inset-0 bg-[#212121] bg-opacity-25"></div>
-                <img
-                  src={category1}
-                  className="sm:w-full w-[20rem] h-auto"
-                  alt="Category"
-                />
-                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
-                  <h5 className="font-montserrat font-bold tracking-[0.00625rem] text-base text-custom-white">
-                    CLOTHS
-                  </h5>
-                  <p className="font-montserrat font-normal text-sm tracking-[0.0125rem] text-custom-white">
-                    5 Items
-                  </p>
+            {topCategories.map((category) => (
+              <div
+                key={category.id}
+                className="col-md-4 flex flex-col justify-center items-center"
+                onClick={() =>
+                  navigateToCategory(
+                    category.gender,
+                    category.code.split(":")[1]
+                  )
+                }
+              >
+                <div className="card-item shrink-0 relative">
+                  <div className="absolute inset-0 bg-[#212121] bg-opacity-25"></div>
+                  <img
+                    src={category.img}
+                    className="w-[20rem] object-cover sm:w-full h-[20rem]"
+                    alt="Category"
+                  />
+                  <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
+                    <a
+                      href=""
+                      className="font-montserrat font-bold tracking-[0.00625rem] hover:text-[#23A6F0] duration-300 text-base text-custom-white"
+                    >
+                      {category.title.toUpperCase()}
+                    </a>
+                    <p className="font-montserrat font-bold text-sm tracking-[0.0125rem] hover:text-[#23A6F0] duration-300 text-custom-white">
+                      {category.rating} Rating
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className="col-md-4 flex flex-col justify-center items-center">
-              <div className="card-item shrink-0 relative">
-                <div className="absolute inset-0 bg-[#212121] bg-opacity-25"></div>
-                <img
-                  src={category2}
-                  className="w-[20rem] sm:w-full h-auto"
-                  alt="Category"
-                />
-                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
-                  <h5 className="font-montserrat font-bold tracking-[0.00625rem] text-base text-custom-white">
-                    CLOTHS
-                  </h5>
-                  <p className="font-montserrat font-normal text-sm tracking-[0.0125rem] text-custom-white">
-                    5 Items
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="col-md-4 flex flex-col justify-center items-center">
-              <div className="card-item shrink-0 relative">
-                <div className="absolute inset-0 bg-[#212121] bg-opacity-25"></div>
-                <img
-                  src={category3}
-                  className="w-[20rem] sm:w-full h-auto"
-                  alt="Category"
-                />
-                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
-                  <h5 className="font-montserrat font-bold tracking-[0.00625rem] text-base text-custom-white">
-                    CLOTHS
-                  </h5>
-                  <p className="font-montserrat font-normal text-sm tracking-[0.0125rem] text-custom-white">
-                    5 Items
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="col-md-4 flex flex-col justify-center items-center">
-              <div className="card-item shrink-0 relative">
-                <div className="absolute inset-0 bg-[#212121] bg-opacity-25"></div>
-                <img
-                  src={category4}
-                  className="w-[20rem] sm:w-full h-auto"
-                  alt="Category"
-                />
-                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
-                  <h5 className="font-montserrat font-bold tracking-[0.00625rem] text-base text-custom-white">
-                    CLOTHS
-                  </h5>
-                  <p className="font-montserrat font-normal text-sm tracking-[0.0125rem] text-custom-white">
-                    5 Items
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="col-md-4 flex flex-col justify-center items-center">
-              <div className="card-item shrink-0 relative">
-                <div className="absolute inset-0 bg-[#212121] bg-opacity-25"></div>
-                <img
-                  src={category5}
-                  className="w-[20rem] sm:w-full h-auto"
-                  alt="Category"
-                />
-                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
-                  <h5 className="font-montserrat font-bold tracking-[0.00625rem] text-base text-custom-white">
-                    CLOTHS
-                  </h5>
-                  <p className="font-montserrat font-normal text-sm tracking-[0.0125rem] text-custom-white">
-                    5 Items
-                  </p>
-                </div>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </div>
