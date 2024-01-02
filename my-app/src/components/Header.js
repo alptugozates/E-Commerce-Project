@@ -85,7 +85,8 @@ const Header = () => {
   };
 
   const toggleMenu = () => {
-    setShowMenu(true);
+    setShowMenu(!showMenu);
+    setShowCategories(null);
   };
 
   return (
