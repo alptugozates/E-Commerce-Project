@@ -6,6 +6,7 @@ import {
   faPhone,
   faMagnifyingGlass,
   faCartShopping,
+  faChevronDown,
 } from "@fortawesome/free-solid-svg-icons";
 import {
   faEnvelope,
@@ -170,15 +171,22 @@ const Header = () => {
                   Home
                 </a>
               </li>
-              <div className="relative">
+              <div className="flex gap-1 ">
                 <a
-                  href="#"
+                  href="/products"
                   className="block text-custom-gray font-bold font-montserrat tracking-[0.0125rem] text-base"
-                  onClick={toggleMenu}
                 >
                   Shop
                 </a>
-
+                <div className="relative">
+                  <a
+                    href="/products"
+                    className="block text-custom-gray font-bold font-montserrat tracking-[0.0125rem] text-base"
+                    onMouseEnter={toggleMenu}
+                  >
+                    <FontAwesomeIcon size="sm" icon={faChevronDown} />
+                  </a>
+                </div>
                 <div
                   className={`absolute z-10 mt-8 bg-custom-white shadow-lg border-custom-gray border-2 rounded 
     ${showMenu ? "block" : "hidden"}`}
