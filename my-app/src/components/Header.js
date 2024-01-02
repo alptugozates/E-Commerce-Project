@@ -32,6 +32,8 @@ const Header = () => {
   const { name, email, loggedIn } = useSelector((state) => state.userReducer);
   const { categories } = useSelector((state) => state.globalReducer);
   const dispatch = useDispatch();
+  const [showMenu, setShowMenu] = useState(false);
+  const [showCategories, setShowCategories] = useState(null);
 
   useEffect(() => {
     dispatch(fetchCategories());
@@ -80,6 +82,10 @@ const Header = () => {
         email: "",
       })
     );
+  };
+
+  const toggleMenu = () => {
+    setShowMenu(true);
   };
 
   return (
@@ -163,14 +169,81 @@ const Header = () => {
                   Home
                 </a>
               </li>
-              <li className="flex w-11h-6 justify-center items-center">
+              <div className="relative">
                 <a
-                  href="/products"
-                  className="shrink-0 text-custom-gray font-bold font-montserrat tracking-[0.0125rem] text-base "
+                  href="#"
+                  className="block text-custom-gray font-bold font-montserrat tracking-[0.0125rem] text-base"
+                  onClick={toggleMenu}
                 >
                   Shop
                 </a>
-              </li>
+
+                <div
+                  className={`absolute z-10 mt-8 bg-white shadow-lg border-[#23A6F0] border-2 rounded 
+    ${showMenu ? "block" : "hidden"}`}
+                  onClick={toggleMenu}
+                >
+                  <div className="flex">
+                    <div className="space-y-2 flex flex-col">
+                      <a
+                        href="#"
+                        className={`block py-2 px-4 font-montserrat text-base tracking-[0.0125rem] text-gray-700 hover:bg-gray-100 rounded-md transition duration-300 ease-in-out 
+        ${showCategories === "e" ? "bg-gray-100" : ""}`}
+                        onMouseEnter={() => setShowCategories("e")}
+                      >
+                        Erkek
+                      </a>
+                      <a
+                        href="#"
+                        className={`block py-2 px-4 font-montserrat text-base tracking-[0.0125rem] text-gray-700 hover:bg-gray-100 rounded-md transition duration-300 ease-in-out 
+        ${showCategories === "k" ? "bg-gray-100" : ""}`}
+                        onMouseEnter={() => setShowCategories("k")}
+                      >
+                        Kadın
+                      </a>
+                    </div>
+
+                    {showCategories === "e" && (
+                      <div className="space-y-1">
+                        {categories.map((category) => {
+                          if (category.gender === "e") {
+                            return (
+                              <a
+                                key={category.id}
+                                href={`/shopping/${category.gender}/${category.title}`}
+                                className="block font-montserrat text-sm tracking-[0.00625rem] px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-md transition duration-300 ease-in-out"
+                              >
+                                {category.title}
+                              </a>
+                            );
+                          }
+                          return null;
+                        })}
+                      </div>
+                    )}
+
+                    {showCategories === "k" && (
+                      <div className="space-y-1">
+                        {categories.map((category) => {
+                          if (category.gender === "k") {
+                            return (
+                              <a
+                                key={category.id}
+                                href={`/shopping/${category.gender}/${category.title}`}
+                                className="block px-4 py-2 font-montserrat text-sm tracking-[0.00625rem] text-gray-700 hover:bg-gray-100 rounded-md transition duration-300 ease-in-out"
+                              >
+                                {category.title}
+                              </a>
+                            );
+                          }
+                          return null;
+                        })}
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+
               <li className="flex w-11 h-6 justify-center items-center">
                 <a
                   href="/about"
