@@ -179,7 +179,7 @@ const Header = () => {
                 </a>
 
                 <div
-                  className={`absolute z-10 mt-8 bg-white shadow-lg border-[#23A6F0] border-2 rounded 
+                  className={`absolute z-10 mt-8 bg-custom-white shadow-lg border-custom-gray border-2 rounded 
     ${showMenu ? "block" : "hidden"}`}
                   onClick={toggleMenu}
                 >
@@ -187,16 +187,16 @@ const Header = () => {
                     <div className="space-y-2 flex flex-col">
                       <a
                         href="#"
-                        className={`block py-2 px-4 font-montserrat text-base tracking-[0.0125rem] text-gray-700 hover:bg-gray-100 rounded-md transition duration-300 ease-in-out 
-        ${showCategories === "e" ? "bg-gray-100" : ""}`}
+                        className={`block py-2 px-4 font-montserrat  text-base tracking-[0.0125rem] text-[#252B42] hover:bg-gray-100 rounded-md transition duration-300 ease-in-out 
+        ${showCategories === "e" ? "bg-gray-100 font-semibold" : ""}`}
                         onMouseEnter={() => setShowCategories("e")}
                       >
                         Erkek
                       </a>
                       <a
                         href="#"
-                        className={`block py-2 px-4 font-montserrat text-base tracking-[0.0125rem] text-gray-700 hover:bg-gray-100 rounded-md transition duration-300 ease-in-out 
-        ${showCategories === "k" ? "bg-gray-100" : ""}`}
+                        className={`block py-2 px-4 font-montserrat text-base tracking-[0.0125rem] text-[#252B42] hover:bg-gray-100 rounded-md transition duration-300 ease-in-out 
+        ${showCategories === "k" ? "bg-gray-100 font-semibold" : ""}`}
                         onMouseEnter={() => setShowCategories("k")}
                       >
                         Kadın
@@ -211,7 +211,7 @@ const Header = () => {
                               <a
                                 key={category.id}
                                 href={`/shopping/${category.gender}/${category.title}`}
-                                className="block font-montserrat text-sm tracking-[0.00625rem] px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-md transition duration-300 ease-in-out"
+                                className="block font-montserrat text-sm tracking-[0.00625rem] px-4 py-2 text-[#252B42] hover:font-semibold hover:bg-gray-100 duration-300 ease-in-out"
                               >
                                 {category.title}
                               </a>
@@ -230,7 +230,7 @@ const Header = () => {
                               <a
                                 key={category.id}
                                 href={`/shopping/${category.gender}/${category.title}`}
-                                className="block px-4 py-2 font-montserrat text-sm tracking-[0.00625rem] text-gray-700 hover:bg-gray-100 rounded-md transition duration-300 ease-in-out"
+                                className="block px-4 py-2 font-montserrat text-sm tracking-[0.00625rem] text-[#252B42] hover:font-semibold hover:bg-gray-100 duration-300"
                               >
                                 {category.title}
                               </a>
