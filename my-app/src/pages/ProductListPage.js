@@ -19,7 +19,7 @@ const ProductListPage = () => {
   const dispatch = useDispatch();
   const categories = useSelector((state) => state.globalReducer.categories);
   const history = useHistory();
-  const products = useSelector((state) => state.productReducer.productList);
+  const products = useSelector((state) => state.productReducer.products);
   console.log("PRODUCTS", products);
   console.log("categories", categories);
 
@@ -145,23 +145,28 @@ const ProductListPage = () => {
       <div>
         <div className="flex flex-col items-center justify-center">
           <div className="flex flex-wrap gap-8 justify-center w-full px-12 sm:px-52 py-20">
-            {productsData.map((product) => (
+            {products.map((product) => (
               <div
                 key={product.id}
-                className="product-card flex flex-col items-start"
+                className="product-card flex flex-col items-center border border-gray-200 rounded-lg shadow-md w-[20rem]"
               >
-                <div className="flex flex-col justify-center items-center">
-                  <img
-                    className="sm:w-full w-[20rem] "
-                    src={product.image}
-                    alt="Product Image"
-                  />
+                <div className="flex flex-col justify-center items-center ">
+                  {product.images.length > 0 && (
+                    <img
+                      className="sm:w-[20rem] sm:h-auto sm:object-cover w-[20rem]"
+                      src={product.images[0].url}
+                      alt={`Product ${product.id}`}
+                    />
+                  )}
                 </div>
-                <div className="flex flex-col items-center self-stretch gap-5 px-6 pt-6 pb-9">
+                <div className="flex flex-col items-center gap-5 px-6 pt-6 pb-9">
                   <h5 className="font-montserrat font-bold text-base tracking-[0.00625rem] text-[#252B42] ">
                     {product.name}
                   </h5>
-                  <p className="font-montserrat font-bold text-custom-gray text-sm ">
+                  <p
+                    className="font-montserrat font-bold text-custom-gray text-sm text-center whitespace-nowrap overflow-hidden text-ellipsis max-w-[17rem]"
+                    title={product.description}
+                  >
                     {product.description}
                   </p>
                   <div className="flex flex-start items-start gap-2">
