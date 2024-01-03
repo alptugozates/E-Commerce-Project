@@ -20,30 +20,33 @@ export const updateActivePage = (activePage) => ({
 export const fetchProductsData = (category, filter, sort) => {
   return async (dispatch) => {
     let url = "/products";
+
     if (category) {
       url += `?category=${category}`;
     }
+
     if (filter) {
-      url += `&filter=${filter}`;
-    }
-    if (sort) {
-      url += `&sort=${sort}`;
+      url += category ? `&filter=${filter}` : `?filter=${filter}`;
     }
 
-    return axiosInstance
-      .get(url)
-      .then((response) => {
-        dispatch(
-          fetchProducts(
-            response.data.productList,
-            response.data.totalProductCount,
-            response.data.pageCount,
-            "FETCHED"
-          )
-        );
-      })
-      .catch((error) => {
-        console.error("Error fetching products:", error);
-      });
+    if (sort) {
+      const separator = category || filter ? "&" : "?";
+      url += `${separator}sort=${sort}`;
+    }
+
+    try {
+      const response = await axiosInstance.get(url);
+
+      dispatch(
+        fetchProducts(
+          response.data.productList,
+          response.data.totalProductCount,
+          response.data.pageCount,
+          "FETCHED"
+        )
+      );
+    } catch (error) {
+      console.error("Error fetching products:", error);
+    }
   };
 };
