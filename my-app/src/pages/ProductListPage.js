@@ -3,11 +3,6 @@ import Footer from "../components/Footer";
 import Header from "../components/Header";
 import { productsData } from "../data/ProductsData";
 import rightArrow from "../foto/gray-arrow-right.png";
-import category1 from "../foto/foto ProductList/card-cover-1.jpg";
-import category2 from "../foto/foto ProductList/card-cover-2.jpg";
-import category3 from "../foto/foto ProductList/card-cover-3.jpg";
-import category4 from "../foto/foto ProductList/card-cover-4.jpg";
-import category5 from "../foto/foto ProductList/card-cover-5.jpg";
 import productIcon from "../foto/foto ProductList/product-icon.png";
 import vectorIcon from "../foto/foto ProductList/Vector.png";
 import elipsNavy from "../foto/elipsNavy.png";
@@ -16,12 +11,16 @@ import elipsGreen from "../foto/elipsGreen.png";
 import elipsOrange from "../foto/elipsOrange.png";
 import ClientsContent from "../components/ClientsContent";
 import OtherHeader from "../components/OtherHeader";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
+import { fetchProductsData } from "../actions/productAction";
 
 const ProductListPage = () => {
+  const dispatch = useDispatch();
   const categories = useSelector((state) => state.globalReducer.categories);
   const history = useHistory();
+  const products = useSelector((state) => state.productReducer.productList);
+  console.log("PRODUCTS", products);
   console.log("categories", categories);
 
   const navigateToCategory = (gender, category) => {
@@ -31,6 +30,10 @@ const ProductListPage = () => {
   const topCategories = categories
     .sort((a, b) => b.rating - a.rating)
     .slice(0, 5);
+
+  useEffect(() => {
+    dispatch(fetchProductsData());
+  }, []);
 
   return (
     <div className="flex flex-col px-0">
