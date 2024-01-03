@@ -13,15 +13,15 @@ const productReducer = (state = initialState, action) => {
     case FETCH_PRODUCTS:
       return {
         ...state,
-        productList: action.payload,
-        totalProductCount: action.payload,
-        pageCount: action.payload,
-        fetchState: action.payload,
+        productList: action.payload.productList,
+        totalProductCount: action.payload.totalProductCount,
+        pageCount: action.payload.pageCount,
+        fetchState: action.payload.fetchState,
       };
     case UPDATE_ACTIVE_PAGE:
       return {
         ...state,
-        activePage: action.payload,
+        activePage: action.payload.activePage,
       };
     default:
       return state;
