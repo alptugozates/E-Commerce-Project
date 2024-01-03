@@ -18,7 +18,7 @@ export const updateActivePage = (activePage) => ({
 });
 
 export const fetchProductsData = (category, filter, sort) => {
-  return (dispatch) => {
+  return async (dispatch) => {
     let url = "/products";
     if (category) {
       url += `?category=${category}`;
@@ -31,7 +31,7 @@ export const fetchProductsData = (category, filter, sort) => {
     }
 
     return axiosInstance
-      .get("/products")
+      .get(url)
       .then((response) => {
         dispatch(
           fetchProducts(
@@ -42,7 +42,6 @@ export const fetchProductsData = (category, filter, sort) => {
           )
         );
       })
-
       .catch((error) => {
         console.error("Error fetching products:", error);
       });
