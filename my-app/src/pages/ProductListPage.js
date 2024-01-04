@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import { productsData } from "../data/ProductsData";
@@ -13,9 +13,17 @@ import ClientsContent from "../components/ClientsContent";
 import OtherHeader from "../components/OtherHeader";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { fetchProductsData } from "../actions/productAction";
+import {
+  fetchProductsData,
+  sortByAlphabetical,
+  sortByPriceHighToLow,
+  sortByPriceLowToHigh,
+  sortByRatingDescending,
+  sortByStock,
+} from "../actions/productAction";
 
 const ProductListPage = () => {
+  const [selectedValue, setSelectedValue] = useState("");
   const dispatch = useDispatch();
   const categories = useSelector((state) => state.globalReducer.categories);
   const history = useHistory();
@@ -34,6 +42,43 @@ const ProductListPage = () => {
   useEffect(() => {
     dispatch(fetchProductsData());
   }, []);
+
+  const handleSortAlphabetical = () => {
+    dispatch(sortByAlphabetical());
+  };
+
+  const handleSortRatingDescending = () => {
+    dispatch(sortByRatingDescending());
+  };
+
+  const handleSortPriceHighToLow = () => {
+    dispatch(sortByPriceHighToLow());
+  };
+
+  const handleSortPriceLowToHigh = () => {
+    dispatch(sortByPriceLowToHigh());
+  };
+  const handleSortByStock = () => {
+    dispatch(sortByStock());
+  };
+
+  const handleFilter = () => {
+    if (selectedValue === "popularity") {
+      handleSortRatingDescending();
+    }
+    if (selectedValue === "increasingPrice") {
+      handleSortPriceLowToHigh();
+    }
+    if (selectedValue === "decreasingPrice") {
+      handleSortPriceHighToLow();
+    }
+    if (selectedValue === "alphabetical") {
+      handleSortAlphabetical();
+    }
+    if (selectedValue === "topSellers") {
+      handleSortByStock();
+    }
+  };
 
   return (
     <div className="flex flex-col px-0">
@@ -126,15 +171,20 @@ const ProductListPage = () => {
               <select
                 className="border-2 bg-[#F9F9F9] border-[#DDDDDD] text-custom-gray px-5 py-2.5 font-montserrat font-normal text-sm tracking-[0.0125rem] "
                 id="dropdown"
+                onChange={(e) => setSelectedValue(e.target.value)}
+                value={selectedValue}
               >
-                <option value="">Popularity</option>
-                <option value="option1">Increasing price</option>
-                <option value="option2">Decreasing price</option>
-                <option value="option3">Alphabetical A-Z</option>
-                <option value="option4">Top sellers</option>
+                <option value="popularity">Popularity</option>
+                <option value="increasingPrice">Increasing price</option>
+                <option value="decreasingPrice">Decreasing price</option>
+                <option value="alphabetical">Alphabetical A-Z</option>
+                <option value="topSellers">Top sellers</option>
               </select>
             </div>
-            <button className="btn flex items-center py-3 px-6 border-2 bg-[#23A6F0] rounded-md">
+            <button
+              onClick={handleFilter}
+              className="btn flex items-center py-3 px-6 border-2 bg-[#23A6F0] rounded-md"
+            >
               <p className="font-montserrat text-custom-white font-bold text-sm tracking-[0.0125rem]">
                 Filter
               </p>
@@ -171,10 +221,7 @@ const ProductListPage = () => {
                   </p>
                   <div className="flex flex-start items-start gap-2">
                     <h5 className="font-montserrat font-bold tracking-[0.00625rem] text-center text-sm text-[#BDBDBD] ">
-                      {product.price}
-                    </h5>
-                    <h5 className="font-montserrat font-bold tracking-[0.00625rem] text-center text-sm text-[#23856D] ">
-                      {product.price2}
+                      {product.price} ₺
                     </h5>
                   </div>
                   <div className="product-colors flex items-center gap-2.5">
