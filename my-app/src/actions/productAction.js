@@ -6,6 +6,7 @@ export const SORT_BY_RATING_DESCENDING = "SORT_BY_RATING_DESCENDING";
 export const SORT_BY_PRICE_HIGH_TO_LOW = "SORT_BY_PRICE_HIGH_TO_LOW";
 export const SORT_BY_PRICE_LOW_TO_HIGH = "SORT_BY_PRICE_LOW_TO_HIGH";
 export const SORT_BY_STOCK = "SORT_BY_STOCK";
+
 export const fetchProducts = (
   products,
   totalProductCount,
