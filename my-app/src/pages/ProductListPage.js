@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
-import { productsData } from "../data/ProductsData";
+import InfiniteScroll from "react-infinite-scroll-component";
 import rightArrow from "../foto/gray-arrow-right.png";
 import productIcon from "../foto/foto ProductList/product-icon.png";
 import vectorIcon from "../foto/foto ProductList/Vector.png";
@@ -30,6 +30,24 @@ const ProductListPage = () => {
   const products = useSelector((state) => state.productReducer.products);
   console.log("PRODUCTS", products);
   console.log("categories", categories);
+
+  const [hasMore, setHasMore] = useState(true);
+  const [page, setPage] = useState(1);
+  const [loading, setLoading] = useState(false);
+
+  const fetchMoreData = () => {
+    if (products.length > 0) {
+      setHasMore(true);
+      setLoading(true);
+      setTimeout(() => {
+        dispatch(fetchProductsData(page + 1));
+        setPage(page + 1);
+        setLoading(false);
+      }, 2000);
+    }
+  };
+  const dataLength = products.length;
+  console.log("dataLength", dataLength);
 
   const navigateToCategory = (gender, category) => {
     history.push(`/shopping/${gender}/${category}`);
@@ -195,44 +213,53 @@ const ProductListPage = () => {
       <div>
         <div className="flex flex-col items-center justify-center">
           <div className="flex flex-wrap gap-8 justify-center w-full px-12 sm:px-52 py-20">
-            {products.map((product) => (
-              <div
-                key={product.id}
-                className="product-card flex flex-col items-center border border-gray-200 rounded-lg shadow-md w-[20rem]"
-              >
-                <div className="flex flex-col justify-center items-center ">
-                  {product.images.length > 0 && (
-                    <img
-                      className="sm:w-[20rem] sm:h-auto sm:object-cover w-[20rem]"
-                      src={product.images[0].url}
-                      alt={`Product ${product.id}`}
-                    />
-                  )}
-                </div>
-                <div className="flex flex-col items-center gap-5 px-6 pt-6 pb-9">
-                  <h5 className="font-montserrat font-bold text-base tracking-[0.00625rem] text-[#252B42] ">
-                    {product.name}
-                  </h5>
-                  <p
-                    className="font-montserrat font-bold text-custom-gray text-sm text-center whitespace-nowrap overflow-hidden text-ellipsis max-w-[17rem]"
-                    title={product.description}
-                  >
-                    {product.description}
-                  </p>
-                  <div className="flex flex-start items-start gap-2">
-                    <h5 className="font-montserrat font-bold tracking-[0.00625rem] text-center text-sm text-[#BDBDBD] ">
-                      {product.price} ₺
+            <InfiniteScroll
+              dataLength={products.length}
+              next={fetchMoreData}
+              hasMore={hasMore}
+              loader={<h4>Loading...</h4>}
+              endMessage={<p>No more products</p>}
+              className="flex flex-wrap gap-8 justify-center w-full px-12  py-20"
+            >
+              {products.map((product) => (
+                <div
+                  key={product.id}
+                  className="product-card flex flex-col items-center border border-gray-200 rounded-lg shadow-md w-[20rem]"
+                >
+                  <div className="flex flex-col justify-center items-center ">
+                    {product.images.length > 0 && (
+                      <img
+                        className="sm:w-[20rem] sm:h-auto sm:top-0 sm:object-cover w-[20rem]"
+                        src={product.images[0].url}
+                        alt={`Product ${product.id}`}
+                      />
+                    )}
+                  </div>
+                  <div className="flex flex-col items-center gap-5 px-6 pt-6 pb-9">
+                    <h5 className="font-montserrat font-bold text-base tracking-[0.00625rem] text-[#252B42] ">
+                      {product.name}
                     </h5>
-                  </div>
-                  <div className="product-colors flex items-center gap-2.5">
-                    <img src={elipsBlue} />
-                    <img src={elipsGreen} />
-                    <img src={elipsOrange} />
-                    <img src={elipsNavy} />
+                    <p
+                      className="font-montserrat font-bold text-custom-gray text-sm text-center whitespace-nowrap overflow-hidden text-ellipsis max-w-[17rem]"
+                      title={product.description}
+                    >
+                      {product.description}
+                    </p>
+                    <div className="flex flex-start items-start gap-2">
+                      <h5 className="font-montserrat font-bold tracking-[0.00625rem] text-center text-sm text-[#BDBDBD] ">
+                        {product.price} ₺
+                      </h5>
+                    </div>
+                    <div className="product-colors flex items-center gap-2.5">
+                      <img src={elipsBlue} />
+                      <img src={elipsGreen} />
+                      <img src={elipsOrange} />
+                      <img src={elipsNavy} />
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </InfiniteScroll>
           </div>
           <div className="flex items-center justify-center ">
             <div className="flex flex-start">
