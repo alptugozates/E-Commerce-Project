@@ -6,6 +6,8 @@ export const SORT_BY_RATING_DESCENDING = "SORT_BY_RATING_DESCENDING";
 export const SORT_BY_PRICE_HIGH_TO_LOW = "SORT_BY_PRICE_HIGH_TO_LOW";
 export const SORT_BY_PRICE_LOW_TO_HIGH = "SORT_BY_PRICE_LOW_TO_HIGH";
 export const SORT_BY_STOCK = "SORT_BY_STOCK";
+export const SEARCH_FILTER = "SEARCH_FILTER";
+export const UPDATE_PRODUCTS = "UPDATE_PRODUCTS";
 
 export const fetchProducts = (
   products,
@@ -21,6 +23,11 @@ export const fetchProducts = (
 export const updateActivePage = (activePage) => ({
   type: UPDATE_ACTIVE_PAGE,
   payload: { activePage },
+});
+
+export const filterProductsByText = (text) => ({
+  type: SEARCH_FILTER,
+  payload: { text },
 });
 
 export const sortByAlphabetical = () => ({
@@ -72,6 +79,22 @@ export const fetchProductsData = (category, filter, sort) => {
       );
     } catch (error) {
       console.error("Error fetching products:", error);
+    }
+  };
+};
+
+export const fetchMoreProducts = (page, limit = 25, offset = 0) => {
+  return async (dispatch) => {
+    let url = `/products?page=${page}&limit=${limit}&offset=${offset}`;
+
+    try {
+      const response = await axiosInstance.get(url);
+      dispatch({
+        type: "UPDATE_PRODUCTS",
+        payload: response.data.products,
+      });
+    } catch (error) {
+      console.error("Error fetching more products:", error);
     }
   };
 };
