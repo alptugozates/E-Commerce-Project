@@ -37,16 +37,15 @@ const ProductListPage = () => {
   console.log("categories", categories);
 
   const [hasMore, setHasMore] = useState(true);
-  const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
 
   const fetchMoreData = () => {
     if (products.length > 0) {
       setLoading(true);
-      const currentPage = Math.ceil(dataLength / 25); // Assuming default limit is 25
-      const newOffset = currentPage * 25; // Calculate offset based on current products fetched
+      const currentPage = Math.ceil(dataLength / 25);
+      const newOffset = currentPage * 25;
 
-      dispatch(fetchMoreProducts(currentPage + 1, 25, newOffset)); // Fetch next page with limit and offset
+      dispatch(fetchMoreProducts(currentPage + 1, 25, newOffset));
       setLoading(false);
     }
   };
