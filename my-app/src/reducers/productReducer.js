@@ -6,6 +6,8 @@ import {
   SORT_BY_RATING_DESCENDING,
   UPDATE_ACTIVE_PAGE,
   SORT_BY_STOCK,
+  SEARCH_FILTER,
+  UPDATE_PRODUCTS,
 } from "../actions/productAction";
 
 const initialState = {
@@ -79,6 +81,27 @@ const productReducer = (state = initialState, action) => {
       return {
         ...state,
         products: sortedByStock,
+      };
+    case SEARCH_FILTER:
+      const searchText = action.payload.text.toLowerCase();
+      if (searchText === "") {
+        return {
+          ...state,
+          products: initialState.products,
+        };
+      } else {
+        const filteredProducts = state.products.filter((product) =>
+          product.name.toLowerCase().includes(searchText)
+        );
+        return {
+          ...state,
+          products: filteredProducts,
+        };
+      }
+    case UPDATE_PRODUCTS:
+      return {
+        ...state,
+        products: [...state.products, ...action.payload],
       };
     default:
       return state;
