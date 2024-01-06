@@ -14,16 +14,21 @@ import OtherHeader from "../components/OtherHeader";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import {
+  fetchMoreProducts,
   fetchProductsData,
+  filterProductsByText,
   sortByAlphabetical,
   sortByPriceHighToLow,
   sortByPriceLowToHigh,
   sortByRatingDescending,
   sortByStock,
+  updateProducts,
 } from "../actions/productAction";
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 const ProductListPage = () => {
   const [selectedValue, setSelectedValue] = useState("");
+  const [searchText, setSearchText] = useState("");
   const dispatch = useDispatch();
   const categories = useSelector((state) => state.globalReducer.categories);
   const history = useHistory();
@@ -37,13 +42,12 @@ const ProductListPage = () => {
 
   const fetchMoreData = () => {
     if (products.length > 0) {
-      setHasMore(true);
       setLoading(true);
-      setTimeout(() => {
-        dispatch(fetchProductsData(page + 1));
-        setPage(page + 1);
-        setLoading(false);
-      }, 2000);
+      const currentPage = Math.ceil(dataLength / 25); // Assuming default limit is 25
+      const newOffset = currentPage * 25; // Calculate offset based on current products fetched
+
+      dispatch(fetchMoreProducts(currentPage + 1, 25, newOffset)); // Fetch next page with limit and offset
+      setLoading(false);
     }
   };
   const dataLength = products.length;
@@ -95,6 +99,16 @@ const ProductListPage = () => {
     }
     if (selectedValue === "topSellers") {
       handleSortByStock();
+    }
+  };
+
+  const handleSearchInputChange = (e) => {
+    const text = e.target.value;
+    setSearchText(text);
+    if (text === "") {
+      dispatch(fetchProductsData());
+    } else {
+      dispatch(filterProductsByText(text));
     }
   };
 
@@ -168,7 +182,7 @@ const ProductListPage = () => {
         <div className="container flex sm:flex-row flex-col justify-between items-center gap-20 px-0 py-6">
           <div className="sort flex items-center gap-4 text-custom-gray">
             <p className="font-montserrat text-sm font-bold tracking-[0.0125rem]">
-              Showing 12 results
+              Showing {products.length} results
             </p>
           </div>
           <div className="sort flex items-center gap-4">
@@ -186,6 +200,13 @@ const ProductListPage = () => {
           </div>
           <div className="sort flex items-center gap-4">
             <div className="select flex justify-center items-center shrink-0">
+              <input
+                type="text"
+                placeholder="Search..."
+                value={searchText}
+                onChange={handleSearchInputChange}
+                className="border-2 bg-[#F9F9F9] border-[#DDDDDD] text-custom-gray px-5 py-2.5 font-montserrat font-normal text-sm tracking-[0.0125rem] "
+              />
               <select
                 className="border-2 bg-[#F9F9F9] border-[#DDDDDD] text-custom-gray px-5 py-2.5 font-montserrat font-normal text-sm tracking-[0.0125rem] "
                 id="dropdown"
@@ -201,7 +222,7 @@ const ProductListPage = () => {
             </div>
             <button
               onClick={handleFilter}
-              className="btn flex items-center py-3 px-6 border-2 bg-[#23A6F0] rounded-md"
+              className="btn flex items-center py-3 px-6 border-2 bg-[#23A6F0]  duration-300 rounded-md hover:bg-[#6ec8fc]"
             >
               <p className="font-montserrat text-custom-white font-bold text-sm tracking-[0.0125rem]">
                 Filter
@@ -219,10 +240,13 @@ const ProductListPage = () => {
               hasMore={hasMore}
               loader={<h4>Loading...</h4>}
               endMessage={<p>No more products</p>}
-              className="flex flex-wrap gap-8 justify-center w-full px-12  py-20"
+              className="flex flex-wrap gap-8 justify-center w-full px-12 sm:px-28 py-20"
             >
               {products.map((product) => (
-                <div
+                <Link
+                  to={`/${product.category_id}/${
+                    product.id
+                  }/${product.name.replace(/\s+/g, "-")}`}
                   key={product.id}
                   className="product-card flex flex-col items-center border border-gray-200 rounded-lg shadow-md w-[20rem]"
                 >
@@ -257,7 +281,7 @@ const ProductListPage = () => {
                       <img src={elipsNavy} />
                     </div>
                   </div>
-                </div>
+                </Link>
               ))}
             </InfiniteScroll>
           </div>
