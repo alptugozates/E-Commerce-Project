@@ -1,7 +1,6 @@
 import Header from "../components/Header";
 import rightArrow from "../foto/gray-arrow-right.png";
 import productFoto2 from "../foto/ProductPageFoto/single-product-1-cover-2.jpg";
-import productFoto1 from "../foto/ProductPageFoto/single-product-1-cover-1.jpg";
 import thumbProduct1 from "../foto/ProductPageFoto/single-product-1-thumb-1.jpg";
 import thumbProduct2 from "../foto/ProductPageFoto/single-product-1-thumb-2.jpg";
 import elipsNavy from "../foto/elipsNavy.png";

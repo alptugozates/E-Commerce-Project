@@ -10,6 +10,8 @@ import AboutPage from "./pages/AboutPage";
 import ContactPage from "./pages/ContactPage";
 import SignUpPage from "./pages/SignUpPage";
 import LoginPage from "./pages/LoginPage";
+import ProductDetailPage from "./pages/ProductDetailPage";
+import CategoryListPage from "./pages/CategoryListPage";
 
 function App() {
   return (
@@ -19,7 +21,7 @@ function App() {
         <Route exact path="/">
           <HomePage />
         </Route>
-        <Route path="/products">
+        <Route exact path="/products">
           <ProductListPage />
         </Route>
         <Route path="/blog">
@@ -39,6 +41,12 @@ function App() {
         </Route>
         <Route path="/login">
           <LoginPage />
+        </Route>
+        <Route path="/shop/:category/:gender/:title" exact>
+          <CategoryListPage />
+        </Route>
+        <Route path="/product/:category_id/:product_id/:product_name">
+          <ProductDetailPage />
         </Route>
       </div>
     </Router>

@@ -8,6 +8,7 @@ export const SORT_BY_PRICE_LOW_TO_HIGH = "SORT_BY_PRICE_LOW_TO_HIGH";
 export const SORT_BY_STOCK = "SORT_BY_STOCK";
 export const SEARCH_FILTER = "SEARCH_FILTER";
 export const UPDATE_PRODUCTS = "UPDATE_PRODUCTS";
+export const SET_CATEGORY_PRODUCT = "SET_CATEGORY_PRODUCT";
 
 export const fetchProducts = (
   products,
@@ -96,5 +97,30 @@ export const fetchMoreProducts = (page, limit = 25, offset = 0) => {
     } catch (error) {
       console.error("Error fetching more products:", error);
     }
+  };
+};
+
+export const fetchCategoryProduct = (category) => {
+  return async (dispatch) => {
+    try {
+      const queryParams = new URLSearchParams();
+      if (category) {
+        queryParams.append("category", category);
+      }
+
+      const response = await axiosInstance.get(`/products?${queryParams}`);
+      const data = response.data;
+      dispatch(setCategoryProduct(response.data.products));
+      return response.data.products;
+    } catch (err) {
+      console.log("fetch edilirken hata oluştu", err);
+    }
+  };
+};
+
+export const setCategoryProduct = (categoryProduct) => {
+  return {
+    type: "SET_CATEGORY_PRODUCT",
+    payload: categoryProduct,
   };
 };

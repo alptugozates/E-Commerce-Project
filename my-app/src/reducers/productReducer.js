@@ -8,10 +8,12 @@ import {
   SORT_BY_STOCK,
   SEARCH_FILTER,
   UPDATE_PRODUCTS,
+  SET_CATEGORY_PRODUCT,
 } from "../actions/productAction";
 
 const initialState = {
   products: [],
+  categoryProduct: [],
   totalProductCount: 0,
   pageCount: 0,
   activePage: 1,
@@ -102,6 +104,11 @@ const productReducer = (state = initialState, action) => {
       return {
         ...state,
         products: [...state.products, ...action.payload],
+      };
+    case SET_CATEGORY_PRODUCT:
+      return {
+        ...state,
+        categoryProduct: action.payload,
       };
     default:
       return state;

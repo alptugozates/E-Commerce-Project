@@ -14,6 +14,7 @@ import OtherHeader from "../components/OtherHeader";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import {
+  fetchCategoryProduct,
   fetchMoreProducts,
   fetchProducts,
   fetchProductsData,
@@ -27,22 +28,32 @@ import {
   updateProducts,
 } from "../actions/productAction";
 import { Link, useParams } from "react-router-dom/cjs/react-router-dom.min";
+import axiosInstance from "../axios/axiosInstance";
 
 const ProductListPage = () => {
   const [selectedValue, setSelectedValue] = useState("");
   const [searchText, setSearchText] = useState("");
   const dispatch = useDispatch();
+  const categoryProduct = useSelector(
+    (state) => state.productReducer.categoryProduct
+  );
   const categories = useSelector((state) => state.globalReducer.categories);
   const history = useHistory();
-  const products = useSelector((state) => state.productReducer.products);
-  console.log("PRODUCTS", products);
+  console.log("categoryProduct:", categoryProduct);
   console.log("categories", categories);
 
   const [hasMore, setHasMore] = useState(true);
   const [loading, setLoading] = useState(false);
+  const { category } = useParams();
+  console.log("category", category);
+  useEffect(() => {
+    dispatch(fetchCategoryProduct(category));
+  }, [dispatch, category]);
+
+  console.log("categoryProduct", categoryProduct);
 
   const fetchMoreData = () => {
-    if (products.length > 0) {
+    if (categoryProduct.length > 0) {
       setLoading(true);
       const currentPage = Math.ceil(dataLength / 25);
       const newOffset = currentPage * 25;
@@ -51,15 +62,15 @@ const ProductListPage = () => {
       setLoading(false);
     }
   };
-  const dataLength = products.length;
+  const dataLength = categoryProduct.length;
 
   const topCategories = categories
     .sort((a, b) => b.rating - a.rating)
     .slice(0, 5);
 
-  useEffect(() => {
-    dispatch(fetchProductsData());
-  }, []);
+  // useEffect(() => {
+  //   dispatch(fetchProductsData());
+  // }, []);
 
   const handleSortAlphabetical = () => {
     dispatch(sortByAlphabetical());
@@ -179,7 +190,7 @@ const ProductListPage = () => {
         <div className="container flex sm:flex-row flex-col justify-between items-center gap-20 px-0 py-6">
           <div className="sort flex items-center gap-4 text-custom-gray">
             <p className="font-montserrat text-sm font-bold tracking-[0.0125rem]">
-              Showing {products.length} results
+              Showing {categoryProduct.length} results
             </p>
           </div>
           <div className="sort flex items-center gap-4">
@@ -232,14 +243,14 @@ const ProductListPage = () => {
         <div className="flex flex-col items-center justify-center">
           <div className="flex flex-wrap gap-8 justify-center w-full px-12 sm:px-52 py-20">
             <InfiniteScroll
-              dataLength={products.length}
+              dataLength={categoryProduct.length}
               next={fetchMoreData}
               hasMore={hasMore}
               loader={<h4>Loading...</h4>}
               endMessage={<p>No more products</p>}
               className="flex flex-wrap gap-8 justify-center w-full px-12 sm:px-28 py-20"
             >
-              {products.map((product) => (
+              {categoryProduct?.map((product) => (
                 <div
                   key={product.id}
                   className="product-card border-2 shadow-lg rounded hover:scale-110 duration-300 cursor-pointer "
@@ -252,27 +263,25 @@ const ProductListPage = () => {
                   }
                 >
                   <div className="flex flex-col justify-center items-center ">
-                    {product.images.length > 0 && (
-                      <img
-                        className="sm:w-[20rem] sm:h-auto sm:top-0 sm:object-cover w-[20rem]"
-                        src={product.images[0].url}
-                        alt={`Product ${product.id}`}
-                      />
-                    )}
+                    <img
+                      className="sm:w-[20rem] sm:h-auto sm:top-0 sm:object-cover w-[20rem]"
+                      src={product.images[0].url}
+                      alt={`Product ${product.id}`}
+                    />
                   </div>
                   <div className="flex flex-col items-center gap-5 px-6 pt-6 pb-9">
                     <h5 className="font-montserrat font-bold text-base tracking-[0.00625rem] text-[#252B42] ">
-                      {product.name}
+                      {product?.name}
                     </h5>
                     <p
                       className="font-montserrat font-bold text-custom-gray text-sm text-center whitespace-nowrap overflow-hidden text-ellipsis max-w-[17rem]"
-                      title={product.description}
+                      title={product?.description}
                     >
-                      {product.description}
+                      {product?.description}
                     </p>
                     <div className="flex flex-start items-start gap-2">
                       <h5 className="font-montserrat font-bold tracking-[0.00625rem] text-center text-sm text-[#BDBDBD] ">
-                        {product.price} ₺
+                        {product?.price} ₺
                       </h5>
                     </div>
                     <div className="product-colors flex items-center gap-2.5">
