@@ -195,7 +195,7 @@ const Header = () => {
                   <div className="flex">
                     <div className="space-y-2 flex flex-col">
                       <a
-                        href="#"
+                        href=""
                         className={`block py-2 px-4 font-montserrat  text-base tracking-[0.0125rem] text-[#252B42] hover:bg-gray-100 rounded-md transition duration-300 ease-in-out 
         ${showCategories === "e" ? "bg-gray-100 font-semibold" : ""}`}
                         onMouseEnter={() => setShowCategories("e")}
@@ -219,7 +219,9 @@ const Header = () => {
                             return (
                               <a
                                 key={category.id}
-                                href={`/shopping/${category.gender}/${category.title}`}
+                                href={`/shop/${category.id}/${
+                                  category.gender === "k" ? "Kadin" : "Erkek"
+                                }/${category.title}`}
                                 className="block font-montserrat text-sm tracking-[0.00625rem] px-4 py-2 text-[#252B42] hover:font-semibold hover:bg-gray-100 duration-300 ease-in-out"
                               >
                                 {category.title}
@@ -238,7 +240,9 @@ const Header = () => {
                             return (
                               <a
                                 key={category.id}
-                                href={`/shopping/${category.gender}/${category.title}`}
+                                href={`/shop/${category.id}/${
+                                  category.gender === "k" ? "Kadin" : "Erkek"
+                                }/${category.title}`}
                                 className="block px-4 py-2 font-montserrat text-sm tracking-[0.00625rem] text-[#252B42] hover:font-semibold hover:bg-gray-100 duration-300"
                               >
                                 {category.title}
