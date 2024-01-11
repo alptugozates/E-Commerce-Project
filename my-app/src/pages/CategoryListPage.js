@@ -14,21 +14,20 @@ import OtherHeader from "../components/OtherHeader";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import {
+  FetchCategoryProducts,
+  categoryFilterProductsByText,
   fetchCategoryProduct,
-  fetchMoreProducts,
-  fetchProducts,
   fetchProductsData,
   filterProductsByText,
-  selectProduct,
   sortByAlphabetical,
   sortByPriceHighToLow,
   sortByPriceLowToHigh,
   sortByRatingDescending,
   sortByStock,
-  updateProducts,
 } from "../actions/productAction";
-import { Link, useParams } from "react-router-dom/cjs/react-router-dom.min";
-import axiosInstance from "../axios/axiosInstance";
+import { Link, useParams } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 
 const ProductListPage = () => {
   const [selectedValue, setSelectedValue] = useState("");
@@ -58,7 +57,7 @@ const ProductListPage = () => {
       const currentPage = Math.ceil(dataLength / 25);
       const newOffset = currentPage * 25;
 
-      dispatch(fetchMoreProducts(currentPage + 1, 25, newOffset));
+      dispatch(FetchCategoryProducts(currentPage + 1, 25, newOffset, category));
       setLoading(false);
     }
   };
@@ -68,54 +67,34 @@ const ProductListPage = () => {
     .sort((a, b) => b.rating - a.rating)
     .slice(0, 5);
 
-  // useEffect(() => {
-  //   dispatch(fetchProductsData());
-  // }, []);
-
-  const handleSortAlphabetical = () => {
-    dispatch(sortByAlphabetical());
-  };
-
-  const handleSortRatingDescending = () => {
-    dispatch(sortByRatingDescending());
-  };
-
-  const handleSortPriceHighToLow = () => {
-    dispatch(sortByPriceHighToLow());
-  };
-
-  const handleSortPriceLowToHigh = () => {
-    dispatch(sortByPriceLowToHigh());
-  };
-  const handleSortByStock = () => {
-    dispatch(sortByStock());
-  };
-
-  const handleFilter = () => {
+  const handleFilter = async () => {
     if (selectedValue === "popularity") {
-      handleSortRatingDescending();
+      dispatch(sortByRatingDescending(category));
     }
     if (selectedValue === "increasingPrice") {
-      handleSortPriceLowToHigh();
+      dispatch(sortByPriceLowToHigh(category));
     }
     if (selectedValue === "decreasingPrice") {
-      handleSortPriceHighToLow();
+      dispatch(sortByPriceHighToLow(category));
     }
     if (selectedValue === "alphabetical") {
-      handleSortAlphabetical();
+      dispatch(sortByAlphabetical(category));
     }
     if (selectedValue === "topSellers") {
-      handleSortByStock();
+      dispatch(sortByStock(category));
     }
+
+    // dispatch(fetchCategoryProduct(category));
   };
 
   const handleSearchInputChange = (e) => {
     const text = e.target.value;
     setSearchText(text);
+    console.log("searchText", searchText);
     if (text === "") {
-      dispatch(fetchProductsData());
+      dispatch(fetchCategoryProduct(category));
     } else {
-      dispatch(filterProductsByText(text));
+      dispatch(categoryFilterProductsByText(text));
     }
   };
 
@@ -245,54 +224,64 @@ const ProductListPage = () => {
             <InfiniteScroll
               dataLength={categoryProduct.length}
               next={fetchMoreData}
+              loader={
+                categoryProduct.length > 0 && (
+                  <FontAwesomeIcon icon={faSpinner} />
+                )
+              }
               hasMore={hasMore}
-              loader={<h4>Loading...</h4>}
               endMessage={<p>No more products</p>}
               className="flex flex-wrap gap-8 justify-center w-full px-12 sm:px-28 py-20"
             >
-              {categoryProduct?.map((product) => (
-                <div
-                  key={product.id}
-                  className="product-card border-2 shadow-lg rounded hover:scale-110 duration-300 cursor-pointer "
-                  onClick={() =>
-                    navigateToProductDetail(
-                      product.category_id,
-                      product.id,
-                      product.name.replace(/\s+/g, "-")
-                    )
-                  }
-                >
-                  <div className="flex flex-col justify-center items-center ">
-                    <img
-                      className="sm:w-[20rem] sm:h-auto sm:top-0 sm:object-cover w-[20rem]"
-                      src={product.images[0].url}
-                      alt={`Product ${product.id}`}
-                    />
-                  </div>
-                  <div className="flex flex-col items-center gap-5 px-6 pt-6 pb-9">
-                    <h5 className="font-montserrat font-bold text-base tracking-[0.00625rem] text-[#252B42] ">
-                      {product?.name}
-                    </h5>
-                    <p
-                      className="font-montserrat font-bold text-custom-gray text-sm text-center whitespace-nowrap overflow-hidden text-ellipsis max-w-[17rem]"
-                      title={product?.description}
-                    >
-                      {product?.description}
-                    </p>
-                    <div className="flex flex-start items-start gap-2">
-                      <h5 className="font-montserrat font-bold tracking-[0.00625rem] text-center text-sm text-[#BDBDBD] ">
-                        {product?.price} ₺
+              {categoryProduct.length === 0 ? (
+                <p className="font-montserrat font-bold text-lg tracking-[0.0125rem] text-custom-gray ">
+                  No more products
+                </p>
+              ) : (
+                categoryProduct?.map((product) => (
+                  <div
+                    key={product.id}
+                    className="product-card border-2 shadow-lg rounded hover:scale-110 duration-300 cursor-pointer "
+                    onClick={() =>
+                      navigateToProductDetail(
+                        product.category_id,
+                        product.id,
+                        product.name.replace(/\s+/g, "-")
+                      )
+                    }
+                  >
+                    <div className="flex flex-col justify-center items-center ">
+                      <img
+                        className="sm:w-[20rem] sm:h-auto sm:top-0 sm:object-cover w-[20rem]"
+                        src={product.images[0].url}
+                        alt={`Product ${product.id}`}
+                      />
+                    </div>
+                    <div className="flex flex-col items-center gap-5 px-6 pt-6 pb-9">
+                      <h5 className="font-montserrat font-bold text-base tracking-[0.00625rem] text-[#252B42] ">
+                        {product?.name}
                       </h5>
-                    </div>
-                    <div className="product-colors flex items-center gap-2.5">
-                      <img src={elipsBlue} />
-                      <img src={elipsGreen} />
-                      <img src={elipsOrange} />
-                      <img src={elipsNavy} />
+                      <p
+                        className="font-montserrat font-bold text-custom-gray text-sm text-center whitespace-nowrap overflow-hidden text-ellipsis max-w-[17rem]"
+                        title={product?.description}
+                      >
+                        {product?.description}
+                      </p>
+                      <div className="flex flex-start items-start gap-2">
+                        <h5 className="font-montserrat font-bold tracking-[0.00625rem] text-center text-sm text-[#BDBDBD] ">
+                          {product?.price} ₺
+                        </h5>
+                      </div>
+                      <div className="product-colors flex items-center gap-2.5">
+                        <img src={elipsBlue} />
+                        <img src={elipsGreen} />
+                        <img src={elipsOrange} />
+                        <img src={elipsNavy} />
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                ))
+              )}
             </InfiniteScroll>
           </div>
           <div className="flex items-center justify-center ">

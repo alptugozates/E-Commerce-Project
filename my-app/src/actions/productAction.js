@@ -9,7 +9,8 @@ export const SORT_BY_STOCK = "SORT_BY_STOCK";
 export const SEARCH_FILTER = "SEARCH_FILTER";
 export const UPDATE_PRODUCTS = "UPDATE_PRODUCTS";
 export const SET_CATEGORY_PRODUCT = "SET_CATEGORY_PRODUCT";
-
+export const UPDATE_CATEGORY_PRODUCTS = "UPDATE_CATEGORY_PRODUCTS";
+export const CATEGORY_SEARCH_FILTER = "CATEGORY_SEARCH_FILTER";
 export const fetchProducts = (
   products,
   totalProductCount,
@@ -30,6 +31,10 @@ export const filterProductsByText = (text) => ({
   type: SEARCH_FILTER,
   payload: { text },
 });
+export const categoryFilterProductsByText = (text) => ({
+  type: CATEGORY_SEARCH_FILTER,
+  payload: { text },
+});
 
 export const sortByAlphabetical = () => ({
   type: SORT_BY_ALPHABETICAL,
@@ -48,6 +53,11 @@ export const sortByPriceLowToHigh = () => ({
 });
 export const sortByStock = () => ({
   type: SORT_BY_STOCK,
+});
+
+export const updateCategoryProducts = (categoryProduct) => ({
+  type: UPDATE_CATEGORY_PRODUCTS,
+  payload: categoryProduct,
 });
 
 export const fetchProductsData = (category, filter, sort) => {
@@ -94,6 +104,26 @@ export const fetchMoreProducts = (page, limit = 25, offset = 0) => {
         type: "UPDATE_PRODUCTS",
         payload: response.data.products,
       });
+    } catch (error) {
+      console.error("Error fetching more products:", error);
+    }
+  };
+};
+
+export const FetchCategoryProducts = (
+  page,
+  limit = 25,
+  offset = 0,
+  category
+) => {
+  return async (dispatch) => {
+    let url = `/products?page=${page}&limit=${limit}&offset=${offset}&category=${category}`;
+
+    try {
+      const response = await axiosInstance.get(url);
+      console.log("response.data", response.data.products);
+
+      dispatch(updateCategoryProducts(response.data.products));
     } catch (error) {
       console.error("Error fetching more products:", error);
     }
