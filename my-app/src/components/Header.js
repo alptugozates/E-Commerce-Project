@@ -155,7 +155,7 @@ const Header = () => {
             </div>
           </div>
         </div>
-        <div className="navbar-light flex w-full justify-start items-start gap-20 h-16 pr-5 pl-10 bg-white ">
+        <div className="navbar-light flex w-full justify-start items-start gap-20 h-16 pr-5 pl-10 ">
           <div className="navbar-brand h-16 items-center py-[0.8125rem] pr-20 ">
             <h3 className="font-montserrat font-bold text-2xl tracking-[0.00625rem] text-[#252B42] ">
               Bandage
