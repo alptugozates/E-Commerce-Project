@@ -6,7 +6,6 @@ import {
   faHeart,
   faStar,
 } from "@fortawesome/free-solid-svg-icons";
-import { useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import elipsNavy from "../foto/elipsNavy.png";
 import elipsBlue from "../foto/elipsBlue.png";
@@ -22,7 +21,6 @@ const ProductDetailPage = () => {
   console.log("productId", product_id);
 
   useEffect(() => {
-    // Fetch product details using the product_id from the URL
     axiosInstance
       .get(`/products/${product_id}`)
       .then((response) => {
