@@ -110,7 +110,7 @@ export const fetchMoreProducts = (page, limit = 25, offset = 0) => {
   };
 };
 
-export const FetchCategoryProducts = (
+export const FetchMoreCategoryProducts = (
   page,
   limit = 25,
   offset = 0,

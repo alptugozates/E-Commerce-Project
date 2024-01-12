@@ -14,11 +14,9 @@ import OtherHeader from "../components/OtherHeader";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import {
-  FetchCategoryProducts,
+  FetchMoreCategoryProducts,
   categoryFilterProductsByText,
   fetchCategoryProduct,
-  fetchProductsData,
-  filterProductsByText,
   sortByAlphabetical,
   sortByPriceHighToLow,
   sortByPriceLowToHigh,
@@ -35,6 +33,7 @@ const ProductListPage = () => {
   const [searchText, setSearchText] = useState("");
   const dispatch = useDispatch();
   const location = useLocation();
+
   const categoryProduct = useSelector(
     (state) => state.productReducer.categoryProduct
   );
@@ -59,7 +58,9 @@ const ProductListPage = () => {
       const currentPage = Math.ceil(dataLength / 25);
       const newOffset = currentPage * 25;
 
-      dispatch(FetchCategoryProducts(currentPage + 1, 25, newOffset, category));
+      dispatch(
+        FetchMoreCategoryProducts(currentPage + 1, 25, newOffset, category)
+      );
       setLoading(false);
     }
   };
