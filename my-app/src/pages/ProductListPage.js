@@ -15,23 +15,19 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import {
   fetchMoreProducts,
-  fetchProducts,
   fetchProductsData,
   filterProductsByText,
-  selectProduct,
   sortByAlphabetical,
   sortByPriceHighToLow,
   sortByPriceLowToHigh,
   sortByRatingDescending,
   sortByStock,
-  updateProducts,
 } from "../actions/productAction";
 import { Link, useParams } from "react-router-dom/cjs/react-router-dom.min";
 
 const ProductListPage = () => {
   const [selectedValue, setSelectedValue] = useState("");
   const [searchText, setSearchText] = useState("");
-  const [filteredSearchText, setFilteredSearchText] = useState("");
   const dispatch = useDispatch();
   const categories = useSelector((state) => state.globalReducer.categories);
   const history = useHistory();
