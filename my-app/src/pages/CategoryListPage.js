@@ -83,19 +83,15 @@ const ProductListPage = () => {
     if (selectedValue === "topSellers") {
       dispatch(sortByStock(category));
     }
-
-    // dispatch(fetchCategoryProduct(category));
+    if (searchText !== "") {
+      dispatch(categoryFilterProductsByText(searchText));
+    }
   };
 
   const handleSearchInputChange = (e) => {
     const text = e.target.value;
     setSearchText(text);
     console.log("searchText", searchText);
-    if (text === "") {
-      dispatch(fetchCategoryProduct(category));
-    } else {
-      dispatch(categoryFilterProductsByText(text));
-    }
   };
 
   const navigateToProductDetail = (category, productId, productNameSlug) => {

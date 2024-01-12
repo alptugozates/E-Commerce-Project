@@ -31,6 +31,7 @@ import { Link, useParams } from "react-router-dom/cjs/react-router-dom.min";
 const ProductListPage = () => {
   const [selectedValue, setSelectedValue] = useState("");
   const [searchText, setSearchText] = useState("");
+  const [filteredSearchText, setFilteredSearchText] = useState("");
   const dispatch = useDispatch();
   const categories = useSelector((state) => state.globalReducer.categories);
   const history = useHistory();
@@ -96,16 +97,14 @@ const ProductListPage = () => {
     if (selectedValue === "topSellers") {
       handleSortByStock();
     }
+    if (searchText !== "") {
+      dispatch(filterProductsByText(searchText));
+    }
   };
 
   const handleSearchInputChange = (e) => {
     const text = e.target.value;
     setSearchText(text);
-    if (text === "") {
-      dispatch(fetchProductsData());
-    } else {
-      dispatch(filterProductsByText(text));
-    }
   };
 
   const navigateToProductDetail = (category, productId, productNameSlug) => {
