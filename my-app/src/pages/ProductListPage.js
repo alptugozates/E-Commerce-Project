@@ -23,7 +23,11 @@ import {
   sortByRatingDescending,
   sortByStock,
 } from "../actions/productAction";
-import { Link, useParams } from "react-router-dom/cjs/react-router-dom.min";
+import {
+  Link,
+  useLocation,
+  useParams,
+} from "react-router-dom/cjs/react-router-dom.min";
 
 const ProductListPage = () => {
   const [selectedValue, setSelectedValue] = useState("");
@@ -31,6 +35,7 @@ const ProductListPage = () => {
   const dispatch = useDispatch();
   const categories = useSelector((state) => state.globalReducer.categories);
   const history = useHistory();
+  const location = useLocation();
   const products = useSelector((state) => state.productReducer.products);
   console.log("PRODUCTS", products);
   console.log("categories", categories);
@@ -96,6 +101,11 @@ const ProductListPage = () => {
     if (searchText !== "") {
       dispatch(filterProductsByText(searchText));
     }
+
+    const queryParams = new URLSearchParams(location.search);
+    queryParams.set("filter", selectedValue);
+    queryParams.set("search", searchText);
+    history.push({ search: queryParams.toString() });
   };
 
   const handleSearchInputChange = (e) => {

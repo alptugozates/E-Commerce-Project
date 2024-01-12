@@ -28,11 +28,13 @@ import {
 import { Link, useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
+import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
 
 const ProductListPage = () => {
   const [selectedValue, setSelectedValue] = useState("");
   const [searchText, setSearchText] = useState("");
   const dispatch = useDispatch();
+  const location = useLocation();
   const categoryProduct = useSelector(
     (state) => state.productReducer.categoryProduct
   );
@@ -86,6 +88,10 @@ const ProductListPage = () => {
     if (searchText !== "") {
       dispatch(categoryFilterProductsByText(searchText));
     }
+    const queryParams = new URLSearchParams(location.search);
+    queryParams.set("filter", selectedValue);
+    queryParams.set("search", searchText);
+    history.push({ search: queryParams.toString() });
   };
 
   const handleSearchInputChange = (e) => {
