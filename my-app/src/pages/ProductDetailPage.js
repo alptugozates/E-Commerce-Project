@@ -12,12 +12,17 @@ import elipsBlue from "../foto/elipsBlue.png";
 import elipsGreen from "../foto/elipsGreen.png";
 import elipsOrange from "../foto/elipsOrange.png";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+import {
+  useHistory,
+  useParams,
+} from "react-router-dom/cjs/react-router-dom.min";
 import axiosInstance from "../axios/axiosInstance";
+import ClientsContent from "../components/ClientsContent";
 
 const ProductDetailPage = () => {
   const { product_id } = useParams();
   const [product, setProduct] = useState(null);
+  const history = useHistory();
   console.log("productId", product_id);
 
   useEffect(() => {
@@ -32,25 +37,39 @@ const ProductDetailPage = () => {
       });
   }, [product_id]);
 
+  const handleGoBack = () => {
+    history.goBack();
+  };
+
   return (
     <div>
       <Header />
       <div className="flex sm:px-52 px-8 justify-center py-28 items-center self-stretch bg-[#FAFAFA] ">
         <div className="container flex flex-col items-start pb-12">
           <div className="row flex sm:flex-row flex-col flex-start gap-8">
-            <div className="col-md-6 flex flex-col items-center ">
-              <div className="carousel-2 row flex flex-col items-start gap-8 ">
-                <div className="carousel-inner col-md-6 flex flex-col items-center pt-1 pr-0 sm:pr-1">
-                  <div className="carousel-item flex justify-start items-center sm:justify-center sm:items-center sm:w-[32rem] rounded-md shrink-0 ">
-                    <img
-                      className="w-[25rem] h-[35rem] object-cover "
-                      src={product?.images[0].url}
-                      alt={`Product ${product?.id}`}
-                    />
-                  </div>
+            <div>
+              <button
+                className="flex items-center border-2 rounded-md bg-[#23A6F0] px-6 py-3 hover:bg-[#63c6ff] duration-300 "
+                onClick={handleGoBack}
+              >
+                <h6 className="font-montserrat font-bold text-custom-white text-sm tracking-[0.0125rem] ">
+                  Go Back
+                </h6>
+              </button>
+            </div>
+
+            <div className="carousel-2 row flex flex-col items-start gap-8 ">
+              <div className="carousel-inner col-md-6 flex flex-col items-center pt-1 pr-0 sm:pr-1">
+                <div className="carousel-item flex justify-start items-center sm:justify-center sm:items-center sm:w-[32rem] rounded-md shrink-0 ">
+                  <img
+                    className="w-[25rem] h-[35rem] object-cover "
+                    src={product?.images[0].url}
+                    alt={`Product ${product?.id}`}
+                  />
                 </div>
               </div>
             </div>
+
             <div className="col-md-6 flex flex-col justify-start items-start gap-4 sm:w-[33%] w-9/12 ">
               <h4 className="font-montserrat text-lg font-normal tracking-[0.0125rem] text-[#252B42] ">
                 {product?.name}
@@ -123,6 +142,7 @@ const ProductDetailPage = () => {
           </div>
         </div>
       </div>
+      <ClientsContent />
       <Footer />
     </div>
   );
