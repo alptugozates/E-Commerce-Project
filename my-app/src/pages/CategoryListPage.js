@@ -90,8 +90,8 @@ const ProductListPage = () => {
       dispatch(categoryFilterProductsByText(searchText));
     }
     const queryParams = new URLSearchParams(location.search);
-    queryParams.set("filter", selectedValue);
-    queryParams.set("search", searchText);
+    queryParams.set("filter", searchText);
+    queryParams.set("sort", selectedValue);
     history.push({ search: queryParams.toString() });
   };
 
