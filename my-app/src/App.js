@@ -12,6 +12,7 @@ import SignUpPage from "./pages/SignUpPage";
 import LoginPage from "./pages/LoginPage";
 import ProductDetailPage from "./pages/ProductDetailPage";
 import CategoryListPage from "./pages/CategoryListPage";
+import ShoppingCartPage from "./pages/ShoppingCartPage";
 
 function App() {
   return (
@@ -47,6 +48,9 @@ function App() {
         </Route>
         <Route path="/product/:category_id/:product_id/:product_name">
           <ProductDetailPage />
+        </Route>
+        <Route path="/shopping-cart">
+          <ShoppingCartPage />
         </Route>
       </div>
     </Router>
