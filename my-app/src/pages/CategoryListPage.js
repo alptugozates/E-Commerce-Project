@@ -27,13 +27,14 @@ import { Link, useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
+import { addToCart } from "../actions/cartAction";
+import { Slide, toast } from "react-toastify";
 
 const ProductListPage = () => {
   const [selectedValue, setSelectedValue] = useState("");
   const [searchText, setSearchText] = useState("");
   const dispatch = useDispatch();
   const location = useLocation();
-
   const categoryProduct = useSelector(
     (state) => state.productReducer.categoryProduct
   );
@@ -103,6 +104,21 @@ const ProductListPage = () => {
 
   const navigateToProductDetail = (category, productId, productNameSlug) => {
     history.push(`/product/${category}/${productId}/${productNameSlug}`);
+  };
+
+  const handleAddToCart = (product) => {
+    dispatch(addToCart(product));
+    toast.success("Ürün başarıyla sepete eklendi.", {
+      position: "top-right",
+      autoClose: 2500,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      transition: Slide,
+    });
   };
 
   return (
@@ -245,16 +261,16 @@ const ProductListPage = () => {
                   <div
                     key={product.id}
                     className="product-card border-2 shadow-lg rounded hover:scale-110 duration-300 cursor-pointer "
-                    onClick={() =>
-                      navigateToProductDetail(
-                        product.category_id,
-                        product.id,
-                        product.name.replace(/\s+/g, "-")
-                      )
-                    }
                   >
                     <div className="flex flex-col justify-center items-center ">
                       <img
+                        onClick={() =>
+                          navigateToProductDetail(
+                            product.category_id,
+                            product.id,
+                            product.name.replace(/\s+/g, "-")
+                          )
+                        }
                         className="sm:w-[20rem] sm:h-auto sm:top-0 sm:object-cover w-[20rem]"
                         src={product.images[0].url}
                         alt={`Product ${product.id}`}
@@ -281,6 +297,14 @@ const ProductListPage = () => {
                         <img src={elipsOrange} />
                         <img src={elipsNavy} />
                       </div>
+                      <button
+                        onClick={() => handleAddToCart(product)}
+                        className="border-2 rounded-md bg-[#23A6F0] py-3 px-6 hover:bg-[#73c5f4] duration-300 "
+                      >
+                        <p className="font-montserrat text-sm tracking-[0.0625rem] text-custom-white ">
+                          Add to Cart
+                        </p>
+                      </button>
                     </div>
                   </div>
                 ))
