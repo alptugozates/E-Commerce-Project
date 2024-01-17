@@ -9,15 +9,15 @@ import globalReducer from "../reducers/globalReducer";
 import userReducer from "../reducers/userReducer";
 import productReducer from "../reducers/productReducer";
 import storeReducer from "../reducers/storeReducer";
-import { shoppingCartReducer } from "../reducers/shoppingCartReducer";
 import { thunk } from "redux-thunk";
+import cartReducer from "../reducers/cartReducer";
 
 const rootReducer = combineReducers({
   globalReducer: globalReducer,
   userReducer: userReducer,
   productReducer: productReducer,
-  shoppingCartReducer: shoppingCartReducer,
   storeReducer: storeReducer,
+  cartReducer: cartReducer,
 });
 
 const middleware = [thunk, logger];

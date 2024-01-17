@@ -7,6 +7,7 @@ import {
   faMagnifyingGlass,
   faCartShopping,
   faChevronDown,
+  faTrash,
 } from "@fortawesome/free-solid-svg-icons";
 import {
   faEnvelope,
@@ -28,13 +29,33 @@ import {
 import axiosInstance from "../axios/axiosInstance";
 import { loggedOut, loginData } from "../actions/userAction";
 import { fetchCategories } from "../actions/globalAction";
+import { removeFromCart, updateProductCount } from "../actions/cartAction";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 const Header = () => {
+  const history = useHistory();
   const { name, email, loggedIn } = useSelector((state) => state.userReducer);
   const { categories } = useSelector((state) => state.globalReducer);
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
   const [showCategories, setShowCategories] = useState(null);
+  const [showCartDropdown, setShowCartDropdown] = useState(false);
+  const product = useSelector((state) => state.productReducer.products);
+
+  const cart = useSelector((state) => state.cartReducer.cart);
+
+  console.log("CART", cart);
+
+  const handleToggleCartDropdown = () => {
+    setShowCartDropdown(!showCartDropdown);
+  };
+
+  const calculateTotal = () => {
+    return cart.reduce(
+      (total, item) => total + item.count * item.product.price,
+      0
+    );
+  };
 
   useEffect(() => {
     dispatch(fetchCategories());
@@ -90,6 +111,23 @@ const Header = () => {
     setShowCategories(null);
   };
 
+  const handleDecreaseItemCount = (productId) => {
+    dispatch(updateProductCount(productId, -1));
+  };
+
+  const handleIncreaseItemCount = (productId) => {
+    dispatch(updateProductCount(productId, 1));
+  };
+
+  const handleRemoveFromCart = (product) => {
+    dispatch(removeFromCart(product));
+  };
+
+  const navigateToShoppingCart = () => {
+    history.push("/shopping-cart");
+  };
+
+  console.log("CART", cart);
   return (
     <div className="shop-header-1 w-full hidden sm:flex flex-col h-auto ">
       <div className="navbar-style flex w-full pb-2 flex-col items-start gap-3 ">
@@ -346,16 +384,97 @@ const Header = () => {
                     style={{ color: "#23A6F0" }}
                   />
                 </a>
-                <a href="" className="p-4 flex items-center">
+                <a className="p-4 flex items-center">
                   <FontAwesomeIcon
                     size="lg"
-                    className="pr-3"
+                    className="pr-3 cursor-pointer"
+                    onClick={handleToggleCartDropdown}
                     icon={faCartShopping}
                     style={{ color: "#23A6F0" }}
                   />
                   <p className="text-base font-normal font-montserrat text-[#23A6F0]">
-                    1
+                    {cart.length}
                   </p>
+                  {showCartDropdown && (
+                    <div className="cart-dropdown absolute bg-white shadow-lg border-2 border-gray-300 p-4 rounded right-[2rem] top-[8rem] z-50">
+                      <h2 className="font-montserrat text-base font-semibold pb-4 ">
+                        Sepetim ({cart.length} Ürün)
+                      </h2>
+                      {cart.map((item) => (
+                        <div
+                          key={item.product.id}
+                          className="flex items-center mb-2 border-2 px-2"
+                        >
+                          <img
+                            src={item.product.images[0].url}
+                            alt={item.product.name}
+                            className="w-[3rem] h-[6rem] object-cover rounded mr-4"
+                          />
+                          <div className="flex flex-col gap-2">
+                            <p className="text-sm font-montserrat font-bold">
+                              {item.product.name}
+                            </p>
+                            <div className="flex gap-14 items-center text-center">
+                              <p className="text-xs font-montserrat text-gray-500">
+                                Adet: {item.count}
+                              </p>
+                              <div className="flex items-center text-center gap-2">
+                                <button
+                                  className="border-2 rounded-md text-sm font-montserrat px-2 bg-[#23A6F0] hover:bg-[#52c0ff] text-custom-white "
+                                  onClick={() =>
+                                    handleDecreaseItemCount(item.product.id)
+                                  }
+                                  disabled={item.count <= 1}
+                                >
+                                  -
+                                </button>
+                                <p className="text-xs font-montserrat">
+                                  {item.count}
+                                </p>
+                                <button
+                                  className="border-2 rounded-md text-sm font-montserrat px-2 bg-[#23A6F0] hover:bg-[#52c0ff] text-custom-white "
+                                  onClick={() =>
+                                    handleIncreaseItemCount(item.product.id)
+                                  }
+                                >
+                                  +
+                                </button>
+                                <FontAwesomeIcon
+                                  onClick={() =>
+                                    handleRemoveFromCart(item.product)
+                                  }
+                                  className="pl-2 cursor-pointer"
+                                  icon={faTrash}
+                                  style={{ color: "#23A6F0" }}
+                                />
+                              </div>
+                            </div>
+                            <p className="text-sm font-semibold tracking-[0.0125rem] font-montserrat text-[#23A6F0]">
+                              {item.product.price * item.count} ₺
+                            </p>
+                          </div>
+                        </div>
+                      ))}
+                      {cart.length > 0 && (
+                        <div className="mt-4 border-t border-gray-400 pt-2">
+                          <p className="text-base font-montserrat text-[#23A6F0] font-bold">
+                            Toplam: {calculateTotal()} ₺
+                          </p>
+                        </div>
+                      )}
+                      <div className="flex gap-4 pt-2">
+                        <button className="font-montserrat text-sm tracking-[0.0125rem]  border-2 rounded-md px-4 py-2  ">
+                          Sepete Git
+                        </button>
+                        <button
+                          onClick={navigateToShoppingCart}
+                          className="font-montserrat text-sm tracking-[0.0125rem] font-bold text-custom-white border-2 rounded-md px-4 py-2 bg-[#23A6F0] hover:bg-[#50bfff] duration-300 "
+                        >
+                          Siparişi Tamamla
+                        </button>
+                      </div>
+                    </div>
+                  )}
                 </a>
                 <a href="" className="p-4 flex items-center">
                   <FontAwesomeIcon

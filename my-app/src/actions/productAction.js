@@ -1,4 +1,5 @@
 import axiosInstance from "../axios/axiosInstance";
+import { ADD_TO_CART } from "./cartAction";
 export const FETCH_PRODUCTS = "FETCH_PRODUCTS";
 export const UPDATE_ACTIVE_PAGE = "UPDATE_ACTIVE_PAGE";
 export const SORT_BY_ALPHABETICAL = "SORT_BY_ALPHABETICAL";
@@ -11,6 +12,7 @@ export const UPDATE_PRODUCTS = "UPDATE_PRODUCTS";
 export const SET_CATEGORY_PRODUCT = "SET_CATEGORY_PRODUCT";
 export const UPDATE_CATEGORY_PRODUCTS = "UPDATE_CATEGORY_PRODUCTS";
 export const CATEGORY_SEARCH_FILTER = "CATEGORY_SEARCH_FILTER";
+
 export const fetchProducts = (
   products,
   totalProductCount,
@@ -58,6 +60,11 @@ export const sortByStock = () => ({
 export const updateCategoryProducts = (categoryProduct) => ({
   type: UPDATE_CATEGORY_PRODUCTS,
   payload: categoryProduct,
+});
+
+export const addToCart = (product) => ({
+  type: ADD_TO_CART,
+  payload: { product },
 });
 
 export const fetchProductsData = (category, filter, sort) => {
