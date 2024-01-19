@@ -5,6 +5,7 @@ import Header from "../components/Header";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { Slide, toast } from "react-toastify";
 
 const ShoppingCartPage = () => {
   const dispatch = useDispatch();
@@ -20,6 +21,17 @@ const ShoppingCartPage = () => {
 
   const handleRemoveFromCart = (product) => {
     dispatch(removeFromCart(product));
+    toast.error("Ürün sepetten çıkarıldı", {
+      position: "top-right",
+      autoClose: 2500,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      transition: Slide,
+    });
   };
 
   const calculateTotal = () => {

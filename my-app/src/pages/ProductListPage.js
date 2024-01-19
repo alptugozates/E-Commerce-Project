@@ -122,7 +122,7 @@ const ProductListPage = () => {
 
   const handleAddToCart = (product) => {
     dispatch(addToCart(product));
-    toast.success("Ürün başarıyla sepete eklendi.", {
+    toast.success("Ürün sepete eklendi.", {
       position: "top-right",
       autoClose: 2500,
       hideProgressBar: false,

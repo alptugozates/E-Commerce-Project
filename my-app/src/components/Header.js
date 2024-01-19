@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { toast } from "react-toastify";
+import { Slide, toast } from "react-toastify";
 import "../App.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -121,6 +121,17 @@ const Header = () => {
 
   const handleRemoveFromCart = (product) => {
     dispatch(removeFromCart(product));
+    toast.error("Ürün sepetten çıkarıldı", {
+      position: "top-right",
+      autoClose: 2500,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      transition: Slide,
+    });
   };
 
   const navigateToShoppingCart = () => {
@@ -463,13 +474,13 @@ const Header = () => {
                         </div>
                       )}
                       <div className="flex gap-4 pt-2">
-                        <button className="font-montserrat text-sm tracking-[0.0125rem]  border-2 rounded-md px-4 py-2  ">
-                          Sepete Git
-                        </button>
                         <button
                           onClick={navigateToShoppingCart}
-                          className="font-montserrat text-sm tracking-[0.0125rem] font-bold text-custom-white border-2 rounded-md px-4 py-2 bg-[#23A6F0] hover:bg-[#50bfff] duration-300 "
+                          className="font-montserrat text-sm tracking-[0.0125rem]  border-2 rounded-md px-4 py-2  "
                         >
+                          Sepete Git
+                        </button>
+                        <button className="font-montserrat text-sm tracking-[0.0125rem] font-bold text-custom-white border-2 rounded-md px-4 py-2 bg-[#23A6F0] hover:bg-[#50bfff] duration-300 ">
                           Siparişi Tamamla
                         </button>
                       </div>
