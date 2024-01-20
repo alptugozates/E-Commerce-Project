@@ -41,9 +41,7 @@ const Header = () => {
   const [showCategories, setShowCategories] = useState(null);
   const [showCartDropdown, setShowCartDropdown] = useState(false);
   const product = useSelector((state) => state.productReducer.products);
-
   const cart = useSelector((state) => state.cartReducer.cart);
-
   console.log("CART", cart);
 
   const handleToggleCartDropdown = () => {

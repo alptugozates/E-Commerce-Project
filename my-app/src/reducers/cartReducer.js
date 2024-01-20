@@ -12,6 +12,24 @@ const initialState = {
   adress: {},
 };
 
+const saveToLocalStorage = (key, data) => {
+  try {
+    localStorage.setItem(key, JSON.stringify(data));
+  } catch (error) {
+    console.error("Error saving to localStorage:", error);
+  }
+};
+
+const loadFromLocalStorage = (key) => {
+  try {
+    const data = localStorage.getItem(key);
+    return data ? JSON.parse(data) : null;
+  } catch (error) {
+    console.error("Error loading from localStorage:", error);
+    return null;
+  }
+};
+
 const cartReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_TO_CART:
@@ -22,19 +40,25 @@ const cartReducer = (state = initialState, action) => {
 
       if (existingProduct) {
         // If product exists, increase the count
+        const updatedCart = state.cart.map((item) =>
+          item.product.id === action.payload.id
+            ? { ...item, count: item.count + 1 }
+            : item
+        );
+        saveToLocalStorage("cart", updatedCart);
         return {
           ...state,
-          cart: state.cart.map((item) =>
-            item.product.id === action.payload.id
-              ? { ...item, count: item.count + 1 }
-              : item
-          ),
+          cart: updatedCart,
         };
       } else {
-        // If product is not in the cart, add it
+        const updatedCart = [
+          ...state.cart,
+          { count: 1, product: action.payload },
+        ];
+        saveToLocalStorage("cart", updatedCart);
         return {
           ...state,
-          cart: [...state.cart, { count: 1, product: action.payload }],
+          cart: updatedCart,
         };
       }
     case UPDATE_PRODUCT_COUNT:
@@ -46,16 +70,19 @@ const cartReducer = (state = initialState, action) => {
             }
           : item
       );
+      saveToLocalStorage("cart", updatedCart);
       return {
         ...state,
         cart: updatedCart,
       };
     case REMOVE_FROM_CART:
+      const removedCart = state.cart.filter(
+        (item) => item.product.id !== action.payload.id
+      );
+      saveToLocalStorage("cart", removedCart);
       return {
         ...state,
-        cart: state.cart.filter(
-          (item) => item.product.id !== action.payload.id
-        ),
+        cart: removedCart,
       };
     case UPDATE_PAYMENT:
       return {
@@ -69,7 +96,8 @@ const cartReducer = (state = initialState, action) => {
       };
 
     default:
-      return state;
+      const savedCart = loadFromLocalStorage("cart");
+      return savedCart ? { ...state, cart: savedCart } : state;
   }
 };
 
