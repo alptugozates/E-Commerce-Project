@@ -1,5 +1,4 @@
 import { LOGGED_IN, LOGGED_OUT } from "../actions/userAction";
-import axiosInstance from "../axios/axiosInstance";
 
 const loginData = {
   name: "",
