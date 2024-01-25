@@ -11,6 +11,7 @@ import productReducer from "../reducers/productReducer";
 import storeReducer from "../reducers/storeReducer";
 import { thunk } from "redux-thunk";
 import cartReducer from "../reducers/cartReducer";
+import addressReducer from "../reducers/addressReducer";
 
 const rootReducer = combineReducers({
   globalReducer: globalReducer,
@@ -18,6 +19,7 @@ const rootReducer = combineReducers({
   productReducer: productReducer,
   storeReducer: storeReducer,
   cartReducer: cartReducer,
+  addressReducer: addressReducer,
 });
 
 const middleware = [thunk, logger];
