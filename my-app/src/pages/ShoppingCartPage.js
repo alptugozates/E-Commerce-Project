@@ -5,8 +5,10 @@ import Header from "../components/Header";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { Slide, toast } from "react-toastify";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 const ShoppingCartPage = () => {
+  const history = useHistory();
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cartReducer.cart);
 
@@ -31,6 +33,9 @@ const ShoppingCartPage = () => {
       theme: "light",
       transition: Slide,
     });
+  };
+  const directToOrderPage = () => {
+    history.push("/order-page");
   };
 
   const calculateTotal = () => {
@@ -191,7 +196,10 @@ const ShoppingCartPage = () => {
               </button>
             </div>
 
-            <button className="flex items-center font-montserrat font-semibold text-lg border-2 bg-[#23A6F0] rounded-md px-20 py-4 tracking-[0.0125rem] text-custom-white">
+            <button
+              onClick={directToOrderPage}
+              className="flex items-center font-montserrat font-semibold text-lg border-2 bg-[#23A6F0] rounded-md px-20 py-4 tracking-[0.0125rem] text-custom-white"
+            >
               <p className="font-montserrat gap-4">Sepeti Onayla</p>
               <FontAwesomeIcon
                 icon={faArrowRight}
