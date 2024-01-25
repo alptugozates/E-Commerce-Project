@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import { faEnvelope, faKey } from "@fortawesome/free-solid-svg-icons";
