@@ -13,8 +13,13 @@ import LoginPage from "./pages/LoginPage";
 import ProductDetailPage from "./pages/ProductDetailPage";
 import CategoryListPage from "./pages/CategoryListPage";
 import ShoppingCartPage from "./pages/ShoppingCartPage";
+import OrderPage from "./pages/OrderPage";
+import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
+import { useSelector } from "react-redux";
+import { readToLocalStorage } from "./reducers/userReducer";
 
 function App() {
+  const isLoggedIn = useSelector((state) => state.userReducer.loggedIn);
   return (
     <Router>
       <ToastContainer />
@@ -51,6 +56,13 @@ function App() {
         </Route>
         <Route path="/shopping-cart">
           <ShoppingCartPage />
+        </Route>
+        <Route path="/order-page">
+          {readToLocalStorage("token") ? (
+            <OrderPage />
+          ) : (
+            <Redirect to="/login" />
+          )}
         </Route>
       </div>
     </Router>
