@@ -9,7 +9,6 @@ import {
 const initialState = {
   cart: [],
   payment: {},
-  adress: {},
 };
 
 const saveToLocalStorage = (key, data) => {
@@ -88,11 +87,6 @@ const cartReducer = (state = initialState, action) => {
       return {
         ...state,
         payment: action.payload,
-      };
-    case UPDATE_ADDRESS:
-      return {
-        ...state,
-        address: action.payload,
       };
 
     default:
