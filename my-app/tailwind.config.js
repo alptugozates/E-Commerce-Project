@@ -10,6 +10,7 @@ module.exports = {
         "custom-white": "#FFFFFF",
         "custom-gray": "#737373",
         "custom-bg-color": "rgba(45, 139, 192, 0.75)",
+        turquoise: "#23A6F0",
       },
     },
   },
