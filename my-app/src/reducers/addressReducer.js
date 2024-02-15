@@ -13,7 +13,7 @@ export const addressData = {
     city: "",
     district: "",
     neighborhood: "",
-    addressDetails: "",
+    address: "",
   },
 };
 
@@ -24,11 +24,11 @@ const addressReducer = (state = addressData, action) => {
         ...state,
         address: action.payload,
       };
-    case ADD_USER_ADDRESS:
-      return {
-        ...state,
-        address: [...state, action.payload],
-      };
+    // case ADD_USER_ADDRESS:
+    //   return {
+    //     ...state,
+    //     address: [...state, action.payload],
+    //   };
     case UPDATE_USER_ADDRESS:
       return {
         ...state,
