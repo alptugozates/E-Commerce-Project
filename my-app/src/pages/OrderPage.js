@@ -56,6 +56,7 @@ const OrderPage = () => {
   const [showUpdateForm, setShowUpdateForm] = useState(false);
   const [selectedCard, setSelectedCard] = useState(null);
   const [cardShowUpdateForm, setCardShowUpdateForm] = useState(false);
+
   console.log("ADDRESSES", addresses);
 
   const handleAddAddressClick = () => {
@@ -73,13 +74,10 @@ const OrderPage = () => {
       neighborhood: data.neighborhood,
       address: data.addressDetails,
     };
-
     axiosInstance.post("/user/address", addressData).then((res) => {
       console.log("Giden data: ", res.data);
       getAddress();
     });
-
-    // dispatch(addUserAddress(addressData));
     setShowAddAddressForm(false);
     dispatch(getUserAddress());
   };
@@ -236,17 +234,33 @@ const OrderPage = () => {
       });
   };
 
+  const divClasses = `flex flex-col items-start gap-4  bg-slate-50 rounded-md shadow-lg justify-center border-2 px-4 w-4/12 h-[12rem] cursor-pointer ${
+    showAddressSection
+      ? "border-b-[1.75rem] border-[#23A6F0] duration-500 "
+      : "duration-500"
+  }`;
+
   return (
     <div className="flex flex-col w-full">
       <Header />
 
       <div className="flex flex-col w-full">
-        <div className="flex justify-start items-start pt-20 px-20 w-full h-[20rem]">
+        <div className="flex text-start pt-20 px-20 w-full h-[20rem]">
           <div
             onClick={handleAddressButtonClick}
-            className="flex flex-col gap-4 hover:text-[#23A6F0] items-start justify-center border-2 px-2 py-20 w-4/12 h-[12rem] cursor-pointer"
+            className={`flex flex-col items-start gap-4  bg-slate-50 rounded-md shadow-lg justify-center border-2 px-4 w-4/12 h-[12rem] cursor-pointer ${
+              showAddressSection
+                ? "border-b-[1.75rem] border-[#23A6F0] duration-500 "
+                : "duration-500"
+            }`}
           >
-            <h1 className="font-montserrat font-bold text-xl text-custom-gray tracking-[0.0625rem] ">
+            <h1
+              className={`font-montserrat font-bold text-xl text-[#252B42] tracking-[0.0625rem] ${
+                showAddressSection
+                  ? "text-turquoise duration-500"
+                  : "duration-500"
+              }`}
+            >
               Adres Bilgileri
             </h1>
             {detailedSelectedAddress && (
@@ -264,9 +278,19 @@ const OrderPage = () => {
           </div>
           <div
             onClick={handlePaymentButtonClick}
-            className="flex flex-col items-start gap-4 justify-center border-2 px-2 py-20 w-4/12 h-[12rem] cursor-pointer"
+            className={`flex flex-col items-start gap-4  bg-slate-50 rounded-md shadow-lg justify-center border-2 px-2 py-20 w-4/12 h-[12rem] cursor-pointer  ${
+              showPaymentSection
+                ? "border-b-[1.75rem] border-[#23A6F0] duration-500 "
+                : "duration-500"
+            }`}
           >
-            <h1 className="font-montserrat font-bold text-xl text-custom-gray tracking-[0.0625rem] ">
+            <h1
+              className={`font-montserrat font-bold text-xl text-[#252B42] tracking-[0.0625rem] ${
+                showPaymentSection
+                  ? "text-turquoise duration-500"
+                  : "duration-500"
+              }`}
+            >
               Ödeme Seçenekleri
             </h1>
             <p className="font-montserrat text-sm font-semibold text-black tracking-[0.0125rem]">
