@@ -240,8 +240,8 @@ const OrderPage = () => {
     <div className="flex flex-col w-full">
       <Header />
 
-      <div>
-        <div className="flex justify-start items-start pt-20 mx-20 w-full h-[20rem]">
+      <div className="flex flex-col w-full">
+        <div className="flex justify-start items-start pt-20 px-20 w-full h-[20rem]">
           <div
             onClick={handleAddressButtonClick}
             className="flex flex-col gap-4 hover:text-[#23A6F0] items-start justify-center border-2 px-2 py-20 w-4/12 h-[12rem] cursor-pointer"
