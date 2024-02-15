@@ -15,6 +15,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { useForm } from "react-hook-form";
 import axiosInstance from "../axios/axiosInstance";
+import { Slide, toast } from "react-toastify";
 
 const cities = ["Istanbul", "Ankara", "Izmir", "Bursa", "Antalya"];
 const districts = {
@@ -60,7 +61,7 @@ const OrderPage = () => {
   console.log("ADDRESSES", addresses);
 
   const handleAddAddressClick = () => {
-    setShowAddAddressForm(true);
+    setShowAddAddressForm((prevState) => !prevState);
   };
 
   const handleAddAddressSubmit = (data) => {
@@ -74,12 +75,39 @@ const OrderPage = () => {
       neighborhood: data.neighborhood,
       address: data.addressDetails,
     };
-    axiosInstance.post("/user/address", addressData).then((res) => {
-      console.log("Giden data: ", res.data);
-      getAddress();
-    });
-    setShowAddAddressForm(false);
-    dispatch(getUserAddress());
+
+    axiosInstance
+      .post("/user/address", addressData)
+      .then((res) => {
+        console.log("Giden data: ", res.data);
+        getAddress();
+        toast.success("Adres eklendi.", {
+          position: "top-right",
+          autoClose: 2500,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+          transition: Slide,
+        });
+        setShowAddAddressForm(false);
+      })
+      .catch((error) => {
+        console.error("Error adding address:", error);
+        toast.error("Adres eklenemedi. Tekrar deneyin.", {
+          position: "top-right",
+          autoClose: 2500,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+          transition: Slide,
+        });
+      });
   };
 
   const getAddress = () => {
@@ -140,9 +168,31 @@ const OrderPage = () => {
         setShowUpdateForm(false);
         setSelectedAddress(null);
         getAddress();
+        toast.success("Adres güncellendi.", {
+          position: "top-right",
+          autoClose: 2500,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+          transition: Slide,
+        });
       })
       .catch((error) => {
         console.error("Error updating address:", error);
+        toast.error("Adres güncellenemedi. Tekrar deneyin.", {
+          position: "top-right",
+          autoClose: 2500,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+          transition: Slide,
+        });
       });
   };
   const getSelectedAddressDetails = () => {
@@ -201,9 +251,31 @@ const OrderPage = () => {
         getSavedCards(cardData);
         setShowAddCardForm(false);
         reset();
+        toast.success("💳 Kredi kartı eklendi.", {
+          position: "top-right",
+          autoClose: 2500,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+          transition: Slide,
+        });
       })
       .catch((error) => {
         console.error("Error adding new card:", error);
+        toast.error("💳 Kredi kartı eklenemedi. Tekrar deneyin.", {
+          position: "top-right",
+          autoClose: 2500,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+          transition: Slide,
+        });
       });
     getSavedCards();
   };
@@ -228,17 +300,33 @@ const OrderPage = () => {
         getSavedCards();
         setCardShowUpdateForm(false);
         reset();
+        toast.success("💳 Kredi kartı güncellendi.", {
+          position: "top-right",
+          autoClose: 2500,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+          transition: Slide,
+        });
       })
       .catch((error) => {
         console.error("Error updating card:", error);
+        toast.error("💳 Kredi kartı güncellenemedi. Tekrar deneyin.", {
+          position: "top-right",
+          autoClose: 2500,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+          transition: Slide,
+        });
       });
   };
-
-  const divClasses = `flex flex-col items-start gap-4  bg-slate-50 rounded-md shadow-lg justify-center border-2 px-4 w-4/12 h-[12rem] cursor-pointer ${
-    showAddressSection
-      ? "border-b-[1.75rem] border-turquoise duration-500 "
-      : "duration-500"
-  }`;
 
   return (
     <div className="flex flex-col w-full">
@@ -248,18 +336,18 @@ const OrderPage = () => {
         <div className="flex text-start pt-20 px-20 w-full h-[20rem]">
           <div
             onClick={handleAddressButtonClick}
-            className={`flex flex-col items-start gap-4  bg-slate-50 rounded-md shadow-lg justify-center border-2 px-4 w-4/12 h-[12rem] cursor-pointer ${
-              showAddressSection
-                ? "border-b-[1.75rem] border-turquoise duration-500 "
-                : "duration-500"
-            }`}
+            className={`flex flex-col items-start gap-4  bg-slate-50 duration-500
+             rounded-md shadow-2xl justify-center border-2 px-4 w-4/12 h-[12rem] cursor-pointer ${
+               showAddressSection
+                 ? "border-b-[1.75rem] shadow-lg border-turquoise  "
+                 : ""
+             }`}
           >
             <h1
-              className={`font-montserrat font-bold text-xl text-[#252B42] tracking-[0.0625rem] ${
-                showAddressSection
-                  ? "text-turquoise duration-500"
-                  : "duration-500"
-              }`}
+              className={`font-montserrat font-bold text-xl text-[#252B42] duration-500
+               tracking-[0.0625rem] ${
+                 showAddressSection ? "text-turquoise " : ""
+               }`}
             >
               Adres Bilgileri
             </h1>
@@ -278,9 +366,9 @@ const OrderPage = () => {
           </div>
           <div
             onClick={handlePaymentButtonClick}
-            className={`flex flex-col items-start gap-4  bg-slate-50 rounded-md shadow-lg justify-center border-2 px-2 py-20 w-4/12 h-[12rem] cursor-pointer  ${
+            className={`flex flex-col items-start gap-4  bg-slate-50 rounded-md shadow-2xl justify-center border-2 px-2 py-20 w-4/12 h-[12rem] cursor-pointer  ${
               showPaymentSection
-                ? "border-b-[1.75rem] border-turquoise duration-500 "
+                ? "border-b-[1.75rem] border-turquoise shadow-lg duration-500 "
                 : "duration-500"
             }`}
           >
@@ -304,15 +392,24 @@ const OrderPage = () => {
             <div className="flex justify-between px-20 gap-8 py-20">
               <div className="flex flex-wrap border-4 border-turquoise rounded-md flex-col w-9/12 ">
                 <button
-                  className="bg-blue-500 font-montserrat font-bold hover:bg-blue-400 duration-300 text-white py-2 px-4 focus:outline-none"
-                  onClick={() => setShowAddCardForm(true)}
+                  className="bg-turquoise font-montserrat font-bold hover:bg-turquoise-400 duration-300 text-white py-2 px-4 focus:outline-none 
+                  "
+                  onClick={() => setShowAddCardForm((prevState) => !prevState)}
                 >
                   Add New Card
                 </button>
                 {showAddCardForm && (
                   <form
                     onSubmit={handleSubmit(handleAddCardSubmit)}
-                    className="card-form px-8 py-8 "
+                    className={`card-form px-8 py-8 ${
+                      showAddCardForm
+                        ? "transition-all duration-500 ease-in-out"
+                        : ""
+                    }`}
+                    style={{
+                      height: showAddCardForm ? "auto" : 0,
+                      opacity: showAddCardForm ? 1 : 0,
+                    }}
                   >
                     <label
                       className="block text-gray-700 text-sm font-bold mb-2"
@@ -390,7 +487,11 @@ const OrderPage = () => {
                     {savedCards.map((card) => (
                       <li
                         key={card.id}
-                        className="bg-gray-100 p-8 rounded-md shadow-lg flex items-center justify-between"
+                        className={`bg-gray-100 p-8 rounded-md shadow-lg flex items-center justify-between ${
+                          selectedCard === card.id
+                            ? "border-b-[1.75rem] border-turquoise duration-500 "
+                            : "duration-500"
+                        }`}
                       >
                         <div className="flex flex-col gap-2">
                           <p className="text-lg font-montserrat font-semibold">
@@ -405,8 +506,10 @@ const OrderPage = () => {
                         </div>
                         <div className="flex gap-4">
                           <button
-                            className="flex gap-2 items-center justify-center bg-blue-500 duration-300 hover:bg-blue-400 text-white font-montserrat py-2 px-4 rounded focus:outline-none"
-                            onClick={() => setCardShowUpdateForm(true)}
+                            className="flex gap-2 items-center justify-center bg-turquoise duration-300 hover:bg-turquoise-400 text-white font-montserrat py-2 px-4 rounded focus:outline-none"
+                            onClick={() =>
+                              setCardShowUpdateForm((prevState) => !prevState)
+                            }
                           >
                             <FontAwesomeIcon
                               icon={faPencil}
