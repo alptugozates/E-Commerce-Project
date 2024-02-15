@@ -90,14 +90,14 @@ const OtherHeader = () => {
         </nav>
         <div className="sm:flex hidden items-center gap-8">
           <a
-            className=" text-[#23A6F0] p-4 items-center font-montserrat font-bold text-base tracking-[0.0125rem] "
+            className=" text-turquoise p-4 items-center font-montserrat font-bold text-base tracking-[0.0125rem] "
             href=""
           >
             Login
           </a>
           <button
             onClick={handleClick}
-            className="border-2 bg-[#23A6F0] rounded-md flex items-center py-3 px-6 "
+            className="border-2 bg-turquoise rounded-md flex items-center py-3 px-6 "
           >
             <div className="flex items-center justify-center gap-2">
               <FontAwesomeIcon

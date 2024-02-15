@@ -18,7 +18,7 @@ const FluidContent = () => {
             We know how large objects will act, but things on a small scale.
           </h4>
           <div className="flex items-center sm:items-start gap-2.5">
-            <button className="btn-primary flex flex-col items-center gap-2.5 py-4 px-10 bg-[#23A6F0] rounded-md ">
+            <button className="btn-primary flex flex-col items-center gap-2.5 py-4 px-10 bg-turquoise rounded-md ">
               <h3 className="font-montserrat font-bold text-2xl tracking-[0.00625] text-custom-white ">
                 SHOP NOW
               </h3>

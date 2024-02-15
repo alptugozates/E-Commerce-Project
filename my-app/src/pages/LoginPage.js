@@ -80,7 +80,7 @@ const LoginPage = () => {
                   value: /^\S+@\S+$/i,
                 },
               })}
-              className="w-full p-2 border rounded-md focus:outline-none focus:border-[#23A6F0]"
+              className="w-full p-2 border rounded-md focus:outline-none focus:border-turquoise"
             />
           </div>
           {errors.email && errors.email.type === "required" && (
@@ -104,13 +104,13 @@ const LoginPage = () => {
               {...register("password", {
                 required: true,
               })}
-              className="w-full p-2 border rounded-md focus:outline-none focus:border-[#23A6F0]"
+              className="w-full p-2 border rounded-md focus:outline-none focus:border-turquoise"
             />
           </div>
 
           <button
             type="submit"
-            className="flex items-center justify-center border-2 rounded-md px-8 py-4 bg-[#23A6F0] "
+            className="flex items-center justify-center border-2 rounded-md px-8 py-4 bg-turquoise "
           >
             <p className="font-montserrat font-bold text-base tracking-[0.0125rem] text-custom-white">
               Login

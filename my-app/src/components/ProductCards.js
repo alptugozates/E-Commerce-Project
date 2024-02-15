@@ -48,8 +48,8 @@ const ProductCards = () => {
       </div>
       <div className="flex items-center justify-center ">
         <div className="flex flex-start">
-          <button className="py-4 px-8 bg-custom-white border-2 border-[#23A6F0] rounded-md ">
-            <p className="font-montserrat font-bold text-sm text-[#23A6F0] tracking-[0.0125rem] text-center ">
+          <button className="py-4 px-8 bg-custom-white border-2 border-turquoise rounded-md ">
+            <p className="font-montserrat font-bold text-sm text-turquoise tracking-[0.0125rem] text-center ">
               LOAD MORE PRODUCTS
             </p>
           </button>

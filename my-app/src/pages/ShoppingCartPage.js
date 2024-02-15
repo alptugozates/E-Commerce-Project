@@ -89,7 +89,7 @@ const ShoppingCartPage = () => {
                   <div className="flex items-center justify-end text-center gap-20">
                     <div className="flex items-center justify-center">
                       <button
-                        className="border-2 rounded text-sm font-montserrat px-2 py-1 bg-[#23A6F0] hover:bg-[#52c0ff] text-custom-white "
+                        className="border-2 rounded text-sm font-montserrat px-2 py-1 bg-turquoise hover:bg-[#52c0ff] text-custom-white "
                         onClick={() => handleDecreaseItemCount(item.product.id)}
                         disabled={item.count <= 1}
                       >
@@ -100,14 +100,14 @@ const ShoppingCartPage = () => {
                       </p>
 
                       <button
-                        className="border-2 rounded text-sm font-montserrat px-2 bg-[#23A6F0] py-1 hover:bg-[#52c0ff] text-custom-white "
+                        className="border-2 rounded text-sm font-montserrat px-2 bg-turquoise py-1 hover:bg-[#52c0ff] text-custom-white "
                         onClick={() => handleIncreaseItemCount(item.product.id)}
                       >
                         +
                       </button>
                     </div>
 
-                    <p className="text-base font-bold tracking-[0.0125rem] font-montserrat text-[#23A6F0] ml-4">
+                    <p className="text-base font-bold tracking-[0.0125rem] font-montserrat text-turquoise ml-4">
                       {item.product.price * item.count} ₺
                     </p>
 
@@ -123,7 +123,7 @@ const ShoppingCartPage = () => {
 
               {cart.length > 0 && (
                 <div className="flex items-center justify-end mt-4 border-t border-gray-400 pt-2">
-                  <p className="text-lg font-montserrat text-[#23A6F0] font-bold">
+                  <p className="text-lg font-montserrat text-turquoise font-bold">
                     Toplam: {calculateTotal()} ₺
                   </p>
                 </div>
@@ -132,7 +132,7 @@ const ShoppingCartPage = () => {
           </div>
 
           <div className="flex justify-start items-center flex-col gap-4">
-            <button className="flex justify-center items-center font-montserrat font-semibold text-lg border-2 bg-[#23A6F0] rounded-md px-20 py-4 tracking-[0.0125rem] text-custom-white">
+            <button className="flex justify-center items-center font-montserrat font-semibold text-lg border-2 bg-turquoise rounded-md px-20 py-4 tracking-[0.0125rem] text-custom-white">
               <p className="font-montserrat gap-4">Sepeti Onayla </p>
               <FontAwesomeIcon
                 icon={faArrowRight}
@@ -170,7 +170,7 @@ const ShoppingCartPage = () => {
                     <p className="font-montserrat text-base w-8/12 tracking-[0.0125rem]">
                       150 ₺ ve Üzeri Kargo Bedava(Satıcı Karşılar)
                     </p>
-                    <p className="font-montserrat font-semibold text-base text-[#23A6F0] tracking-[0.0125rem]">
+                    <p className="font-montserrat font-semibold text-base text-turquoise tracking-[0.0125rem]">
                       -{shippingCost} ₺
                     </p>
                   </div>
@@ -180,7 +180,7 @@ const ShoppingCartPage = () => {
                   <p className="font-montserrat text-lg tracking-[0.0125rem]">
                     Toplam:
                   </p>
-                  <p className="font-montserrat font-bold text-lg text-[#23A6F0] tracking-[0.0125rem] ">
+                  <p className="font-montserrat font-bold text-lg text-turquoise tracking-[0.0125rem] ">
                     {totalAmount} ₺
                   </p>
                 </div>
@@ -189,7 +189,7 @@ const ShoppingCartPage = () => {
 
             <div className="flex text-center items-center ">
               <button className="flex bg-custom-white items-center gap-4 border-2 rounded-md px-20 py-4 font-montserrat tracking-[0.0125rem] font-semibold text-lg ">
-                <p className="font-montserrat text-[#23A6F0] text-3xl ">+</p>
+                <p className="font-montserrat text-turquoise text-3xl ">+</p>
                 <p className="font-montserrat text-sm font-semibold">
                   İNDİRİM KODU GİR
                 </p>
@@ -198,7 +198,7 @@ const ShoppingCartPage = () => {
 
             <button
               onClick={directToOrderPage}
-              className="flex items-center font-montserrat font-semibold text-lg border-2 bg-[#23A6F0] rounded-md px-20 py-4 tracking-[0.0125rem] text-custom-white"
+              className="flex items-center font-montserrat font-semibold text-lg border-2 bg-turquoise rounded-md px-20 py-4 tracking-[0.0125rem] text-custom-white"
             >
               <p className="font-montserrat gap-4">Sepeti Onayla</p>
               <FontAwesomeIcon

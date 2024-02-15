@@ -345,12 +345,12 @@ const Header = () => {
                       email={email}
                       className="rounded-full h-8 w-8 mt-2"
                     />
-                    <p className="text-[#23A6F0] p-4 items-center font-montserrat font-bold text-base tracking-[0.0125rem]">
+                    <p className="text-turquoise p-4 items-center font-montserrat font-bold text-base tracking-[0.0125rem]">
                       {name}
                     </p>
                     <button
                       onClick={handleLogout}
-                      className="text-[#23A6F0] p-2 items-center font-montserrat font-bold text-base tracking-[0.0125rem]"
+                      className="text-turquoise p-2 items-center font-montserrat font-bold text-base tracking-[0.0125rem]"
                     >
                       Log Out
                     </button>
@@ -365,19 +365,19 @@ const Header = () => {
                       />
                     </a>
                     <a
-                      className=" text-[#23A6F0] px-3 py-4 items-center font-montserrat font-bold text-base tracking-[0.0125rem] "
+                      className=" text-turquoise px-3 py-4 items-center font-montserrat font-bold text-base tracking-[0.0125rem] "
                       href="/login"
                     >
                       Login
                     </a>
                     <a
-                      className=" text-[#23A6F0] px-2 py-4 items-center font-montserrat font-bold text-base tracking-[0.0125rem] "
+                      className=" text-turquoise px-2 py-4 items-center font-montserrat font-bold text-base tracking-[0.0125rem] "
                       href="/login"
                     >
                       /
                     </a>
                     <a
-                      className=" text-[#23A6F0] px-3 py-4 items-center font-montserrat font-bold text-base tracking-[0.0125rem] "
+                      className=" text-turquoise px-3 py-4 items-center font-montserrat font-bold text-base tracking-[0.0125rem] "
                       href="/signup"
                     >
                       Register
@@ -401,7 +401,7 @@ const Header = () => {
                     icon={faCartShopping}
                     style={{ color: "#23A6F0" }}
                   />
-                  <p className="text-base font-normal font-montserrat text-[#23A6F0]">
+                  <p className="text-base font-normal font-montserrat text-turquoise">
                     {cart.length}
                   </p>
                   {showCartDropdown && (
@@ -429,7 +429,7 @@ const Header = () => {
                               </p>
                               <div className="flex items-center text-center gap-2">
                                 <button
-                                  className="border-2 rounded-md text-sm font-montserrat px-2 bg-[#23A6F0] hover:bg-[#52c0ff] text-custom-white "
+                                  className="border-2 rounded-md text-sm font-montserrat px-2 bg-turquoise hover:bg-[#52c0ff] text-custom-white "
                                   onClick={() =>
                                     handleDecreaseItemCount(item.product.id)
                                   }
@@ -441,7 +441,7 @@ const Header = () => {
                                   {item.count}
                                 </p>
                                 <button
-                                  className="border-2 rounded-md text-sm font-montserrat px-2 bg-[#23A6F0] hover:bg-[#52c0ff] text-custom-white "
+                                  className="border-2 rounded-md text-sm font-montserrat px-2 bg-turquoise hover:bg-[#52c0ff] text-custom-white "
                                   onClick={() =>
                                     handleIncreaseItemCount(item.product.id)
                                   }
@@ -458,7 +458,7 @@ const Header = () => {
                                 />
                               </div>
                             </div>
-                            <p className="text-sm font-semibold tracking-[0.0125rem] font-montserrat text-[#23A6F0]">
+                            <p className="text-sm font-semibold tracking-[0.0125rem] font-montserrat text-turquoise">
                               {item.product.price * item.count} ₺
                             </p>
                           </div>
@@ -466,7 +466,7 @@ const Header = () => {
                       ))}
                       {cart.length > 0 && (
                         <div className="mt-4 border-t border-gray-400 pt-2">
-                          <p className="text-base font-montserrat text-[#23A6F0] font-bold">
+                          <p className="text-base font-montserrat text-turquoise font-bold">
                             Toplam: {calculateTotal()} ₺
                           </p>
                         </div>
@@ -478,7 +478,7 @@ const Header = () => {
                         >
                           Sepete Git
                         </button>
-                        <button className="font-montserrat text-sm tracking-[0.0125rem] font-bold text-custom-white border-2 rounded-md px-4 py-2 bg-[#23A6F0] hover:bg-[#50bfff] duration-300 ">
+                        <button className="font-montserrat text-sm tracking-[0.0125rem] font-bold text-custom-white border-2 rounded-md px-4 py-2 bg-turquoise hover:bg-[#50bfff] duration-300 ">
                           Siparişi Tamamla
                         </button>
                       </div>
@@ -492,7 +492,7 @@ const Header = () => {
                     icon={faHeart}
                     style={{ color: "#23A6F0" }}
                   />
-                  <p className="text-base font-normal font-montserrat text-[#23A6F0] ">
+                  <p className="text-base font-normal font-montserrat text-turquoise ">
                     1
                   </p>
                 </a>

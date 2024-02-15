@@ -30,7 +30,7 @@ const AboutPage = () => {
           <h4 className="font-montserrat text-custom-gray text-xl font-normal tracking-[0.0125rem] ">
             We know how large objects will act, but things on a small scale
           </h4>
-          <button className="border-2 bg-[#23A6F0] rounded-md px-8 py-4 hover:bg-[#86c3ea] duration-300 ">
+          <button className="border-2 bg-turquoise rounded-md px-8 py-4 hover:bg-[#86c3ea] duration-300 ">
             <p className="font-montserrat font-bold text-sm tracking-[0.0125rem] text-custom-white ">
               Get Quote Now
             </p>

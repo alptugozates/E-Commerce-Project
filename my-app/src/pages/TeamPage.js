@@ -105,7 +105,7 @@ const TeamPage = () => {
           Met minim Mollie non desert Alamo est sit cliquey dolor do met sent.
           RELIT official consequent.
         </p>
-        <button className="px-8 py-4 border-2 bg-[#23A6F0] rounded-md ">
+        <button className="px-8 py-4 border-2 bg-turquoise rounded-md ">
           <p className="font-montserrat font-bold text-custom-white text-sm tracking-[0.0125rem] ">
             Try it free now!
           </p>

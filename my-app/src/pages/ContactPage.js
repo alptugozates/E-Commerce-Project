@@ -88,8 +88,8 @@ const ContactPage = () => {
             <h5 className="font-montserrat font-bold text-base tracking-[0.00625] text-[#252B42] ">
               Get Support
             </h5>
-            <button className="border-2 border-[#23A6F0] rounded-3xl px-8 py-4 ">
-              <p className="font-montserrat font-bold text-base text-[#23A6F0] text-center tracking-[0.0125rem]  ">
+            <button className="border-2 border-turquoise rounded-3xl px-8 py-4 ">
+              <p className="font-montserrat font-bold text-base text-turquoise text-center tracking-[0.0125rem]  ">
                 Submit Request
               </p>
             </button>
@@ -110,8 +110,8 @@ const ContactPage = () => {
             <h5 className="font-montserrat font-bold text-base tracking-[0.00625] text-custom-white ">
               Get Support
             </h5>
-            <button className="border-2 border-[#23A6F0] rounded-3xl px-8 py-4 ">
-              <p className="font-montserrat font-bold text-base text-[#23A6F0] text-center tracking-[0.0125rem]  ">
+            <button className="border-2 border-turquoise rounded-3xl px-8 py-4 ">
+              <p className="font-montserrat font-bold text-base text-turquoise text-center tracking-[0.0125rem]  ">
                 Submit Request
               </p>
             </button>
@@ -132,8 +132,8 @@ const ContactPage = () => {
             <h5 className="font-montserrat font-bold text-base tracking-[0.00625] text-[#252B42] ">
               Get Support
             </h5>
-            <button className="border-2 border-[#23A6F0] rounded-3xl px-8 py-4 ">
-              <p className="font-montserrat font-bold text-base text-[#23A6F0] text-center tracking-[0.0125rem]  ">
+            <button className="border-2 border-turquoise rounded-3xl px-8 py-4 ">
+              <p className="font-montserrat font-bold text-base text-turquoise text-center tracking-[0.0125rem]  ">
                 Submit Request
               </p>
             </button>
@@ -153,7 +153,7 @@ const ContactPage = () => {
         <h1 className="font-montserrat font-bold text-5xl text-[#252B42] tracking-[0.0125rem] text-center ">
           Let’s Talk
         </h1>
-        <button className="bg-[#23A6F0] px-10 py-5 rounded ">
+        <button className="bg-turquoise px-10 py-5 rounded ">
           <p className="font-montserrat font-bold text-custom-white tracking-[0.0125rem text-center] ">
             Try it free now
           </p>

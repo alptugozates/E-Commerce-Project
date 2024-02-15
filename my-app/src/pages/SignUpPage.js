@@ -126,7 +126,7 @@ const SignUpPage = () => {
               type="text"
               placeholder="Name"
               {...register("name", { required: true, min: 3 })}
-              className=" p-2 border w-full rounded-md focus:outline-none focus:border-[#23A6F0]"
+              className=" p-2 border w-full rounded-md focus:outline-none focus:border-turquoise"
             />
           </div>
           {errors.name && errors.name.type === "required" && (
@@ -153,7 +153,7 @@ const SignUpPage = () => {
                 required: true,
                 pattern: /^\S+@\S+$/i,
               })}
-              className="w-full p-2 border rounded-md focus:outline-none focus:border-[#23A6F0]"
+              className="w-full p-2 border rounded-md focus:outline-none focus:border-turquoise"
             />
           </div>
           {errors.email && errors.email.type === "required" && (
@@ -179,7 +179,7 @@ const SignUpPage = () => {
                 pattern:
                   /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+}{"':;?/>.<,]).{8,}$/,
               })}
-              className="w-full p-2 border rounded-md focus:outline-none focus:border-[#23A6F0]"
+              className="w-full p-2 border rounded-md focus:outline-none focus:border-turquoise"
             />
           </div>
           {errors.password && errors.password.type === "required" && (
@@ -205,7 +205,7 @@ const SignUpPage = () => {
               />
             </a>
             <input
-              className="w-full p-2 border rounded-md focus:outline-none focus:border-[#23A6F0]"
+              className="w-full p-2 border rounded-md focus:outline-none focus:border-turquoise"
               type="password"
               placeholder="Confirm Password"
               {...register("confirmPassword", {
@@ -224,11 +224,11 @@ const SignUpPage = () => {
                   <FontAwesomeIcon
                     icon={faUser}
                     size="lg"
-                    className="text-[#23A6F0]"
+                    className="text-turquoise"
                   />
                 </a>
                 <input
-                  className="w-full py-4 px-2 border rounded-md focus:outline-none focus:border-[#23A6F0]"
+                  className="w-full py-4 px-2 border rounded-md focus:outline-none focus:border-turquoise"
                   type="text"
                   placeholder="Store Name"
                   {...register("storeName", { required: true, minLength: 3 })}
@@ -248,7 +248,7 @@ const SignUpPage = () => {
                   <FontAwesomeIcon
                     icon={faPhone}
                     size="lg"
-                    className="text-[#23A6F0]"
+                    className="text-turquoise"
                   />
                 </a>
                 <input
@@ -258,7 +258,7 @@ const SignUpPage = () => {
                     required: true,
                     pattern: /^[0-9]{10}$/, // Türk telefon numarası formatı
                   })}
-                  className="w-full px-2 py-4 border rounded-md focus:outline-none focus:border-[#23A6F0]"
+                  className="w-full px-2 py-4 border rounded-md focus:outline-none focus:border-turquoise"
                 />
               </div>
               {errors.storePhone && errors.storePhone.type === "required" && (
@@ -274,7 +274,7 @@ const SignUpPage = () => {
                   <FontAwesomeIcon
                     icon={faIdCard}
                     size="lg"
-                    className="text-[#23A6F0]"
+                    className="text-turquoise"
                   />
                 </a>
                 <input
@@ -284,7 +284,7 @@ const SignUpPage = () => {
                     required: true,
                     pattern: /^T\d{4}V\d{6}$/, // Store Tax ID pattern
                   })}
-                  className="w-full px-2 py-4 border rounded-md focus:outline-none focus:border-[#23A6F0]"
+                  className="w-full px-2 py-4 border rounded-md focus:outline-none focus:border-turquoise"
                 />
               </div>
               {errors.tax_no && errors.tax_no.type === "required" && (
@@ -300,7 +300,7 @@ const SignUpPage = () => {
                   <FontAwesomeIcon
                     icon={faMoneyCheck}
                     size="lg"
-                    className="text-[#23A6F0]"
+                    className="text-turquoise"
                   />
                 </a>
                 <input
@@ -313,7 +313,7 @@ const SignUpPage = () => {
                         isValidIBAN(value) || "Invalid IBAN address",
                     },
                   })}
-                  className="px-2 py-4 border rounded-md w-full focus:outline-none focus:border-[#23A6F0]"
+                  className="px-2 py-4 border rounded-md w-full focus:outline-none focus:border-turquoise"
                 />
               </div>
               {errors.bank_account &&
@@ -355,14 +355,14 @@ const SignUpPage = () => {
           </div>
           <button
             type="submit"
-            className="flex items-center justify-center border-2 rounded-md px-8 py-4 bg-[#23A6F0] "
+            className="flex items-center justify-center border-2 rounded-md px-8 py-4 bg-turquoise "
             disabled={loading}
           >
             {loading ? (
               <div role="status">
                 <svg
                   aria-hidden="true"
-                  className="inline w-6 h-6 text-custom-white  animate-spin fill-[#23A6F0]"
+                  className="inline w-6 h-6 text-custom-white  animate-spin fill-turquoise"
                   viewBox="0 0 100 101"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"

@@ -22,7 +22,7 @@ const Blog = () => {
       <div className="container flex flex-col items-center gap-24 shrink-0 px-0 py-20">
         <div className="row flex flex-col items-center">
           <div className="main-content flex flex-col items-center gap-3">
-            <h6 className="font-montserrat font-bold text-sm tracking-[0.0125rem] text-[#23A6F0] ">
+            <h6 className="font-montserrat font-bold text-sm tracking-[0.0125rem] text-turquoise ">
               Practice Advice
             </h6>
             <h3 className="font-montserrat font-bold text-[2.5rem] leading-[3.125rem] text-[#252B42] ">
@@ -61,7 +61,7 @@ const Blog = () => {
               <div className="frame-3 flex items-start self-stretch flex-col pt-8 px-6 pb-6 gap-3 w-6/12">
                 <div className="frame-1 flex justify-between items-center self-stretch gap-3">
                   <div className="flex items-center gap-3">
-                    <p className="font-bold text-sm font-montserrat tracking-[0.0125rem] text-[#23A6F0] ">
+                    <p className="font-bold text-sm font-montserrat tracking-[0.0125rem] text-turquoise ">
                       English Department
                     </p>
                   </div>
@@ -131,8 +131,8 @@ const Blog = () => {
                     </p>
                   </div>
                 </div>
-                <button className="flex items-center gap-2.5 py-2.5 px-5 border-2 border-[#23A6F0] rounded-3xl">
-                  <p className="font-montserrat font-bold text-sm tracing-[0.0125rem] text-[#23A6F0]">
+                <button className="flex items-center gap-2.5 py-2.5 px-5 border-2 border-turquoise rounded-3xl">
+                  <p className="font-montserrat font-bold text-sm tracing-[0.0125rem] text-turquoise">
                     Learn More
                   </p>
                   <img src={arrowRight} />
@@ -170,7 +170,7 @@ const Blog = () => {
               <div className="frame-3 flex items-start self-stretch flex-col pt-8 px-6 pb-6 gap-3 w-6/12">
                 <div className="frame-1 flex justify-between items-center self-stretch gap-3">
                   <div className="flex items-center gap-3">
-                    <p className="font-bold text-sm font-montserrat tracking-[0.0125rem] text-[#23A6F0] ">
+                    <p className="font-bold text-sm font-montserrat tracking-[0.0125rem] text-turquoise ">
                       English Department
                     </p>
                   </div>
@@ -238,8 +238,8 @@ const Blog = () => {
                     </p>
                   </div>
                 </div>
-                <button className="flex items-center gap-2.5 py-2.5 px-5 border-2 border-[#23A6F0] rounded-3xl">
-                  <p className="font-montserrat font-bold text-sm tracing-[0.0125rem] text-[#23A6F0]">
+                <button className="flex items-center gap-2.5 py-2.5 px-5 border-2 border-turquoise rounded-3xl">
+                  <p className="font-montserrat font-bold text-sm tracing-[0.0125rem] text-turquoise">
                     Learn More
                   </p>
                   <img src={arrowRight} />

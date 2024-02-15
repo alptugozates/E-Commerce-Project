@@ -18,7 +18,7 @@ const Content = () => {
             </div>
           </div>
           <div className="row-md-5 flex flex-col sm:px-0 px-12 text-start items-start gap-4">
-            <h5 className="font-montserrat font-bold text-base tracking-[0.00625rem] text-[#23A6F0] ">
+            <h5 className="font-montserrat font-bold text-base tracking-[0.00625rem] text-turquoise ">
               Featured Products
             </h5>
             <h2 className="font-montserrat font-bold text-5xl text-[#252B42] tracking-[0.0125rem] ">

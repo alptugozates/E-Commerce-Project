@@ -236,7 +236,7 @@ const OrderPage = () => {
 
   const divClasses = `flex flex-col items-start gap-4  bg-slate-50 rounded-md shadow-lg justify-center border-2 px-4 w-4/12 h-[12rem] cursor-pointer ${
     showAddressSection
-      ? "border-b-[1.75rem] border-[#23A6F0] duration-500 "
+      ? "border-b-[1.75rem] border-turquoise duration-500 "
       : "duration-500"
   }`;
 
@@ -250,7 +250,7 @@ const OrderPage = () => {
             onClick={handleAddressButtonClick}
             className={`flex flex-col items-start gap-4  bg-slate-50 rounded-md shadow-lg justify-center border-2 px-4 w-4/12 h-[12rem] cursor-pointer ${
               showAddressSection
-                ? "border-b-[1.75rem] border-[#23A6F0] duration-500 "
+                ? "border-b-[1.75rem] border-turquoise duration-500 "
                 : "duration-500"
             }`}
           >
@@ -280,7 +280,7 @@ const OrderPage = () => {
             onClick={handlePaymentButtonClick}
             className={`flex flex-col items-start gap-4  bg-slate-50 rounded-md shadow-lg justify-center border-2 px-2 py-20 w-4/12 h-[12rem] cursor-pointer  ${
               showPaymentSection
-                ? "border-b-[1.75rem] border-[#23A6F0] duration-500 "
+                ? "border-b-[1.75rem] border-turquoise duration-500 "
                 : "duration-500"
             }`}
           >
@@ -302,7 +302,7 @@ const OrderPage = () => {
         <div>
           {showPaymentSection && (
             <div className="flex justify-between px-20 gap-8 py-20">
-              <div className="flex flex-wrap border-4 border-[#23A6F0] rounded-md flex-col w-9/12 ">
+              <div className="flex flex-wrap border-4 border-turquoise rounded-md flex-col w-9/12 ">
                 <button
                   className="bg-blue-500 font-montserrat font-bold hover:bg-blue-400 duration-300 text-white py-2 px-4 focus:outline-none"
                   onClick={() => setShowAddCardForm(true)}
@@ -505,7 +505,7 @@ const OrderPage = () => {
 
               <div className="flex flex-col">
                 <div className="flex justify-start items-center flex-col gap-4">
-                  <button className="flex justify-center items-center font-montserrat font-semibold text-lg border-2 bg-[#23A6F0] rounded-md px-20 py-4 tracking-[0.0125rem] text-custom-white">
+                  <button className="flex justify-center items-center font-montserrat font-semibold text-lg border-2 bg-turquoise rounded-md px-20 py-4 tracking-[0.0125rem] text-custom-white">
                     <p className="font-montserrat gap-4">Kaydet ve Devam Et </p>
                     <FontAwesomeIcon
                       icon={faArrowRight}
@@ -543,7 +543,7 @@ const OrderPage = () => {
                           <p className="font-montserrat text-base w-8/12 tracking-[0.0125rem]">
                             150 ₺ ve Üzeri Kargo Bedava(Satıcı Karşılar)
                           </p>
-                          <p className="font-montserrat font-semibold text-base text-[#23A6F0] tracking-[0.0125rem]">
+                          <p className="font-montserrat font-semibold text-base text-turquoise tracking-[0.0125rem]">
                             -{shippingCost} ₺
                           </p>
                         </div>
@@ -553,13 +553,13 @@ const OrderPage = () => {
                         <p className="font-montserrat text-lg tracking-[0.0125rem]">
                           Toplam:
                         </p>
-                        <p className="font-montserrat font-bold text-lg text-[#23A6F0] tracking-[0.0125rem] ">
+                        <p className="font-montserrat font-bold text-lg text-turquoise tracking-[0.0125rem] ">
                           {totalAmount} ₺
                         </p>
                       </div>
                     </div>
                   </div>
-                  <button className="flex items-center font-montserrat font-semibold text-lg border-2 bg-[#23A6F0] rounded-md px-20 py-4 tracking-[0.0125rem] text-custom-white">
+                  <button className="flex items-center font-montserrat font-semibold text-lg border-2 bg-turquoise rounded-md px-20 py-4 tracking-[0.0125rem] text-custom-white">
                     <p className="font-montserrat gap-4">Kaydet ve Devam Et</p>
                     <FontAwesomeIcon
                       icon={faArrowRight}
@@ -575,13 +575,13 @@ const OrderPage = () => {
         </div>
         {showAddressSection && (
           <div className="flex justify-between px-20 gap-8 py-20">
-            <div className="flex flex-wrap border-4 border-[#23A6F0] rounded-md flex-col w-9/12 ">
+            <div className="flex flex-wrap border-4 border-turquoise rounded-md flex-col w-9/12 ">
               <h1 className="font-montserrat px-[6rem] py-10 font-bold text-black text-xl ">
                 Teslimat Adresi
               </h1>
               <div className="pl-[6rem]">
                 <button
-                  className="w-[30rem] h-[10rem] hover:bg-[#77c8f7] duration-300  border-2 bg-[#23A6F0] rounded-md text-center gap-2 font-montserrat flex items-center justify-center flex-col font-semibold tracking-[0.0125rem] text-lg "
+                  className="w-[30rem] h-[10rem] hover:bg-[#77c8f7] duration-300  border-2 bg-turquoise rounded-md text-center gap-2 font-montserrat flex items-center justify-center flex-col font-semibold tracking-[0.0125rem] text-lg "
                   onClick={handleAddAddressClick}
                 >
                   <FontAwesomeIcon
@@ -781,7 +781,7 @@ const OrderPage = () => {
                 {Array.isArray(addresses) &&
                   addresses.map((address) => (
                     <div
-                      className="flex gap-4 items-start border-2 flex-col border-[#23A6F0] shadow-lg rounded-md px-4 py-10 my-10 w-[40%] flex-wrap "
+                      className="flex gap-4 items-start border-2 flex-col border-turquoise shadow-lg rounded-md px-4 py-10 my-10 w-[40%] flex-wrap "
                       key={address.id}
                     >
                       <input
@@ -792,7 +792,7 @@ const OrderPage = () => {
                         onChange={() => setSelectedAddress(address.id)}
                       />
                       <button
-                        className="flex items-center justify-center px-8 py-4 border-2 bg-[#23A6F0] rounded-md font-montserrat text-custom-white tracking-[0.0125rem] text-sm font-semibold duration-300 hover:bg-[#77c8f7]  "
+                        className="flex items-center justify-center px-8 py-4 border-2 bg-turquoise rounded-md font-montserrat text-custom-white tracking-[0.0125rem] text-sm font-semibold duration-300 hover:bg-[#77c8f7]  "
                         onClick={() => handleUpdateAddressClick(address.id)}
                       >
                         Update Address
@@ -860,7 +860,7 @@ const OrderPage = () => {
             <div>
               <div className="flex flex-col">
                 <div className="flex justify-start items-center flex-col gap-4">
-                  <button className="flex justify-center items-center font-montserrat font-semibold text-lg border-2 bg-[#23A6F0] rounded-md px-20 py-4 tracking-[0.0125rem] text-custom-white">
+                  <button className="flex justify-center items-center font-montserrat font-semibold text-lg border-2 bg-turquoise rounded-md px-20 py-4 tracking-[0.0125rem] text-custom-white">
                     <p className="font-montserrat gap-4">Kaydet ve Devam Et </p>
                     <FontAwesomeIcon
                       icon={faArrowRight}
@@ -898,7 +898,7 @@ const OrderPage = () => {
                           <p className="font-montserrat text-base w-8/12 tracking-[0.0125rem]">
                             150 ₺ ve Üzeri Kargo Bedava(Satıcı Karşılar)
                           </p>
-                          <p className="font-montserrat font-semibold text-base text-[#23A6F0] tracking-[0.0125rem]">
+                          <p className="font-montserrat font-semibold text-base text-turquoise tracking-[0.0125rem]">
                             -{shippingCost} ₺
                           </p>
                         </div>
@@ -908,13 +908,13 @@ const OrderPage = () => {
                         <p className="font-montserrat text-lg tracking-[0.0125rem]">
                           Toplam:
                         </p>
-                        <p className="font-montserrat font-bold text-lg text-[#23A6F0] tracking-[0.0125rem] ">
+                        <p className="font-montserrat font-bold text-lg text-turquoise tracking-[0.0125rem] ">
                           {totalAmount} ₺
                         </p>
                       </div>
                     </div>
                   </div>
-                  <button className="flex items-center font-montserrat font-semibold text-lg border-2 bg-[#23A6F0] rounded-md px-20 py-4 tracking-[0.0125rem] text-custom-white">
+                  <button className="flex items-center font-montserrat font-semibold text-lg border-2 bg-turquoise rounded-md px-20 py-4 tracking-[0.0125rem] text-custom-white">
                     <p className="font-montserrat gap-4">Kaydet ve Devam Et</p>
                     <FontAwesomeIcon
                       icon={faArrowRight}

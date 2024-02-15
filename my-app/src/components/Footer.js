@@ -181,7 +181,7 @@ const Footer = () => {
                   />
                   <button
                     type="submit"
-                    className="flex items-center justify-center shrink-0 py-4 px-6 bg-[#23A6F0] text-custom-white border-2 border-solid border-[#E6E6E6] rounded-r-md"
+                    className="flex items-center justify-center shrink-0 py-4 px-6 bg-turquoise text-custom-white border-2 border-solid border-[#E6E6E6] rounded-r-md"
                   >
                     <p className="font-montserrat font-normal text-sm tracking-[0.0125rem] ">
                       Subscribe

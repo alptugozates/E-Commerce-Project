@@ -92,7 +92,7 @@ const ProductPage = () => {
                 <h6 className="font-montserrat text-sm font-bold text-custom-gray tracking-[0.0125rem] ">
                   Availability :
                 </h6>
-                <h6 className="font-montserrat text-sm font-bold text-[#23A6F0] tracking-[0.0125rem]">
+                <h6 className="font-montserrat text-sm font-bold text-turquoise tracking-[0.0125rem]">
                   In Stock
                 </h6>
               </div>

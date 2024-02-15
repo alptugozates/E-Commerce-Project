@@ -185,10 +185,10 @@ const ProductListPage = () => {
                     alt="Category"
                   />
                   <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
-                    <p className="font-montserrat font-bold tracking-[0.00625rem] hover:text-[#23A6F0] duration-300 text-base text-custom-white">
+                    <p className="font-montserrat font-bold tracking-[0.00625rem] hover:text-turquoise duration-300 text-base text-custom-white">
                       {category.title.toUpperCase()}
                     </p>
-                    <p className="font-montserrat font-bold text-sm tracking-[0.0125rem] hover:text-[#23A6F0] duration-300 text-custom-white">
+                    <p className="font-montserrat font-bold text-sm tracking-[0.0125rem] hover:text-turquoise duration-300 text-custom-white">
                       {category.rating} Rating
                     </p>
                   </div>
@@ -242,7 +242,7 @@ const ProductListPage = () => {
             </div>
             <button
               onClick={handleFilter}
-              className="btn flex items-center py-3 px-6 border-2 bg-[#23A6F0]  duration-300 rounded-md hover:bg-[#6ec8fc]"
+              className="btn flex items-center py-3 px-6 border-2 bg-turquoise  duration-300 rounded-md hover:bg-[#6ec8fc]"
             >
               <p className="font-montserrat text-custom-white font-bold text-sm tracking-[0.0125rem]">
                 Filter
@@ -306,7 +306,7 @@ const ProductListPage = () => {
                     </div>
                     <button
                       onClick={() => handleAddToCart(product)}
-                      className="border-2 rounded-md bg-[#23A6F0] py-3 px-6 hover:bg-[#73c5f4] duration-300 "
+                      className="border-2 rounded-md bg-turquoise py-3 px-6 hover:bg-[#73c5f4] duration-300 "
                     >
                       <p className="font-montserrat text-sm tracking-[0.0625rem] text-custom-white ">
                         Add to Cart
@@ -325,22 +325,22 @@ const ProductListPage = () => {
                 </p>
               </button>
               <button className="flex items-center justify-center px-5 py-6 border-[#E9E9E9] border-2 bg-custom-white] ">
-                <p className="text-[#23A6F0] font-montserrat font-bold text-sm tracking-[0.0125rem] ">
+                <p className="text-turquoise font-montserrat font-bold text-sm tracking-[0.0125rem] ">
                   1
                 </p>
               </button>
-              <button className="flex items-center justify-center px-5 py-6 border-[#E9E9E9] border-2 bg-[#23A6F0] ">
+              <button className="flex items-center justify-center px-5 py-6 border-[#E9E9E9] border-2 bg-turquoise ">
                 <p className="text-custom-white font-montserrat font-bold text-sm tracking-[0.0125rem] ">
                   2
                 </p>
               </button>
               <button className="flex items-center justify-center px-5 py-6 border-[#E9E9E9] border-2 bg-custom-white] ">
-                <p className="text-[#23A6F0] font-montserrat font-bold text-sm tracking-[0.0125rem] ">
+                <p className="text-turquoise font-montserrat font-bold text-sm tracking-[0.0125rem] ">
                   3
                 </p>
               </button>
               <button className="prev flex justify-center items-center border-2 p-7 border-[#E9E9E9] bg-custom-white ">
-                <p className="text-[#23A6F0] font-montserrat font-bold text-sm tracking-[0.0125rem]   ">
+                <p className="text-turquoise font-montserrat font-bold text-sm tracking-[0.0125rem]   ">
                   Next
                 </p>
               </button>

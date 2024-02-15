@@ -49,7 +49,7 @@ const ProductDetailPage = () => {
           <div className="row flex sm:flex-row flex-col flex-start gap-8">
             <div>
               <button
-                className="flex items-center border-2 rounded-md bg-[#23A6F0] px-6 py-3 hover:bg-[#63c6ff] duration-300 "
+                className="flex items-center border-2 rounded-md bg-turquoise px-6 py-3 hover:bg-[#63c6ff] duration-300 "
                 onClick={handleGoBack}
               >
                 <h6 className="font-montserrat font-bold text-custom-white text-sm tracking-[0.0125rem] ">
@@ -102,7 +102,7 @@ const ProductDetailPage = () => {
                 <h6 className="font-montserrat text-sm font-bold text-custom-gray tracking-[0.0125rem] ">
                   Availability :
                 </h6>
-                <h6 className="font-montserrat text-sm font-bold text-[#23A6F0] tracking-[0.0125rem]">
+                <h6 className="font-montserrat text-sm font-bold text-turquoise tracking-[0.0125rem]">
                   In Stock
                 </h6>
               </div>
