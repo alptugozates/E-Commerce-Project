@@ -353,7 +353,10 @@ const OrderPage = () => {
             </h1>
             {detailedSelectedAddress && (
               <div className="font-montserrat text-sm font-semibold tracking-[0.0125rem] gap-4 text-black ">
-                <p>{detailedSelectedAddress.name}</p>
+                <p>
+                  {detailedSelectedAddress.name}{" "}
+                  {detailedSelectedAddress.surname}{" "}
+                </p>
                 <p>
                   {" "}
                   {detailedSelectedAddress.district} /{" "}
