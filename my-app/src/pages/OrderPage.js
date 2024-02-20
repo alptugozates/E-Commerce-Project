@@ -1,9 +1,4 @@
 import { useDispatch, useSelector } from "react-redux";
-import {
-  // addUserAddress,
-  getUserAddress,
-  updateUserAddress,
-} from "../actions/addressAction";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import { useEffect, useState } from "react";
@@ -16,6 +11,7 @@ import {
 import { useForm } from "react-hook-form";
 import axiosInstance from "../axios/axiosInstance";
 import { Slide, toast } from "react-toastify";
+import { resetCart } from "../actions/cartAction";
 
 const cities = ["Istanbul", "Ankara", "Izmir", "Bursa", "Antalya"];
 const districts = {
@@ -35,6 +31,7 @@ const OrderPage = () => {
     watch,
     formState: { errors },
   } = useForm({
+    mode: "onSubmit",
     defaultValues: {
       name: "",
     },
@@ -59,6 +56,7 @@ const OrderPage = () => {
   const [cardShowUpdateForm, setCardShowUpdateForm] = useState(false);
 
   console.log("ADDRESSES", addresses);
+  console.log("SELECTED ADDRESS: ", selectedAddress);
 
   const handleAddAddressClick = () => {
     setShowAddAddressForm((prevState) => !prevState);
@@ -133,7 +131,7 @@ const OrderPage = () => {
 
   const handleUpdateAddressClick = (addressId) => {
     if (selectedAddress !== null) {
-      setShowUpdateForm(true);
+      setShowUpdateForm((prevState) => !prevState);
     }
   };
 
@@ -145,7 +143,7 @@ const OrderPage = () => {
     }
 
     const updatedAddressData = {
-      id: selectedAddress,
+      id: selectedAddress.id,
       title: updatedData.addressTitle,
       name: updatedData.name,
       surname: updatedData.surname,
@@ -243,6 +241,7 @@ const OrderPage = () => {
       expire_month: data.expireMonth,
       expire_year: data.expireYear,
       name_on_card: data.nameOnCard,
+      // card_ccv: data.ccv,
     };
 
     axiosInstance
@@ -280,14 +279,15 @@ const OrderPage = () => {
     getSavedCards();
   };
 
-  console.log("SELECTED CARD ID: ", selectedCard);
+  console.log("SELECTED CARD: ", selectedCard);
   const handleUpdateCardSubmit = (data) => {
     const updatedCardData = {
-      id: selectedCard,
+      id: selectedCard.id,
       card_no: data.cardNumber,
       expire_month: data.expireMonth,
       expire_year: data.expireYear,
       name_on_card: data.nameOnCard,
+      // card_ccv: data.ccv,
     };
 
     axiosInstance
@@ -326,6 +326,60 @@ const OrderPage = () => {
           transition: Slide,
         });
       });
+  };
+
+  const createOrder = () => {
+    const orderData = {
+      address_id: selectedAddress,
+      order_date: new Date().toISOString(),
+      card_no: selectedCard.card_no,
+      card_name: selectedCard.name_on_card,
+      card_expire_month: selectedCard.expire_month,
+      card_expire_year: selectedCard.expire_year,
+      // card_ccv: selectedCard.card_ccv,
+      price: totalAmount,
+      products: cart.map((item) => ({
+        product_id: item.product.id,
+        count: item.count,
+        detail: item.product.description,
+      })),
+    };
+    console.log("ORDER DATA: ", orderData);
+    axiosInstance
+      .post("/order", orderData)
+      .then((res) => {
+        console.log("Order created successfully:", res.data);
+        toast.success("🛍️ Siparişiniz başarıyla oluşturuldu!", {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+          transition: Slide,
+        });
+
+        dispatch(resetCart());
+      })
+      .catch((error) => {
+        console.error("Error creating order:", error);
+        toast.error("🚫 Sipariş oluşturulamadı. Tekrar deneyin.", {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+          transition: Slide,
+        });
+      });
+  };
+  const handleConfirmOrderClick = () => {
+    createOrder();
   };
 
   return (
@@ -428,6 +482,11 @@ const OrderPage = () => {
                       })}
                       className="w-full px-3 py-2 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                     />
+                    {errors.cardNumber && (
+                      <div className="text-red-500 text-sm mt-1">
+                        {errors.cardNumber.message}
+                      </div>
+                    )}
 
                     <label
                       className="block text-gray-700 text-sm font-bold mb-2"
@@ -443,6 +502,11 @@ const OrderPage = () => {
                       })}
                       className="w-full px-3 py-2 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                     />
+                    {errors.expireMonth && (
+                      <div className="text-red-500 text-sm mt-1">
+                        {errors.expireMonth.message}
+                      </div>
+                    )}
 
                     <label
                       className="block text-gray-700 text-sm font-bold mb-2"
@@ -458,6 +522,11 @@ const OrderPage = () => {
                       })}
                       className="w-full px-3 py-2 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                     />
+                    {errors.expireYear && (
+                      <div className="text-red-500 text-sm mt-1">
+                        {errors.expireYear.message}
+                      </div>
+                    )}
 
                     <label
                       className="block text-gray-700 text-sm font-bold mb-2"
@@ -473,6 +542,42 @@ const OrderPage = () => {
                       })}
                       className="w-full px-3 py-2 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                     />
+                    {errors.nameOnCard && (
+                      <div className="text-red-500 text-sm mt-1">
+                        {errors.nameOnCard.message}
+                      </div>
+                    )}
+                    {/* <label
+                      className="block text-gray-700 text-sm font-bold mb-2"
+                      htmlFor="cvv"
+                    >
+                      CVV:
+                    </label>
+                    <input
+                      type="text"
+                      id="cvv"
+                      {...register("cvv", {
+                        required: "CVV is required",
+                        maxLength: {
+                          value: 4,
+                          message: "CVV should be 3 or 4 digits",
+                        },
+                        minLength: {
+                          value: 3,
+                          message: "CVV should be 3 or 4 digits",
+                        },
+                        pattern: {
+                          value: /^[0-9]{3,4}$/,
+                          message: "Invalid CVV format",
+                        },
+                      })}
+                      className="w-full px-3 py-2 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                    />
+                    {errors.cvv && (
+                      <div className="text-red-500 text-sm mt-1">
+                        {errors.cvv.message}
+                      </div>
+                    )} */}
 
                     <button
                       type="submit"
@@ -527,7 +632,7 @@ const OrderPage = () => {
                             id={`card-${card.id}`}
                             name="card"
                             value={card.id}
-                            onChange={() => setSelectedCard(card.id)}
+                            onChange={() => setSelectedCard(card)}
                           />
                         </div>
                       </li>
@@ -546,6 +651,7 @@ const OrderPage = () => {
                         <input
                           type="text"
                           id="cardNumber"
+                          placeholder={selectedCard?.card_no}
                           {...register("cardNumber", {
                             required: "Card number is required",
                           })}
@@ -560,6 +666,7 @@ const OrderPage = () => {
                         </label>
                         <input
                           type="number"
+                          placeholder={selectedCard.expire_month}
                           id="expireMonth"
                           {...register("expireMonth", {
                             required: "Expiration month is required",
@@ -576,6 +683,7 @@ const OrderPage = () => {
                         <input
                           type="number"
                           id="expireYear"
+                          placeholder={selectedCard.expire_year}
                           {...register("expireYear", {
                             required: "Expiration year is required",
                           })}
@@ -591,11 +699,44 @@ const OrderPage = () => {
                         <input
                           type="text"
                           id="nameOnCard"
+                          placeholder={selectedCard.name_on_card}
                           {...register("nameOnCard", {
                             required: "Name on card is required",
                           })}
                           className="w-full px-3 py-2 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                         />
+                        {/* <label
+                          className="block text-gray-700 text-sm font-bold mb-2"
+                          htmlFor="cvv"
+                        >
+                          CVV:
+                        </label>
+                        <input
+                          type="text"
+                          placeholder={selectedCard.cvv}
+                          id="cvv"
+                          {...register("cvv", {
+                            required: "CVV is required",
+                            maxLength: {
+                              value: 4,
+                              message: "CVV should be 3 or 4 digits",
+                            },
+                            minLength: {
+                              value: 3,
+                              message: "CVV should be 3 or 4 digits",
+                            },
+                            pattern: {
+                              value: /^[0-9]{3,4}$/,
+                              message: "Invalid CVV format",
+                            },
+                          })}
+                          className="w-full px-3 py-2 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                        />
+                        {errors.cvv && (
+                          <div className="text-red-500 text-sm mt-1">
+                            {errors.cvv.message}
+                          </div>
+                        )} */}
 
                         <button
                           type="submit"
@@ -611,7 +752,10 @@ const OrderPage = () => {
 
               <div className="flex flex-col">
                 <div className="flex justify-start items-center flex-col gap-4">
-                  <button className="flex justify-center items-center font-montserrat font-semibold text-lg border-2 bg-turquoise rounded-md px-20 py-4 tracking-[0.0125rem] text-custom-white">
+                  <button
+                    onClick={handleConfirmOrderClick}
+                    className="flex justify-center items-center font-montserrat font-semibold text-lg border-2 bg-turquoise rounded-md px-20 py-4 tracking-[0.0125rem] text-custom-white"
+                  >
                     <p className="font-montserrat gap-4">Kaydet ve Devam Et </p>
                     <FontAwesomeIcon
                       icon={faArrowRight}
@@ -895,7 +1039,7 @@ const OrderPage = () => {
                         id={`address-${address.id}`}
                         name="address"
                         value={address.id}
-                        onChange={() => setSelectedAddress(address.id)}
+                        onChange={() => setSelectedAddress(address)}
                       />
                       <button
                         className="flex items-center justify-center px-8 py-4 border-2 bg-turquoise rounded-md font-montserrat text-custom-white tracking-[0.0125rem] text-sm font-semibold duration-300 hover:bg-[#77c8f7]  "
@@ -1049,6 +1193,7 @@ const OrderPage = () => {
             </label>
             <input
               type="text"
+              placeholder={selectedAddress.title}
               id="addressTitle"
               name="addressTitle"
               {...register("addressTitle", {
@@ -1073,6 +1218,7 @@ const OrderPage = () => {
             <input
               type="text"
               id="name"
+              placeholder={selectedAddress.name}
               name="name"
               {...register("name", { required: "Name is required" })}
               className="w-full px-3 py-2 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
@@ -1086,9 +1232,9 @@ const OrderPage = () => {
 
           <div className="mb-4">
             <input
-              placeholder="Phone"
               type="tel"
               id="phone"
+              placeholder={selectedAddress.phone}
               name="phone"
               {...register("phone", { required: "Phone is required" })}
               className="w-full px-3 py-2 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
@@ -1109,6 +1255,7 @@ const OrderPage = () => {
             </label>
             <select
               id="city"
+              placeholder={selectedAddress.city}
               name="city"
               onChange={handleCityChange}
               {...register("city", { required: "City is required" })}
@@ -1141,6 +1288,7 @@ const OrderPage = () => {
             <select
               id="district"
               name="district"
+              placeholder={selectedAddress.district}
               value={selectedDistrict}
               {...register("district", {
                 required: "District is required",
@@ -1172,6 +1320,7 @@ const OrderPage = () => {
             </label>
             <input
               type="text"
+              placeholder={selectedAddress.neighborhood}
               id="neighborhood"
               name="neighborhood"
               {...register("neighborhood", {
@@ -1196,6 +1345,7 @@ const OrderPage = () => {
             <textarea
               id="addressDetails"
               name="addressDetails"
+              placeholder={selectedAddress.address}
               rows="4"
               {...register("addressDetails", {
                 required: "Address is required",
