@@ -2,10 +2,15 @@ export const ADD_TO_CART = "ADD_TO_CART";
 export const UPDATE_PRODUCT_COUNT = "UPDATE_PRODUCT_COUNT";
 export const REMOVE_FROM_CART = "REMOVE_FROM_CART";
 export const UPDATE_PAYMENT = "UPDATE_PAYMENT";
+export const RESET_CART = "RESET_CART";
 
 export const addToCart = (product) => ({
   type: ADD_TO_CART,
   payload: product,
+});
+
+export const resetCart = () => ({
+  type: RESET_CART,
 });
 
 export const updateProductCount = (productId, quantity) => ({

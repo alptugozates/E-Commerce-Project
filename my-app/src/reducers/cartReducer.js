@@ -4,6 +4,7 @@ import {
   UPDATE_ADDRESS,
   UPDATE_PAYMENT,
   UPDATE_PRODUCT_COUNT,
+  RESET_CART,
 } from "../actions/cartAction";
 
 const initialState = {
@@ -87,6 +88,12 @@ const cartReducer = (state = initialState, action) => {
       return {
         ...state,
         payment: action.payload,
+      };
+    case RESET_CART:
+      saveToLocalStorage("cart", []);
+      return {
+        ...state,
+        cart: [],
       };
 
     default:
