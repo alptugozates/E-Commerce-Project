@@ -6,6 +6,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { Slide, toast } from "react-toastify";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { useState } from "react";
+import axios from "axios";
 
 const ShoppingCartPage = () => {
   const history = useHistory();
@@ -47,6 +49,19 @@ const ShoppingCartPage = () => {
   const subTotal = calculateTotal();
   const shippingCost = 29.99;
   const totalAmount = subTotal >= 150 ? subTotal : subTotal + shippingCost;
+
+  const [postData, setPostData] = useState();
+
+  const handlePostRequest = () => {
+    axios
+      .get("http://localhost:9000/v1/products", postData)
+      .then((response) => {
+        console.log("İstek başarıyla gönderildi:", response.data);
+      })
+      .catch((error) => {
+        console.error("İstek gönderilirken bir hata oluştu:", error.message);
+      });
+  };
 
   return (
     <div>
@@ -188,7 +203,10 @@ const ShoppingCartPage = () => {
             </div>
 
             <div className="flex text-center items-center ">
-              <button className="flex bg-custom-white items-center gap-4 border-2 rounded-md px-20 py-4 font-montserrat tracking-[0.0125rem] font-semibold text-lg ">
+              <button
+                onClick={handlePostRequest}
+                className="flex bg-custom-white items-center gap-4 border-2 rounded-md px-20 py-4 font-montserrat tracking-[0.0125rem] font-semibold text-lg "
+              >
                 <p className="font-montserrat text-turquoise text-3xl ">+</p>
                 <p className="font-montserrat text-sm font-semibold">
                   İNDİRİM KODU GİR
