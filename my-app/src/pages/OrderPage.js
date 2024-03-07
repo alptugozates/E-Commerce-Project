@@ -654,7 +654,7 @@ const OrderPage = () => {
                         <input
                           type="text"
                           id="cardNumber"
-                          placeholder={selectedCard?.card_no}
+                          defaultValue={selectedCard?.card_no}
                           {...register("cardNumber", {
                             required: "Card number is required",
                           })}
@@ -669,7 +669,7 @@ const OrderPage = () => {
                         </label>
                         <input
                           type="number"
-                          placeholder={selectedCard.expire_month}
+                          defaultValue={selectedCard.expire_month}
                           id="expireMonth"
                           {...register("expireMonth", {
                             required: "Expiration month is required",
@@ -686,7 +686,7 @@ const OrderPage = () => {
                         <input
                           type="number"
                           id="expireYear"
-                          placeholder={selectedCard.expire_year}
+                          defaultValue={selectedCard.expire_year}
                           {...register("expireYear", {
                             required: "Expiration year is required",
                           })}
@@ -702,7 +702,7 @@ const OrderPage = () => {
                         <input
                           type="text"
                           id="nameOnCard"
-                          placeholder={selectedCard.name_on_card}
+                          defaultValue={selectedCard.name_on_card}
                           {...register("nameOnCard", {
                             required: "Name on card is required",
                           })}
@@ -716,7 +716,7 @@ const OrderPage = () => {
                         </label>
                         <input
                           type="text"
-                          placeholder={selectedCard.cvv}
+                          defaultValue={selectedCard.cvv}
                           id="cvv"
                           {...register("cvv", {
                             required: "CVV is required",
@@ -899,7 +899,7 @@ const OrderPage = () => {
 
                   <div className="mb-4">
                     <input
-                      placeholder="Phone"
+                      defaultValue="Phone"
                       type="tel"
                       id="phone"
                       name="phone"
@@ -1196,7 +1196,7 @@ const OrderPage = () => {
             </label>
             <input
               type="text"
-              placeholder={selectedAddress.title}
+              defaultValue={selectedAddress.title}
               id="addressTitle"
               name="addressTitle"
               {...register("addressTitle", {
@@ -1221,7 +1221,7 @@ const OrderPage = () => {
             <input
               type="text"
               id="name"
-              placeholder={selectedAddress.name}
+              defaultValue={selectedAddress.name}
               name="name"
               {...register("name", { required: "Name is required" })}
               className="w-full px-3 py-2 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
@@ -1237,7 +1237,7 @@ const OrderPage = () => {
             <input
               type="tel"
               id="phone"
-              placeholder={selectedAddress.phone}
+              defaultValue={selectedAddress.phone}
               name="phone"
               {...register("phone", { required: "Phone is required" })}
               className="w-full px-3 py-2 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
@@ -1258,7 +1258,7 @@ const OrderPage = () => {
             </label>
             <select
               id="city"
-              placeholder={selectedAddress.city}
+              defaultValue={selectedAddress.city}
               name="city"
               onChange={handleCityChange}
               {...register("city", { required: "City is required" })}
@@ -1291,7 +1291,7 @@ const OrderPage = () => {
             <select
               id="district"
               name="district"
-              placeholder={selectedAddress.district}
+              defaultValue={selectedAddress.district}
               value={selectedDistrict}
               {...register("district", {
                 required: "District is required",
@@ -1323,7 +1323,7 @@ const OrderPage = () => {
             </label>
             <input
               type="text"
-              placeholder={selectedAddress.neighborhood}
+              defaultValue={selectedAddress.neighborhood}
               id="neighborhood"
               name="neighborhood"
               {...register("neighborhood", {
@@ -1348,7 +1348,7 @@ const OrderPage = () => {
             <textarea
               id="addressDetails"
               name="addressDetails"
-              placeholder={selectedAddress.address}
+              defaultValue={selectedAddress.address}
               rows="4"
               {...register("addressDetails", {
                 required: "Address is required",
