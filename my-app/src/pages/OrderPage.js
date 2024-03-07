@@ -12,6 +12,7 @@ import { useForm } from "react-hook-form";
 import axiosInstance from "../axios/axiosInstance";
 import { Slide, toast } from "react-toastify";
 import { resetCart } from "../actions/cartAction";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 const cities = ["Istanbul", "Ankara", "Izmir", "Bursa", "Antalya"];
 const districts = {
@@ -54,6 +55,7 @@ const OrderPage = () => {
   const [showUpdateForm, setShowUpdateForm] = useState(false);
   const [selectedCard, setSelectedCard] = useState(null);
   const [cardShowUpdateForm, setCardShowUpdateForm] = useState(false);
+  const history = useHistory();
 
   console.log("ADDRESSES", addresses);
   console.log("SELECTED ADDRESS: ", selectedAddress);
@@ -380,6 +382,7 @@ const OrderPage = () => {
   };
   const handleConfirmOrderClick = () => {
     createOrder();
+    history.push("/order-completion-page");
   };
 
   return (
