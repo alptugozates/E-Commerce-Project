@@ -35,7 +35,7 @@ const OrderCompletionPage = () => {
       </div>
       <div className="flex justify-center items-center my-20 px-20">
         <div className="flex flex-wrap justify-center text-center px-16 gap-8 items-center">
-          <div className="flex flex-col items-center text-center justify-center pt-10 gap-10">
+          <div className="flex flex-col items-center text-center justify-center pt-10 gap-28">
             <h1 className="font-montserrat font-bold text-5xl text-turquoise tracking-[0.0625rem] ">
               YOUR ORDER HAS BEEN RECEIVED!
             </h1>
