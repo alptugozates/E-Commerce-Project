@@ -17,6 +17,7 @@ import OrderPage from "./pages/OrderPage";
 import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 import { useSelector } from "react-redux";
 import { readToLocalStorage } from "./reducers/userReducer";
+import OrderCompletionPage from "./pages/OrderCompletionPage";
 
 function App() {
   const isLoggedIn = useSelector((state) => state.userReducer.loggedIn);
@@ -63,6 +64,9 @@ function App() {
           ) : (
             <Redirect to="/login" />
           )}
+        </Route>
+        <Route path="/order-completion-page">
+          <OrderCompletionPage />
         </Route>
       </div>
     </Router>
